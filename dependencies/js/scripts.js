@@ -80,7 +80,7 @@
 
     // Typing animation
     const typed = new Typed('#typed-text', {
-        strings: ['Stubbornly Crafting Exceptional Software Solutions', 'Welcome to StubbornDeveloper...', 'Explore my data engineering expertise'],
+        strings: ['Learn more about StubbornDeveloper', 'Interested in data engineering? Reach out', 'Explore my Python and AWS skills', 'Check out my projects on GitHub', 'Contact me via LinkedIn or email'],
         typeSpeed: 50,
         backSpeed: 30,
         backDelay: 2000,

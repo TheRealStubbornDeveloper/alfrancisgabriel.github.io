@@ -100,6 +100,15 @@
         button.setAttribute('aria-expanded', !isOpen);
     };
 
+    // Typing animation
+    const typed = new Typed('#typed-text', {
+        strings: ['Stubbornly Crafting Exceptional Software Solutions', 'Welcome to StubbornDeveloper...', 'Explore my data engineering expertise'],
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 2000,
+        loop: true
+    });
+
     // Back to top button
     const backToTopBtn = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {

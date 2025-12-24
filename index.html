@@ -12,9 +12,8 @@
     					'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
     				},
     				colors: {
-    					'neon-green': '#39FF14',
-    					'male-blue': '#1e40af',
-    					'male-gray': '#4b5563',
+    					'accent': '#00d4aa',
+    					'accent-dark': '#2563eb',
     				}
     			}
     		}
@@ -111,18 +110,18 @@
 					</svg>
 				</button>
 					<ul class="hidden md:flex space-x-6">
-					<li><a class="hover:text-neon-green transition duration-200 js-scroll-trigger" href="#about">About</a></li>
-					<li><a class="hover:text-neon-green transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
-					<li><a class="hover:text-neon-green transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
-					<li><a class="hover:text-neon-green transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
+					<li>							<a class="hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#about">About</a></li>
+					<li>							<a class="hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
+					<li>							<a class="hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
+					<li>							<a class="hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
 				</ul>
 			</div>
 			<div class="md:hidden bg-gray-800 dark:bg-gray-900" id="mobileMenu" style="display: none;" role="menu">
 				<ul class="px-4 py-2 space-y-2">
-					<li><a class="block py-2 hover:text-neon-green transition duration-200 js-scroll-trigger" href="#about">About</a></li>
-					<li><a class="block py-2 hover:text-neon-green transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
-					<li><a class="block py-2 hover:text-neon-green transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
-					<li><a class="block py-2 hover:text-neon-green transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
+					<li><a class="block py-2 hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#about">About</a></li>
+					<li><a class="block py-2 hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
+					<li><a class="block py-2 hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
+					<li><a class="block py-2 hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -132,15 +131,15 @@
  		<header class="min-h-screen bg-cover bg-center flex items-center justify-center text-white relative" style="background-image: url('./assets/img/bg-masthead.jpg');" id="home">
  			<div class="absolute inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-70"></div>
 			<div class="container mx-auto px-4 text-center relative z-10">
-				<h1 class="text-5xl md:text-7xl font-bold mb-4 text-white dark:text-neon-green">StubbornDeveloper</h1>
-				<p class="text-lg md:text-xl font-medium text-neon-green mb-2">Stubbornly Crafting Exceptional Software Solutions</p>
+				<h1 class="text-5xl md:text-7xl font-bold mb-4 text-gray-900 dark:text-accent">StubbornDeveloper</h1>
+				<p class="text-lg md:text-xl font-medium text-accent-dark dark:text-accent mb-2">Stubbornly Crafting Exceptional Software Solutions</p>
 				<p class="text-xl md:text-2xl font-light text-gray-200 dark:text-white">Al Francis Gabriel Bolima - Full Stack Developer specializing in web applications, cloud services, and data engineering. Portfolio showcasing Python, Java, AWS, and big data projects.</p>
 			</div>
  		</header>
  		<!-- About-->
  		<section class="py-20 bg-gray-800 dark:bg-gray-900 text-white fade-in" id="about">
  			<div class="container mx-auto px-4">
- 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-user mr-2"></i>About</h2>
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-user mr-2"></i>About</h2>
  				<div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
  					<div class="md:w-1/3 text-center">
  						<p class="text-lg mb-4">Al Francis Gabriel Bolima is a passionate developer skilled in web and software development, with expertise in backend systems, data engineering, and AI integration. Currently freelancing as an ETL contractor, delivering scalable data solutions.</p>
@@ -163,7 +162,7 @@
 		<!-- Skills Section-->
  		<section class="py-20 bg-white dark:bg-gray-800 fade-in" id="skills">
 			<div class="container mx-auto px-4">
-				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-code mr-2"></i>Skills</h2>
+				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-code mr-2"></i>Skills</h2>
 				<div class="grid md:grid-cols-2 gap-8">
 					<div>
 						<h4 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Technical Skills</h4>
@@ -230,7 +229,7 @@
 		<!-- Projects Section-->
  		<section class="py-20 bg-gray-50 dark:bg-gray-800 fade-in" id="projects">
 			<div class="container mx-auto px-4">
-				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-project-diagram mr-2"></i>Projects</h2>
+				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-project-diagram mr-2"></i>Projects</h2>
 				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
 						<img class="w-full h-48 object-cover" src="./assets/img/project1.png" alt="Recipe Of Your Mom" />
@@ -255,7 +254,7 @@
 		<!-- Data Engineering Projects Section-->
  		<section class="py-20 bg-gray-50 dark:bg-gray-800 fade-in" id="data-engineering-projects">
 			<div class="container mx-auto px-4">
-				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-database mr-2"></i>Data Engineering Projects</h2>
+				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-database mr-2"></i>Data Engineering Projects</h2>
 				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
 						<img class="w-full h-48 object-cover" src="./assets/img/project3.png" alt="Goodreads ETL Pipeline" />
@@ -311,7 +310,7 @@
  		<!-- Services Section-->
  		<section class="py-20 bg-gray-800 dark:bg-gray-900 text-white fade-in" id="services">
  			<div class="container mx-auto px-4">
- 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-cogs mr-2"></i>Services</h2>
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-cogs mr-2"></i>Services</h2>
  				<div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
  					<div class="md:w-1/3 text-center">
  						<p class="text-lg">I offer services in Cloud & Big Data technologies, including AWS, PySpark, Hadoop, HBase, and Hive.</p>
@@ -325,9 +324,9 @@
  		<!-- Contact Section-->
  		<section class="py-20 bg-gray-800 dark:bg-gray-900 text-white fade-in" id="contact">
  			<div class="container mx-auto px-4">
- 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-envelope mr-2"></i>Contact Me</h2>
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-envelope mr-2"></i>Contact Me</h2>
  				<div class="text-center">
- 					<p class="text-lg mb-4">Contact me at: <a class="text-white hover:text-neon-green transition duration-300" href="mailto:alfrancisgabriel@gmail.com" target="_blank">alfrancisgabriel@gmail.com</a></p>
+ 					<p class="text-lg mb-4">Contact me at: <a class="text-white hover:text-accent transition duration-300" href="mailto:alfrancisgabriel@gmail.com" target="_blank">alfrancisgabriel@gmail.com</a></p>
  				</div>
 			</div>
 		</section>
@@ -344,14 +343,14 @@
  					<div>
  						<h4 class="text-xl font-semibold mb-4 text-neon-green">Around the Web</h4>
  						<div class="flex justify-center space-x-4">
- 							<a class="text-white hover:text-neon-green transition duration-300" href="https://www.facebook.com/alfrancis.bolima" target="_blank"><i class="fab fa-facebook-f text-2xl"></i></a>
- 							<a class="text-white hover:text-neon-green transition duration-300" href="https://www.twitter.com/alfrancisgabriel" target="_blank"><i class="fab fa-twitter text-2xl"></i></a>
- 							<a class="text-white hover:text-neon-green transition duration-300" href="https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/" target="_blank"><i class="fab fa-linkedin-in text-2xl"></i></a>
- 							<a class="text-white hover:text-neon-green transition duration-300" href="https://www.github.com/alfrancisgabriel" target="_blank"><i class="fab fa-github text-2xl"></i></a>
+						<a class="text-white hover:text-accent transition duration-300" href="https://www.facebook.com/alfrancis.bolima" target="_blank"><i class="fab fa-facebook-f text-2xl"></i></a>
+						<a class="text-white hover:text-accent transition duration-300" href="https://www.twitter.com/alfrancisgabriel" target="_blank"><i class="fab fa-twitter text-2xl"></i></a>
+						<a class="text-white hover:text-accent transition duration-300" href="https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/" target="_blank"><i class="fab fa-linkedin-in text-2xl"></i></a>
+						<a class="text-white hover:text-accent transition duration-300" href="https://www.github.com/alfrancisgabriel" target="_blank"><i class="fab fa-github text-2xl"></i></a>
  						</div>
  					</div>
  					<div>
-						<h4 class="text-xl font-semibold mb-4 text-gray-900 dark:text-neon-green">About StubbornDeveloper</h4>
+						<h4 class="text-xl font-semibold mb-4 text-gray-900 dark:text-accent">About StubbornDeveloper</h4>
 						<p class="text-gray-300">StubbornDeveloper is a website that showcases the projects and skills of Al Francis Gabriel Bolima.</p>
  					</div>
  				</div>
@@ -367,7 +366,7 @@
 		<!-- Third party plugin JS-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
  		<!-- Back to Top Button -->
- 		<button id="backToTop" class="fixed bottom-5 right-5 bg-neon-green text-black p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 z-50" style="display: none;">
+ 		<button id="backToTop" class="fixed bottom-5 right-5 bg-accent-dark dark:bg-accent text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 z-50" style="display: none;">
  			<i class="fas fa-arrow-up"></i>
  		</button>
 

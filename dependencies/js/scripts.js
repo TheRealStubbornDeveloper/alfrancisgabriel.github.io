@@ -79,12 +79,16 @@
     // Theme button handlers
     lightModeBtn.addEventListener('click', () => {
         body.classList.remove('dark');
-        themeModal.classList.add('hidden');
+        lightModeBtn.classList.add('ring-2', 'ring-blue-500');
+        darkModeBtn.classList.remove('ring-2', 'ring-green-500');
+        setTimeout(() => themeModal.classList.add('hidden'), 500);
     });
 
     darkModeBtn.addEventListener('click', () => {
         body.classList.add('dark');
-        themeModal.classList.add('hidden');
+        darkModeBtn.classList.add('ring-2', 'ring-green-500');
+        lightModeBtn.classList.remove('ring-2', 'ring-blue-500');
+        setTimeout(() => themeModal.classList.add('hidden'), 500);
     });
 
     // Mobile menu toggle

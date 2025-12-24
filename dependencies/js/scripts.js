@@ -79,13 +79,15 @@
     };
 
     // Typing animation
-    const typed = new Typed('#typed-text', {
-        strings: ['Learn more about StubbornDeveloper', 'Interested in data engineering? Reach out', 'Explore my Python and AWS skills', 'Check out my projects on GitHub', 'Contact me via LinkedIn or email'],
-        typeSpeed: 50,
-        backSpeed: 30,
-        backDelay: 2000,
-        loop: true
-    });
+    if (document.getElementById('typed-text')) {
+        const typed = new Typed('#typed-text', {
+            strings: ['Learn more about StubbornDeveloper', 'Interested in data engineering? Reach out', 'Explore my Python and AWS skills', 'Check out my projects on GitHub', 'Contact me via LinkedIn or email'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true
+        });
+    }
 
     // Back to top button
     const backToTopBtn = document.getElementById('backToTop');

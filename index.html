@@ -1,23 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-    	<!-- Tailwind CSS -->
-    	<script src="https://cdn.tailwindcss.com"></script>
-    	<script>
-    	tailwind.config = {
-    		theme: {
-    			extend: {
-    				fontFamily: {
-    					'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
-    				},
-    				colors: {
-    					'accent': '#00d4aa',
-    				},
 
-    			}
-    		}
-    	}
-    	</script>
     </head>
 		<meta charset="utf-8" />
 		<meta
@@ -54,26 +38,24 @@
  		<meta property="og:title" content="Al Francis Gabriel Bolima - Portfolio" />
  		<meta property="og:description" content="Full Stack Developer and Data Engineer portfolio showcasing expertise in Python, Java, AWS, Azure, and AI." />
  		<meta property="og:image" content="./assets/img/hero-image.jpeg" />
- 		<meta property="og:url" content="https://alfrancisgabriel.github.io" />
- 		<meta name="twitter:card" content="summary_large_image" />
- 		<meta name="twitter:title" content="Al Francis Gabriel Bolima - Portfolio" />
- 		<meta name="twitter:description" content="Full Stack Developer and Data Engineer portfolio." />
- 		<meta name="twitter:image" content="./assets/img/hero-image.jpeg" />
+  		<meta property="og:url" content="https://alfrancisgabriel.github.io" />
+  		<meta name="twitter:card" content="summary_large_image" />
+  		<meta name="twitter:title" content="Al Francis Gabriel Bolima - Portfolio" />
+  		<meta name="twitter:description" content="Full Stack Developer and Data Engineer portfolio." />
 		<!-- Structured Data -->
 		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "Person",
-			"name": "Al Francis Gabriel Bolima",
-			"jobTitle": "Full Stack Developer & Data Engineer",
-			"url": "https://alfrancisgabriel.github.io",
-			"sameAs": [
-				"https://github.com/alfrancisgabriel",
-				"https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/",
-				"https://www.twitter.com/alfrancisgabriel"
-			],
-			"knowsAbout": ["Python", "Java", "AWS", "Azure", "Data Engineering", "AI", "Machine Learning"]
-		}
+ 		{
+ 			"@context": "https://schema.org",
+ 			"@type": "Person",
+ 			"name": "Al Francis Gabriel Bolima",
+ 			"jobTitle": "Full Stack Developer & Data Engineer",
+ 			"url": "https://alfrancisgabriel.github.io",
+ 			"sameAs": [
+ 				"https://github.com/TheRealStubbornDeveloper",
+ 				"https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/"
+ 			],
+ 			"knowsAbout": ["Python", "Java", "AWS", "Azure", "Data Engineering", "AI", "Machine Learning"]
+ 		}
 		</script>
 		</head>
 
@@ -86,16 +68,16 @@
 		<nav class="fixed top-0 w-full bg-gray-800 dark:bg-black text-white shadow-lg z-40 transition-all duration-300" id="mainNav" role="navigation" aria-label="Main navigation">
 			<div class="container mx-auto px-4 py-3 flex justify-between items-center">
 				<a href="#page-top" aria-label="StubbornDeveloper - Home"><img src="./assets/img/banner.png" alt="StubbornDeveloper Logo" class="h-8 w-auto"></a>
-				<button class="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-neon-green" type="button" onclick="toggleMenu()" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle mobile menu">
+				<button class="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-accent" type="button" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle mobile menu">
 					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
 					</svg>
 				</button>
 					<ul class="hidden md:flex space-x-6">
-					<li>							<a class="hover:text-accent transition duration-200 js-scroll-trigger" href="#about">About</a></li>
-					<li>							<a class="hover:text-accent transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
-					<li>							<a class="hover:text-accent transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
-					<li>							<a class="hover:text-accent transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
+  					<li>							<a class="hover:text-accent transition duration-200" href="#about">About</a></li>
+					<li>							<a class="hover:text-accent transition duration-200" href="#skills">Skills</a></li>
+					<li>							<a class="hover:text-accent transition duration-200" href="#projects">Projects</a></li>
+					<li>							<a class="hover:text-accent transition duration-200" href="#contact">Contact</a></li>
 				</ul>
 			</div>
 			<div class="md:hidden bg-gray-800 dark:bg-gray-900" id="mobileMenu" style="display: none;" role="menu">
@@ -334,8 +316,8 @@
  			<i class="fas fa-arrow-up"></i>
  		</button>
 
- 		<!-- Typed.js for typing animation -->
- 		<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+ 		<!-- Typed.js for typing animation (crossorigin attribute to prevent certain errors) -->
+ 		<script src="https://unpkg.com/typed.js@2.0.12/lib/typed.min.js" crossorigin="anonymous"></script>
  		<!-- Core theme JS-->
  		<script src="./dependencies/js/scripts.js"></script>
 	</body>

@@ -14,6 +14,10 @@
     				colors: {
     					'accent': '#00d4aa',
     					'accent-dark': '#2563eb',
+    				},
+    				backgroundImage: {
+    					'terminal-dark': "url('./assets/img/bg-terminal-dark.png')",
+    					'terminal-light': "url('./assets/img/bg-terminal-light.png')",
     				}
     			}
     		}
@@ -128,7 +132,7 @@
 
 		<main id="main">
 		<!-- Masthead-->
- 		<header class="min-h-screen bg-cover bg-center flex items-center justify-center text-white relative" style="background-image: url('./assets/img/bg-masthead.jpg');" id="home">
+ 		<header class="min-h-screen bg-cover bg-center flex items-center justify-center text-white relative bg-terminal-dark dark:bg-terminal-light" id="home">
  			<div class="absolute inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-70"></div>
 			<div class="container mx-auto px-4 text-center relative z-10">
 				<h1 class="text-5xl md:text-7xl font-bold mb-4 text-gray-900 dark:text-accent">StubbornDeveloper</h1>

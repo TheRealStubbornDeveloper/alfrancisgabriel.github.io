@@ -80,13 +80,20 @@
 
         <section class="py-20 bg-gray-800" id="about">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-user mr-2"></i>About</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="text-gray-300">
-                        <p>Al Francis Gabriel Bolima is a passionate developer skilled in web and software development, with expertise in backend systems, data engineering, and AI integration. Currently freelancing as an ETL contractor, delivering scalable data solutions.</p>
-                    </div>
+                <h2 class="text-4xl font-bold text-center mb-12 text-accent">About Me</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="flex justify-center">
-                        <img src="./assets/img/aboutme.png" alt="Al Francis Gabriel Bolima" class="rounded-full h-64 w-64 object-cover border-4 border-accent">
+                        <img src="./assets/img/aboutme.png" alt="Al Francis Gabriel Bolima" class="rounded-full h-80 w-80 object-cover border-4 border-accent shadow-xl">
+                    </div>
+                    <div class="bg-gray-700 rounded-xl p-8 shadow-lg">
+                        <p class="text-lg text-gray-200 mb-6">Al Francis Gabriel Bolima is a passionate developer skilled in web and software development, with expertise in backend systems, data engineering, and AI integration. Currently freelancing as an ETL contractor, delivering scalable data solutions.</p>
+                        <p class="text-lg text-gray-200 mb-6">With a strong foundation in both frontend and backend technologies, I specialize in creating robust, efficient applications that solve real-world problems.</p>
+                        <div class="flex flex-wrap gap-3 mt-8">
+                            <span class="bg-accent text-gray-900 px-4 py-2 rounded-full text-sm font-medium">Full Stack Development</span>
+                            <span class="bg-accent text-gray-900 px-4 py-2 rounded-full text-sm font-medium">Data Engineering</span>
+                            <span class="bg-accent text-gray-900 px-4 py-2 rounded-full text-sm font-medium">Cloud Services</span>
+                            <span class="bg-accent text-gray-900 px-4 py-2 rounded-full text-sm font-medium">AI Integration</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,16 +101,67 @@
 
         <section class="py-20 bg-gray-700" id="skills">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-code mr-2"></i>Skills</h2>
+                <h2 class="text-4xl font-bold text-center mb-12 text-accent">Technical Skills</h2>
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="text-2xl font-semibold mb-4 text-white">Technical Skills</h4>
-                        <div class="space-y-2 text-gray-300">
-                            <p><strong>Data Engineering:</strong> ETL Pipelines, Data Warehousing, SQL, NoSQL, Apache Spark, Airflow, Kafka, ELT, Data Lakes</p>
-                            <p><strong>Python:</strong> Scripting, automation, data processing, integrations with AWS services like Glue, S3, Lambda</p>
-                            <p><strong>AWS:</strong> EC2, S3, Lambda, Glue, Redshift, EMR, Athena, Kinesis</p>
-                            <p><strong>AI Integration:</strong> TensorFlow, PyTorch, Scikit-learn, OpenCV, NLP, Computer Vision</p>
-                            <p><strong>Other:</strong> Java, Scala, Docker, Kubernetes, Git, CI/CD</p>
+                    <div class="bg-gray-800 rounded-xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-semibold mb-6 text-white border-b border-gray-600 pb-3">Data Engineering</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">ETL Pipelines & Data Warehousing</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">SQL, NoSQL, Apache Spark, Airflow</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">Kafka, ELT, Data Lakes</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">Data Processing & Analysis</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-semibold mb-6 text-white border-b border-gray-600 pb-3">Programming & Cloud</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">Python, Java, Scala</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">AWS, Azure, GCP Services</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">Docker, Kubernetes, CI/CD</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">Git, DevOps Practices</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-xl p-8 shadow-lg md:col-span-2">
+                        <h3 class="text-2xl font-semibold mb-6 text-white border-b border-gray-600 pb-3">AI & Machine Learning</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">TensorFlow, PyTorch</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">Scikit-learn, OpenCV</p>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-accent rounded-full mr-3"></div>
+                                <p class="text-gray-200">NLP, Computer Vision</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,85 +170,112 @@
 
         <section class="py-20 bg-gray-800" id="projects">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-project-diagram mr-2"></i>Projects</h2>
+                <h2 class="text-4xl font-bold text-center mb-12 text-accent">Featured Projects</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-700 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                        <div class="h-48 bg-gray-600 flex items-center justify-center">
-                            <img src="./assets/img/project1.png" alt="Recipe Of Your Mom App" class="w-full h-full object-cover">
+                    <div class="bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
+                        <div class="h-48 bg-gradient-to-r from-accent to-teal-600 flex items-center justify-center">
+                            <div class="text-white text-center p-4">
+                                <h3 class="text-xl font-bold mb-2">Recipe Of Your Mom</h3>
+                                <p class="text-sm opacity-90">Flutter Mobile App</p>
+                            </div>
                         </div>
-                        <div class="p-6 text-center">
-                            <h4 class="text-xl font-semibold mb-2 text-white">Recipe Of Your Mom</h4>
-                            <p class="text-gray-300 mb-4">A Flutter-based mobile app for recipe management.</p>
-                            <a href="https://play.google.com/store/apps/details?id=com.stubborndeveloper.recipeofyourmom" target="_blank" class="inline-block bg-accent text-white px-4 py-2 rounded-lg transition duration-300">View on Google Play</a>
-                        </div>
-                    </div>
-                    <div class="bg-gray-700 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                        <div class="h-48 bg-gray-600 flex items-center justify-center">
-                            <img src="./assets/img/project2.png" alt="Face Recognizer App" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6 text-center">
-                            <h4 class="text-xl font-semibold mb-2 text-white">Face Recognizer</h4>
-                            <p class="text-gray-300 mb-4">Computer vision application using OpenCV for facial recognition.</p>
-                            <a href="https://github.com/TheRealStubbornDeveloper/facerecognizer" target="_blank" class="inline-block bg-accent text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
+                        <div class="p-6">
+                            <p class="text-gray-200 mb-4">A Flutter-based mobile app for recipe management with cloud synchronization.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-xs">Flutter</span>
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-xs">Firebase</span>
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-xs">Dart</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="bg-gray-700 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
-                        <div class="h-48 bg-gray-600 flex items-center justify-center">
-                            <img src="./assets/img/project3.png" alt="Database Learning Tool" class="w-full h-full object-cover">
+                    
+                    <div class="bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
+                        <div class="h-48 bg-gradient-to-r from-accent to-teal-600 flex items-center justify-center">
+                            <div class="text-white text-center p-4">
+                                <h3 class="text-xl font-bold mb-2">Face Recognizer</h3>
+                                <p class="text-sm opacity-90">Computer Vision Project</p>
+                            </div>
                         </div>
-                        <div class="p-6 text-center">
-                            <h4 class="text-xl font-semibold mb-2 text-white">Database Learning Tool</h4>
-                            <p class="text-gray-300 mb-4">Mobile app for learning database concepts offline.</p>
-                            <a href="./databaselearningapp.html" target="_blank" class="inline-block bg-accent text-white px-4 py-2 rounded-lg transition duration-300">View Privacy Policy</a>
+                        <div class="p-6">
+                            <p class="text-gray-200 mb-4">Computer vision application using OpenCV for facial recognition and identification.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-xs">OpenCV</span>
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-xs">Python</span>
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-xs">Machine Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
+                        <div class="h-48 bg-gradient-to-r from-accent to-teal-600 flex items-center justify-center">
+                            <div class="text-white text-center p-4">
+                                <h3 class="text-xl font-bold mb-2">Database Learning Tool</h3>
+                                <p class="text-sm opacity-90">Educational Mobile App</p>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-200 mb-4">Mobile application for learning database concepts with offline functionality.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-xs">Offline</span>
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-xs">Privacy Focused</span>
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-xs">SQLite</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-20 bg-gray-800" id="contact">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-envelope mr-2"></i>Contact Me</h2>
-                <p class="text-lg mb-4">Contact me at: <a class="text-white hover:text-accent transition duration-300" href="mailto:alfrancisgabriel@gmail.com" target="_blank">alfrancisgabriel@gmail.com</a></p>
-                <div class="mt-8">
-                    <a href="mailto:alfrancisgabriel@gmail.com" class="inline-block bg-accent text-white px-6 py-3 rounded-lg transition duration-300 hover:bg-opacity-90">Send Email</a>
+        <section class="py-20 bg-gray-700" id="contact">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 text-accent">Get In Touch</h2>
+                <div class="max-w-2xl mx-auto bg-gray-800 rounded-xl p-8 shadow-lg">
+                    <p class="text-lg text-gray-200 mb-8 text-center">Interested in working together? Feel free to reach out!</p>
+                    <div class="flex flex-col items-center">
+                        <a href="mailto:alfrancisgabriel@gmail.com" class="inline-flex items-center bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-opacity-90 hover:scale-105">
+                            <i class="fas fa-envelope mr-3"></i> Contact via Email
+                        </a>
+                        <div class="mt-8 flex space-x-6">
+                            <a href="https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300">
+                                <i class="fab fa-linkedin text-2xl"></i>
+                            </a>
+                            <a href="https://github.com/TheRealStubbornDeveloper" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300">
+                                <i class="fab fa-github text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <footer class="bg-gray-900 text-white py-12">
             <div class="container mx-auto px-4">
-                <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
                     <div>
                         <h4 class="text-xl font-semibold mb-4 text-accent">Location</h4>
                         <p class="text-gray-300">Antipolo Rizal, Philippines</p>
                     </div>
                     <div>
-                        <h4 class="text-xl font-semibold mb-4 text-accent">Around the Web</h4>
-                        <div class="flex justify-center space-x-4">
-                            <a class="text-white hover:text-accent transition duration-300" href="https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/" target="_blank"><i class="fab fa-linkedin-in text-2xl"></i></a>
-                            <a class="text-white hover:text-accent transition duration-300" href="https://github.com/TheRealStubbornDeveloper" target="_blank"><i class="fab fa-github text-2xl"></i></a>
-                        </div>
+                        <h4 class="text-xl font-semibold mb-4 text-accent">About StubbornDeveloper</h4>
+                        <p class="text-gray-300">Showcasing projects and skills in web development, data engineering, and AI.</p>
                     </div>
                     <div>
-                        <h4 class="text-xl font-semibold mb-4 text-accent">About StubbornDeveloper</h4>
-                        <p class="text-gray-300">StubbornDeveloper showcases the projects and skills of Al Francis Gabriel Bolima.</p>
+                        <h4 class="text-xl font-semibold mb-4 text-accent">Connect</h4>
+                        <p class="text-gray-300">Let's collaborate on your next project!</p>
                     </div>
+                </div>
+                <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                    <p>&copy; 2025 StubbornDeveloper. All rights reserved.</p>
                 </div>
             </div>
         </footer>
-        <div class="bg-black text-gray-400 py-4 text-center">
-            <div class="container mx-auto px-4">
-                <small>Copyright &copy; StubbornDeveloper 2025</small>
-            </div>
-        </div>
     </main>
 
     <script src="https://unpkg.com/typed.js@2.0.12/lib/typed.min.js" crossorigin="anonymous"></script>
     <script>
         if (document.getElementById('typed-text')) {
             const typed = new Typed('#typed-text', {
-                strings: ['Learn more about StubbornDeveloper', 'Interested in data engineering? Reach out', 'Explore my Python and AWS skills', 'Check out my projects on GitHub'],
+                strings: ['Learn more about StubbornDeveloper', 'Interested in data engineering?', 'Explore Python & AWS skills', 'Check out my projects'],
                 typeSpeed: 50,
                 backSpeed: 30,
                 backDelay: 2000,

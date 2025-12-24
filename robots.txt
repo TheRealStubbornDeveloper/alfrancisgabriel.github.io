@@ -1,2 +1,3 @@
-User-agent: * Disallow: /contact
-Sitemap: https://www.gabcodes.com/sitemap/en.xml
+User-agent: *
+Disallow: /contact
+Sitemap: https://alfrancisgabriel.github.io/sitemap/en.xml

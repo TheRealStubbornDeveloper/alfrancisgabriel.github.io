@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Al Francis Gabriel Bolima - Full Stack Developer specializing in web applications, cloud services, and data engineering. Portfolio showcasing Python, Java, AWS, and big data projects." />
     <meta name="author" content="Al Francis Gabriel Bolima" />
+    <meta name="keywords" content="Full Stack Developer, Data Engineer, Python, Java, AWS, Azure, Data Engineering, AI, Machine Learning, Web Development, Cloud Services" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Al Francis Gabriel Bolima - StubbornDeveloper" />
+    <meta property="og:description" content="Full Stack Developer specializing in web applications, cloud services, and data engineering. Portfolio showcasing Python, Java, AWS, and big data projects." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://alfrancisgabriel.github.io/" />
+    <meta property="og:image" content="https://alfrancisgabriel.github.io/assets/img/aboutme.png" />
+    <meta property="og:site_name" content="StubbornDeveloper" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Al Francis Gabriel Bolima - StubbornDeveloper" />
+    <meta name="twitter:description" content="Full Stack Developer specializing in web applications, cloud services, and data engineering. Portfolio showcasing Python, Java, AWS, and big data projects." />
+    <meta name="twitter:image" content="https://alfrancisgabriel.github.io/assets/img/aboutme.png" />
     <title>Al Francis Gabriel Bolima - StubbornDeveloper</title>
     <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -42,7 +54,23 @@
 </head>
 <body id="page-top" class="bg-gray-900 text-white">
     <main id="main">
-        <header class="min-h-screen flex items-center justify-center relative">
+        <!-- Navigation -->
+        <nav class="fixed w-full bg-gray-900 bg-opacity-90 backdrop-blur-sm z-50">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <a href="#page-top" class="text-2xl font-bold text-accent">StubbornDeveloper</a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#about" class="hover:text-accent transition duration-300">About</a>
+                    <a href="#skills" class="hover:text-accent transition duration-300">Skills</a>
+                    <a href="#projects" class="hover:text-accent transition duration-300">Projects</a>
+                    <a href="#contact" class="hover:text-accent transition duration-300">Contact</a>
+                </div>
+                <button class="md:hidden text-white">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <header class="min-h-screen flex items-center justify-center relative pt-16">
             <div class="container mx-auto px-4 text-center">
                 <h1 class="text-5xl md:text-7xl font-bold mb-4 text-accent">StubbornDeveloper</h1>
                 <p class="text-lg md:text-xl font-medium text-accent mb-2"><span id="typed-text">Loading...</span></p>
@@ -56,6 +84,9 @@
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="text-gray-300">
                         <p>Al Francis Gabriel Bolima is a passionate developer skilled in web and software development, with expertise in backend systems, data engineering, and AI integration. Currently freelancing as an ETL contractor, delivering scalable data solutions.</p>
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="./assets/img/aboutme.png" alt="Al Francis Gabriel Bolima" class="rounded-full h-64 w-64 object-cover border-4 border-accent">
                     </div>
                 </div>
             </div>
@@ -83,9 +114,9 @@
             <div class="container mx-auto px-4">
                 <h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-project-diagram mr-2"></i>Projects</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-gray-700 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
                         <div class="h-48 bg-gray-600 flex items-center justify-center">
-                            <span class="text-4xl text-accent">Recipe</span>
+                            <img src="./assets/img/project1.png" alt="Recipe Of Your Mom App" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6 text-center">
                             <h4 class="text-xl font-semibold mb-2 text-white">Recipe Of Your Mom</h4>
@@ -93,14 +124,24 @@
                             <a href="https://play.google.com/store/apps/details?id=com.stubborndeveloper.recipeofyourmom" target="_blank" class="inline-block bg-accent text-white px-4 py-2 rounded-lg transition duration-300">View on Google Play</a>
                         </div>
                     </div>
-                    <div class="bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-gray-700 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
                         <div class="h-48 bg-gray-600 flex items-center justify-center">
-                            <span class="text-4xl text-accent">Face</span>
+                            <img src="./assets/img/project2.png" alt="Face Recognizer App" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6 text-center">
                             <h4 class="text-xl font-semibold mb-2 text-white">Face Recognizer</h4>
                             <p class="text-gray-300 mb-4">Computer vision application using OpenCV for facial recognition.</p>
                             <a href="https://github.com/TheRealStubbornDeveloper/facerecognizer" target="_blank" class="inline-block bg-accent text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
+                        </div>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                        <div class="h-48 bg-gray-600 flex items-center justify-center">
+                            <img src="./assets/img/project3.png" alt="Database Learning Tool" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h4 class="text-xl font-semibold mb-2 text-white">Database Learning Tool</h4>
+                            <p class="text-gray-300 mb-4">Mobile app for learning database concepts offline.</p>
+                            <a href="./databaselearningapp.html" target="_blank" class="inline-block bg-accent text-white px-4 py-2 rounded-lg transition duration-300">View Privacy Policy</a>
                         </div>
                     </div>
                 </div>
@@ -111,6 +152,9 @@
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-envelope mr-2"></i>Contact Me</h2>
                 <p class="text-lg mb-4">Contact me at: <a class="text-white hover:text-accent transition duration-300" href="mailto:alfrancisgabriel@gmail.com" target="_blank">alfrancisgabriel@gmail.com</a></p>
+                <div class="mt-8">
+                    <a href="mailto:alfrancisgabriel@gmail.com" class="inline-block bg-accent text-white px-6 py-3 rounded-lg transition duration-300 hover:bg-opacity-90">Send Email</a>
+                </div>
             </div>
         </section>
 
@@ -153,6 +197,16 @@
                 loop: true
             });
         }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>

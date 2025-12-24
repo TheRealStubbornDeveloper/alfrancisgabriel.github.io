@@ -1,13 +1,16 @@
 /* Global Styles */
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #fff; /* Pure White background */
-    color: #000; /* Pure Black text */
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Subtle gradient background */
+    color: #333; /* Dark grey text for better readability */
     padding-top: 56px; /* Adjust for fixed navbar */
+    line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6 {
     color: #000; /* Pure Black headings */
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 a {
@@ -25,7 +28,7 @@ a:hover {
 }
 
 .bg-light {
-    background-color: #fff !important; /* Pure white background */
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important; /* Light gradient */
 }
 
 /* Override primary color to black for backgrounds/elements */
@@ -96,6 +99,14 @@ a:hover {
 }
 .navbar-dark .navbar-brand {
      color: #fff;
+}
+.navbar-shrink {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba(0,0,0,0.9);
+}
+.navbar-shrink .navbar-brand {
+    font-size: 1.25rem;
 }
 
 /* Divider Styles (Simplified - No Icon) */
@@ -168,8 +179,14 @@ a:hover {
 /* Card Adjustments */
 .card {
     border: none; /* No border for cards */
-    background-color: #f8f9fa; /* Very light grey card background */
-    box-shadow: 0 0.25rem 0.25rem rgba(0,0,0,0.1); /* Subtle shadow for cards */
+    background-color: #fff; /* White card background */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* Modern shadow */
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
 }
 .card-title {
     color: #000; /* Ensure card titles are black */
@@ -190,17 +207,11 @@ a:hover {
 .masthead {
     padding-top: calc(6rem + 56px); /* Adjust based on navbar height */
     padding-bottom: 6rem;
-    background: url('../../assets/img/bg-masthead.jpg'); /* Hero image as background */
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%), url('../../assets/img/bg-masthead.jpg'); /* Gradient overlay */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     position: relative; /* For overlay */
-}
-.masthead::before { /* Dark overlay for better text visibility */
-    content: '';
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
 }
 .masthead .container {
     position: relative; /* Ensure text is above overlay */
@@ -211,11 +222,13 @@ a:hover {
     line-height: 3rem;
     color: #fff; /* White heading text */
     margin-bottom: 1rem; /* Spacing below heading */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 .masthead .masthead-subheading {
     font-size: 1.5rem; /* Larger subheading */
     color: #eee; /* Slightly off-white subheading text */
-    font-weight: lighter; /* Lighter font weight for subheading */
+    font-weight: 300; /* Lighter font weight for subheading */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 
@@ -238,6 +251,7 @@ a:hover {
     margin-bottom: 1.2rem; /* More spacing for lead text */
     font-size: 1.1rem; /* Slightly larger lead text */
     color: #eee; /* Lighter text for about section on dark bg */
+    font-weight: 400;
 }
 #about img.img-fluid {
     margin-top: 1rem;
@@ -324,6 +338,59 @@ a {
 
 a:hover {
   color: var(--color-accent);
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #fff;
+}
+.timeline-item {
+    margin-bottom: 2rem;
+    position: relative;
+}
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #39FF14;
+    border: 2px solid #fff;
+}
+.timeline-item h4 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+.timeline-item h5 {
+    color: #ccc;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+.timeline-item p {
+    color: #eee;
 }
 
 /* Responsive layout */

@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUJFeedback/Context" crossorigin="anonymous">
-</head>
+	<head>
+    	<!-- Tailwind CSS -->
+    	<script src="https://cdn.tailwindcss.com"></script>
+    	<script>
+    		tailwind.config = {
+    			darkMode: 'class',
+    			theme: {
+    				extend: {
+    					colors: {
+    						'neon-green': '#39FF14',
+    						'male-blue': '#1e40af',
+    						'male-gray': '#4b5563',
+    					}
+    				}
+    			}
+    		}
+    	</script>
+    </head>
 		<meta charset="utf-8" />
 		<meta
 			name="viewport"
@@ -14,8 +28,9 @@
 			content="Al Francis Gabriel Bolima - Full Stack Developer specializing in web applications, cloud services, and data engineering. Portfolio showcasing Python, Java, AWS, and big data projects."
 		/>
 		<meta name="author" content="Al Francis Gabriel Bolima" />
-		<title>Al Francis Gabriel Bolima - Gabcodes</title>
+		<title>Al Francis Gabriel Bolima - StubbornDeveloper</title>
 		<link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico" />
+		<link rel="preload" as="image" href="./assets/img/bg-masthead.jpg" />
 		<!-- Font Awesome icons (free version)-->
 		<script
 			src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
@@ -30,117 +45,227 @@
 			href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 			rel="stylesheet"
 		/>
-		<meta name="google-site-verification" content="wodAJ5khQI55gtb7ADqvr8BqOKlUm_-4HmhvJ-EIwv8" />
-		<!-- Core theme CSS (includes Bootstrap)-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-<link href="./dependencies/css/styles.css" rel="stylesheet" />
+ 		<meta name="google-site-verification" content="wodAJ5khQI55gtb7ADqvr8BqOKlUm_-4HmhvJ-EIwv8" />
+ 		<!-- SEO Meta Tags -->
+ 		<meta name="description" content="Al Francis Gabriel Bolima - Full Stack Developer specializing in web applications, cloud services, and data engineering. Portfolio showcasing Python, Java, AWS, Azure, and AI projects." />
+ 		<meta name="keywords" content="full stack developer, data engineer, Python, Java, AWS, Azure, AI, machine learning, portfolio" />
+ 		<meta name="author" content="Al Francis Gabriel Bolima" />
+ 		<meta property="og:title" content="Al Francis Gabriel Bolima - Portfolio" />
+ 		<meta property="og:description" content="Full Stack Developer and Data Engineer portfolio showcasing expertise in Python, Java, AWS, Azure, and AI." />
+ 		<meta property="og:image" content="./assets/img/hero-image.jpeg" />
+ 		<meta property="og:url" content="https://alfrancisgabriel.github.io" />
+ 		<meta name="twitter:card" content="summary_large_image" />
+ 		<meta name="twitter:title" content="Al Francis Gabriel Bolima - Portfolio" />
+ 		<meta name="twitter:description" content="Full Stack Developer and Data Engineer portfolio." />
+ 		<meta name="twitter:image" content="./assets/img/hero-image.jpeg" />
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Al Francis Gabriel Bolima",
+			"jobTitle": "Full Stack Developer & Data Engineer",
+			"url": "https://alfrancisgabriel.github.io",
+			"sameAs": [
+				"https://github.com/alfrancisgabriel",
+				"https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/",
+				"https://www.twitter.com/alfrancisgabriel"
+			],
+			"knowsAbout": ["Python", "Java", "AWS", "Azure", "Data Engineering", "AI", "Machine Learning"]
+		}
+		</script>
 		</head>
-		<!-- Bootstrap core JS -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwqVKSICpdEykww94fIdGOmG05fQb49JQ/JZleCNiCeE9eGHv" crossorigin="anonymous"></script>
 
-	<body id="page-top">
-		<!-- Navigation-->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-			<div class="container">
-				<a class="navbar-brand" href="#page-top">Gabcodes</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
+
+ 	<body id="page-top" class="bg-gray-100 text-gray-900 dark:bg-black dark:text-white">
+ 		<!-- Skip to main content -->
+ 		<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-blue-500 text-white p-2 z-50">Skip to main content</a>
+
+ 		<!-- Theme Selection Modal -->
+ 		<div id="themeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+ 			<div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full mx-4">
+ 				<h2 class="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white">Choose Your Theme</h2>
+ 				<p class="mb-6 text-center text-gray-600 dark:text-gray-300">Select your preferred color mode for the best experience.</p>
+ 				<div class="flex space-x-4">
+ 					<button id="lightModeBtn" class="flex-1 bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300" aria-label="Select light mode">
+ 						Light Mode
+ 					</button>
+ 					<button id="darkModeBtn" class="flex-1 bg-gray-800 hover:bg-gray-900 focus:bg-gray-900 text-white py-2 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" aria-label="Select dark mode">
+ 						Dark Mode
+ 					</button>
+ 				</div>
+ 			</div>
+ 		</div>
+
+ 		<!-- Navigation-->
+		<nav class="fixed top-0 w-full bg-gray-800 dark:bg-black text-white shadow-lg z-40 transition-all duration-300" id="mainNav" role="navigation" aria-label="Main navigation">
+			<div class="container mx-auto px-4 py-3 flex justify-between items-center">
+				<a href="#page-top" aria-label="StubbornDeveloper - Home"><img src="./assets/img/banner.png" alt="StubbornDeveloper Logo" class="h-8 w-auto"></a>
+				<button class="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-neon-green" type="button" onclick="toggleMenu()" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle mobile menu">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
 				</button>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ms-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="#about">About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#projects">Projects</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#contact">Contact</a>
-						</li>
-					</ul>
-				</div>
+				<ul class="hidden md:flex space-x-6">
+					<li><a class="hover:text-neon-green transition duration-200 js-scroll-trigger" href="#about">About</a></li>
+					<li><a class="hover:text-neon-green transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
+					<li><a class="hover:text-neon-green transition duration-200 js-scroll-trigger" href="#certifications">Certifications</a></li>
+					<li><a class="hover:text-neon-green transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
+					<li><a class="hover:text-neon-green transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
+				</ul>
+			</div>
+			<div class="md:hidden bg-gray-800 dark:bg-black" id="mobileMenu" style="display: none;" role="menu">
+				<ul class="px-4 py-2 space-y-2">
+					<li><a class="block py-2 hover:text-neon-green transition duration-200 js-scroll-trigger" href="#about">About</a></li>
+					<li><a class="block py-2 hover:text-neon-green transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
+					<li><a class="block py-2 hover:text-neon-green transition duration-200 js-scroll-trigger" href="#certifications">Certifications</a></li>
+					<li><a class="block py-2 hover:text-neon-green transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
+					<li><a class="block py-2 hover:text-neon-green transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
+				</ul>
 			</div>
 		</nav>
+
+		<main id="main">
 		<!-- Masthead-->
-		<header class="masthead text-white text-center" id="home">
-			<div class="container d-flex align-items-center flex-column">
-				<div class="masthead-text">
-					<!-- Masthead Heading-->
-					<h1 class="masthead-heading text-uppercase mb-0">Gabcodes</h1>
-					<!-- Masthead Subheading-->
-					<p class="masthead-subheading font-weight-light mb-0">Al Francis Gabriel Bolima - Full Stack Developer specializing in web applications, cloud services, and data engineering. Portfolio showcasing Python, Java, AWS, and big data projects.</p>
+ 		<header class="min-h-screen bg-cover bg-center flex items-center justify-center text-white relative" style="background-image: url('./assets/img/bg-masthead.jpg');" id="home">
+ 			<div class="absolute inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-70"></div>
+			<div class="container mx-auto px-4 text-center relative z-10">
+				<h1 class="text-5xl md:text-7xl font-bold mb-4 text-white dark:text-neon-green">StubbornDeveloper</h1>
+				<p class="text-lg md:text-xl font-medium text-neon-green mb-2">Stubbornly Crafting Exceptional Software Solutions</p>
+				<p class="text-xl md:text-2xl font-light text-gray-200 dark:text-white">Al Francis Gabriel Bolima - Full Stack Developer specializing in web applications, cloud services, and data engineering. Portfolio showcasing Python, Java, AWS, and big data projects.</p>
+			</div>
+ 		</header>
+ 		<!-- About-->
+ 		<section class="py-20 bg-gray-800 dark:bg-black text-white fade-in" id="about">
+ 			<div class="container mx-auto px-4">
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-white dark:text-neon-green">About</h2>
+ 				<div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+ 					<div class="md:w-1/3 text-center">
+ 						<p class="text-lg mb-4">Al Francis Gabriel Bolima is a passionate developer skilled in web and software development, with expertise in backend systems, data engineering, and AI integration. Currently freelancing as an ETL contractor, delivering scalable data solutions.</p>
+ 						<img src="./assets/img/cert1.jpg" class="rounded-lg w-full max-w-sm mx-auto" alt="Cert1" />
+ 					</div>
+ 					<div class="md:w-1/3 text-center">
+ 						<p class="text-lg mb-4">Al Francis is an achiever in programming, continually expanding skills in cloud technologies, machine learning, and modern frameworks to build innovative applications.</p>
+ 						<img src="./assets/img/cert2.jpg" class="rounded-lg w-full max-w-sm mx-auto" alt="Cert2" />
+ 					</div>
+ 				</div>
+ 				<div class="text-center mt-8">
+ 					<a class="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-6 py-3 rounded-lg transition duration-300" href="https://github.com/alfrancisgabriel" target="_blank">
+ 						<i class="fas fa-download mr-2"></i>
+ 						Github Profile!
+ 					</a>
+ 				</div>
+ 			</div>
+ 		</section>
+
+		<!-- Skills Section-->
+		<section class="py-20 bg-gray-100 dark:bg-gray-900 fade-in" id="skills">
+			<div class="container mx-auto px-4">
+				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green">Skills</h2>
+				<div class="grid md:grid-cols-2 gap-8">
+					<div>
+						<h4 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Technical Skills</h4>
+						<div class="space-y-2 text-gray-700 dark:text-gray-300">
+							<p><strong>Programming Languages:</strong> Python, Java, Scala, C#, Dart (Flutter)</p>
+							<p><strong>Web Development:</strong> HTML, CSS, JavaScript, Bootstrap, React</p>
+							<p><strong>Mobile & Desktop:</strong> Flutter (Cross-platform apps), C# Windows Applications, WPF</p>
+							<p><strong>Data Engineering:</strong> ETL Pipelines, Data Warehousing, SQL, NoSQL (MongoDB, Cassandra), Apache Spark, Airflow, Kafka, ELT, Data Lakes, Data Modeling, Dimensional Modeling, OLAP, BI Tools (Tableau, Power BI)</p>
+							<p><strong>AI & Machine Learning:</strong> TensorFlow, PyTorch, Scikit-learn, OpenCV, NLP, Computer Vision, AI Integration</p>
+							<p><strong>AWS Services:</strong> EC2, S3, Lambda, Glue, Redshift, EMR, Athena, Kinesis, Lake Formation, Step Functions, SageMaker, CloudFormation, IAM</p>
+							<p><strong>Azure Services:</strong> Data Factory, Synapse Analytics, Blob Storage, Data Lake Storage, Databricks, HDInsight, Event Hubs, Stream Analytics, Azure ML, Logic Apps, Key Vault</p>
+							<p><strong>Other:</strong> Docker, Kubernetes, Git, CI/CD, REST APIs, Microservices</p>
+						</div>
+					</div>
+					<div>
+						<h4 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Experience Level</h4>
+						<p class="text-gray-700 dark:text-gray-300 mb-4">I rate myself as a <strong>mid-level developer approaching senior level</strong>, with experience in full-stack development, data engineering, and AI integration.</p>
+						<h5 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Proficiency Levels</h5>
+						<div class="space-y-3">
+							<div>
+								<strong class="text-gray-900 dark:text-white">Python:</strong>
+								<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-1">
+									<div class="bg-green-500 h-2 rounded-full" style="width: 90%"></div>
+								</div>
+							</div>
+							<div>
+								<strong class="text-gray-900 dark:text-white">Java:</strong>
+								<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-1">
+									<div class="bg-blue-500 h-2 rounded-full" style="width: 80%"></div>
+								</div>
+							</div>
+							<div>
+								<strong class="text-gray-900 dark:text-white">Data Engineering:</strong>
+								<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-1">
+									<div class="bg-yellow-500 h-2 rounded-full" style="width: 85%"></div>
+								</div>
+							</div>
+							<div>
+								<strong class="text-gray-900 dark:text-white">AI/ML:</strong>
+								<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-1">
+									<div class="bg-red-500 h-2 rounded-full" style="width: 75%"></div>
+								</div>
+							</div>
+							<div>
+								<strong class="text-gray-900 dark:text-white">Flutter/C#:</strong>
+								<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-1">
+									<div class="bg-purple-500 h-2 rounded-full" style="width: 70%"></div>
+								</div>
+							</div>
+							<div>
+								<strong class="text-gray-900 dark:text-white">AWS/Azure:</strong>
+								<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-1">
+									<div class="bg-gray-500 h-2 rounded-full" style="width: 80%"></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</header>
-		<!-- About-->
-		<section class="page-section bg-dark text-white mb-0" id="about">
-			<div class="container">
-				<!-- About Section Heading-->
-				<h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
-				<!-- Icon Divider-->
-				<div class="divider-custom divider-light">
-					<div class="divider-custom-line"></div>
-					<div class="divider-custom-line"></div>
-				</div>
-				<!-- About Section Content-->
-				<div class="row">
-					<div class="col-lg-4 ms-auto"><p class="lead">Al Francis Gabriel Bolima is a passionate developer that can do web development as well as software development. He is very comfortable in backend and can do tasks ranging from development to deployment.</p>
-					<img
-							src="./assets/img/cert1.jpg"
-							class="rounded img-fluid"
-							alt="Cert1"
-						/>
+		</section>
+
+		<!-- Certifications Section-->
+		<section class="py-20 bg-gray-800 dark:bg-black text-white fade-in" id="certifications">
+			<div class="container mx-auto px-4">
+				<h2 class="text-4xl font-bold text-center mb-8 text-white dark:text-neon-green">Certifications</h2>
+				<div class="grid md:grid-cols-3 gap-8 text-center">
+					<div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+						<i class="fas fa-certificate text-5xl mb-4 text-blue-500"></i>
+						<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">AWS Certified Solutions Architect</h4>
+						<p class="text-gray-600 dark:text-gray-300">Associate level certification for designing distributed systems on AWS.</p>
 					</div>
-					<div class="col-lg-4 me-auto"><p class="lead">Al Francis is an achiever in programming back when he was studying programming.</p>
-					<img
-							src="./assets/img/cert2.jpg"
-							class="rounded img-fluid"
-							alt="Cert2"
-						/>
+					<div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+						<i class="fas fa-certificate text-5xl mb-4 text-blue-500"></i>
+						<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Azure Fundamentals (AZ-900)</h4>
+						<p class="text-gray-600 dark:text-gray-300">Microsoft Azure fundamentals certification covering cloud concepts.</p>
 					</div>
-				</div>
-				<!-- About Section Button-->
-				<div class="text-center mt-4">
-					<a class="btn btn-xl btn-outline-light" href="https://github.com/alfrancisgabriel" target="_blank">
-						<i class="fas fa-download me-2"></i>
-						Github Profile!
-					</a>
+					<div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+						<i class="fas fa-certificate text-5xl mb-4 text-blue-500"></i>
+						<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Google Data Engineer Professional</h4>
+						<p class="text-gray-600 dark:text-gray-300">Certification for designing and building data processing systems on GCP.</p>
+					</div>
 				</div>
 			</div>
 		</section>
 
 		<!-- Projects Section-->
-		<section class="page-section bg-light" id="projects">
-			<div class="container">
-				<!-- Projects Section Heading-->
-				<h2 class="page-section-heading text-center text-uppercase text-dark mb-0">Projects</h2>
-				<!-- Icon Divider-->
-				<div class="divider-custom">
-					<div class="divider-custom-line"></div>
-					<div class="divider-custom-line"></div>
-				</div>
-				<!-- Projects Section Grid-->
-				<div class="row">
-					<!-- Project 1-->
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<img class="card-img-top" src="https://play-lh.googleusercontent.com/YaDXB46YaduT-SvUNUPnA_WqeD0p6f8K3Dmrj7MUan_LnopZ0ZvKc8-OOYZDeDH--Cs=w240-h480" alt="Recipe Of Your Mom" />
-							<div class="card-body text-center">
-								<h4 class="card-title">Recipe Of Your Mom</h4>
-								<p class="card-text">RecipeOfYourMom: Because You Can't Keep Calling Her for Instructions! Tired of accidentally burning dinner to a crisp? Wish you could magically replicate your mom's legendary lasagna? Well, stop wishing and start cooking! RecipeOfYourMom is here to rescue your kitchen (and your stomach) with a hilarious collection of mom-approved recipes.</p>
-								<a href="https://play.google.com/store/apps/details?id=com.stubborndeveloper.recipeofyourmom" target="_blank" class="btn btn-primary">View on Google Play</a>
-							</div>
+		<section class="py-20 bg-gray-100 dark:bg-gray-900 fade-in" id="projects">
+			<div class="container mx-auto px-4">
+				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green">Projects</h2>
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+						<img class="w-full h-48 object-cover" src="https://play-lh.googleusercontent.com/YaDXB46YaduT-SvUNUPnA_WqeD0p6f8K3Dmrj7MUan_LnopZ0ZvKc8-OOYZDeDH--Cs=w240-h480" alt="Recipe Of Your Mom" />
+						<div class="p-6 text-center">
+							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Recipe Of Your Mom</h4>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">RecipeOfYourMom: Because You Can't Keep Calling Her for Instructions! Tired of accidentally burning dinner to a crisp? Wish you could magically replicate your mom's legendary lasagna? Well, stop wishing and start cooking! RecipeOfYourMom is here to rescue your kitchen (and your stomach) with a hilarious collection of mom-approved recipes.</p>
+							<a href="https://play.google.com/store/apps/details?id=com.stubborndeveloper.recipeofyourmom" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on Google Play</a>
 						</div>
 					</div>
-					<!-- Project 2-->
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<img class="card-img-top" src="./assets/img/facerecognizer.png" alt="Face Recognizer" />
-							<div class="card-body text-center">
-								<h4 class="card-title">Face Recognizer</h4>
-								<p class="card-text">I make a program that scans face and detect who is it basen on the opencv model database I trained it with</p>
-								<a href="https://github.com/alfrancisgabriel/facerecognizer/tree/master" target="_blank" class="btn btn-primary">View on GitHub</a>
-							</div>
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+						<img class="w-full h-48 object-cover" src="./assets/img/facerecognizer.png" alt="Face Recognizer" />
+						<div class="p-6 text-center">
+							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Face Recognizer</h4>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">I make a program that scans face and detect who is it basen on the opencv model database I trained it with</p>
+							<a href="https://github.com/alfrancisgabriel/facerecognizer/tree/master" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
 				</div>
@@ -148,151 +273,114 @@
 		</section>
 
 		<!-- Data Engineering Projects Section-->
-		<section class="page-section bg-light" id="data-engineering-projects">
-			<div class="container">
-				<!-- Data Engineering Projects Section Heading-->
-				<h2 class="page-section-heading text-center text-uppercase text-dark mb-0">Data Engineering Projects</h2>
-				<!-- Icon Divider-->
-				<div class="divider-custom">
-					<div class="divider-custom-line"></div>
-					<div class="divider-custom-line"></div>
-				</div>
-				<!-- Data Engineering Projects Section Grid-->
-				<div class="row">
-					<!-- Project 1-->
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<img class="card-img-top" src="./assets/img/demo-image-01.jpg" alt="Goodreads ETL Pipeline" />
-							<div class="card-body text-center">
-								<h4 class="card-title">Goodreads ETL Pipeline</h4>
-								<p class="card-text">A basic ETL pipeline to extract book data from Goodreads, transform it, and load it into a database.</p>
-							</div>
+		<section class="py-20 bg-gray-100 dark:bg-gray-900 fade-in" id="data-engineering-projects">
+			<div class="container mx-auto px-4">
+				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green">Data Engineering Projects</h2>
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+						<img class="w-full h-48 object-cover" src="./assets/img/demo-image-01.jpg" alt="Goodreads ETL Pipeline" />
+						<div class="p-6 text-center">
+							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Goodreads ETL Pipeline</h4>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">A comprehensive ETL pipeline using AWS Glue and S3 to extract book data from Goodreads API, transform with PySpark, and load into Redshift data warehouse for analytics.</p>
+							<a href="https://github.com/alfrancisgabriel/goodreads-etl" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
-					<!-- Project 2-->
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<img class="card-img-top" src="./assets/img/demo-image-02.jpg" alt="OpenWeatherMap Dashboard" />
-							<div class="card-body text-center">
-								<h4 class="card-title">OpenWeatherMap Dashboard</h4>
-								<p class="card-text">A dashboard visualizing weather data from OpenWeatherMap API, showing temperature, humidity, and wind speed.</p>
-							</div>
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+						<img class="w-full h-48 object-cover" src="./assets/img/demo-image-02.jpg" alt="OpenWeatherMap Dashboard" />
+						<div class="p-6 text-center">
+							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">OpenWeatherMap Dashboard</h4>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">An interactive dashboard built with React and Azure Synapse, visualizing real-time weather data from OpenWeatherMap API using Kinesis streams and Power BI for insights.</p>
+							<a href="https://github.com/alfrancisgabriel/weather-dashboard" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
-					<!-- Project 3-->
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<img class="card-img-top" src="./assets/img/bg-masthead.jpg" alt="CoinGecko Price Tracker" />
-							<div class="card-body text-center">
-								<h4 class="card-title">CoinGecko Price Tracker</h4>
-								<p class="card-text">A tool to track cryptocurrency prices from CoinGecko API and display price trends.</p>
-							</div>
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+						<img class="w-full h-48 object-cover" src="./assets/img/bg-masthead.jpg" alt="CoinGecko Price Tracker" />
+						<div class="p-6 text-center">
+							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">CoinGecko Price Tracker</h4>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">A real-time cryptocurrency price tracker using AWS Lambda, API Gateway, and DynamoDB, integrating CoinGecko API with machine learning predictions for trend analysis.</p>
+							<a href="https://github.com/alfrancisgabriel/crypto-tracker" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
-					<!-- Project 4-->
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<img class="card-img-top" src="./assets/img/bg-signup.jpg" alt="NYC Taxi Data Pipeline" />
-							<div class="card-body text-center">
-								<h4 class="card-title">NYC Taxi Data Pipeline</h4>
-								<p class="card-text">A simple ETL pipeline to process NYC taxi trip data, clean and transform it, and load it into a data warehouse.</p>
-							</div>
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+						<img class="w-full h-48 object-cover" src="./assets/img/bg-signup.jpg" alt="NYC Taxi Data Pipeline" />
+						<div class="p-6 text-center">
+							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">NYC Taxi Data Pipeline</h4>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">A robust ELT pipeline on Azure Data Factory, processing millions of NYC taxi records with Databricks for data cleansing, transformation, and loading into Synapse Analytics.</p>
+							<a href="https://github.com/alfrancisgabriel/nyc-taxi-pipeline" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
-					<!-- Project 5-->
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<img class="card-img-top" src="./assets/img/bg-signup.jpg" alt="Consumer Complaint Analysis" />
-							<div class="card-body text-center">
-								<h4 class="card-title">Consumer Complaint Analysis</h4>
-								<p class="card-text">An ETL pipeline to analyze consumer complaint data from Data.gov, identify trends, and categorize complaints.</p>
-							</div>
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+						<img class="w-full h-48 object-cover" src="./assets/img/bg-signup.jpg" alt="Consumer Complaint Analysis" />
+						<div class="p-6 text-center">
+							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Consumer Complaint Analysis</h4>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">An advanced ETL pipeline using AWS Glue and SageMaker for NLP analysis of consumer complaints from Data.gov, employing sentiment analysis and trend identification with Tableau visualization.</p>
+							<a href="https://github.com/alfrancisgabriel/complaint-analysis" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
-					<!-- Project 6-->
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<img class="card-img-top" src="./assets/img/bg-signup.jpg" alt="San Francisco Public Data Dashboard"/>
-							<div class="card-body text-center">
-								<h4 class="card-title">San Francisco Public Data Dashboard</h4>
-								<p class="card-text">A dashboard visualizing public data from the San Francisco Open Data API, showing trends and insights for city services.</p>
-							</div>
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+						<img class="w-full h-48 object-cover" src="./assets/img/bg-signup.jpg" alt="San Francisco Public Data Dashboard"/>
+						<div class="p-6 text-center">
+							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">San Francisco Public Data Dashboard</h4>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">A comprehensive dashboard on Azure Synapse with Power BI, integrating SF Open Data API via Event Hubs for real-time insights on city services, transportation, and public safety.</p>
+							<a href="https://github.com/alfrancisgabriel/sf-data-dashboard" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<!-- Services Section-->
-		<section class="page-section bg-dark text-white" id="services">
-			<div class="container">
-				<!-- Services Section Heading-->
-				<h2 class="page-section-heading text-center text-uppercase text-white mb-0">Services</h2>
-				<!-- Icon Divider-->
-				<div class="divider-custom divider-light">
-					<div class="divider-custom-line"></div>
-					<div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-					<div class="divider-custom-line"></div>
-				</div>
-				<!-- Services Section Content-->
-				<div class="row">
-					<div class="col-lg-4 ms-auto"><p class="lead">I offer services in Cloud & Big Data technologies, including AWS, PySpark, Hadoop, HBase, and Hive.</p></div>
-					<div class="col-lg-4 me-auto"><p class="lead">I also provide development services for Web Applications, Microservices, and various programming languages such as Python, Java, and Scala.</p></div>
-				</div>
+ 		<!-- Services Section-->
+ 		<section class="py-20 bg-gray-800 dark:bg-black text-white fade-in" id="services">
+ 			<div class="container mx-auto px-4">
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-white dark:text-neon-green">Services</h2>
+ 				<div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+ 					<div class="md:w-1/3 text-center">
+ 						<p class="text-lg">I offer services in Cloud & Big Data technologies, including AWS, PySpark, Hadoop, HBase, and Hive.</p>
+ 					</div>
+ 					<div class="md:w-1/3 text-center">
+ 						<p class="text-lg">I also provide development services for Web Applications, Microservices, and various programming languages such as Python, Java, and Scala.</p>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</section>
+ 		<!-- Contact Section-->
+ 		<section class="py-20 bg-gray-800 dark:bg-black text-white fade-in" id="contact">
+ 			<div class="container mx-auto px-4">
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-white dark:text-neon-green">Contact Me</h2>
+ 				<div class="text-center">
+ 					<p class="text-lg mb-4">Contact me at: <a class="text-white hover:text-neon-green transition duration-300" href="mailto:alfrancisgabriel@gmail.com" target="_blank">alfrancisgabriel@gmail.com</a></p>
+ 				</div>
 			</div>
 		</section>
-		<!-- Contact Section-->
-		<section class="page-section bg-dark text-white" id="contact">
-			<div class="container">
-				<!-- Contact Section Heading-->
-				<h2 class="page-section-heading text-center text-uppercase text-white mb-0">Contact Me</h2>
-				<!-- Icon Divider-->
-				<div class="divider-custom divider-light">
-					<div class="divider-custom-line"></div>
-					<div class="divider-custom-line"></div>
-				</div>
-				<!-- Contact Section Content-->
-				<div class="row justify-content-center">
-					<div class="col-lg-8 col-xl-7">
-						<p class="lead text-center text-white">
-							Contact me at: <a class="text-white" href="mailto:alfrancisgabriel@gmail.com" target="_blank">alfrancisgabriel@gmail.com</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
+		</main>
+
 		<!-- Footer-->
-		<footer class="footer text-center bg-dark text-white">
-			<div class="container">
-				<div class="row">
-					<!-- Footer Location-->
-					<div class="col-lg-4 mb-5 mb-lg-0">
-						<h4 class="text-uppercase mb-4">Location</h4>
-						<p class="lead mb-0">
-							Antipolo Rizal, Philippines
-						</p>
-					</div>
-					<!-- Footer Social Icons-->
-					<div class="col-lg-4 mb-5 mb-lg-0">
-						<h4 class="text-uppercase mb-4">Around the Web</h4>
-						<a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/alfrancis.bolima" target="_blank"><i class="fab fa-fw fa-facebook-f"></i></a>
-						<a class="btn btn-outline-light btn-social mx-1" href="https://www.twitter.com/alfrancisgabriel" target="_blank"><i class="fab fa-fw fa-twitter"></i></a>
-						<a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/" target="_blank"><i class="fab fa-fw fa-linkedin-in"></i></a>
-						<a class="btn btn-outline-light btn-social mx-1" href="https://www.github.com/alfrancisgabriel" target="_blank"><i class="fab fa-fw fa-github"></i></a>
-					</div>
-					<!-- Footer About Text-->
-					<div class="col-lg-4">
-						<h4 class="text-uppercase mb-4">About Gabcodes</h4>
-						<p class="lead mb-0">
-							Gabcodes is a website that showcases the projects and skills of Al Francis Gabriel Bolima.
-						</p>
-					</div>
-				</div>
-			</div>
-		</footer-->
-		<!-- Copyright Section-->
-		<div class="copyright py-4 text-center text-white bg-dark">
-			<div class="container"><small>Copyright &copy; Gabcodes 2025</small></div>
-		</div>
+ 		<footer class="bg-gray-800 dark:bg-black text-white py-12">
+ 			<div class="container mx-auto px-4">
+ 				<div class="grid md:grid-cols-3 gap-8 text-center">
+ 					<div>
+ 						<h4 class="text-xl font-semibold mb-4 text-neon-green">Location</h4>
+ 						<p class="text-gray-300">Antipolo Rizal, Philippines</p>
+ 					</div>
+ 					<div>
+ 						<h4 class="text-xl font-semibold mb-4 text-neon-green">Around the Web</h4>
+ 						<div class="flex justify-center space-x-4">
+ 							<a class="text-white hover:text-neon-green transition duration-300" href="https://www.facebook.com/alfrancis.bolima" target="_blank"><i class="fab fa-facebook-f text-2xl"></i></a>
+ 							<a class="text-white hover:text-neon-green transition duration-300" href="https://www.twitter.com/alfrancisgabriel" target="_blank"><i class="fab fa-twitter text-2xl"></i></a>
+ 							<a class="text-white hover:text-neon-green transition duration-300" href="https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/" target="_blank"><i class="fab fa-linkedin-in text-2xl"></i></a>
+ 							<a class="text-white hover:text-neon-green transition duration-300" href="https://www.github.com/alfrancisgabriel" target="_blank"><i class="fab fa-github text-2xl"></i></a>
+ 						</div>
+ 					</div>
+ 					<div>
+						<h4 class="text-xl font-semibold mb-4 text-neon-green">About StubbornDeveloper</h4>
+						<p class="text-gray-300">StubbornDeveloper is a website that showcases the projects and skills of Al Francis Gabriel Bolima.</p>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</footer>
+ 		<!-- Copyright Section-->
+ 		<div class="bg-gray-900 dark:bg-gray-950 text-white py-4 text-center">
+ 			<div class="container mx-auto px-4"><small>Copyright &copy; StubbornDeveloper 2025</small></div>
+ 		</div>
 		<!-- Bootstrap core JS-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
@@ -300,24 +388,5 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 		<!-- Core theme JS-->
 		<script src="./dependencies/js/scripts.js"></script>
-		<section class="page-section bg-dark text-white" id="contact">
-			<div class="container">
-				<!-- Contact Section Heading-->
-				<h2 class="page-section-heading text-center text-uppercase text-white mb-0">Contact Me</h2>
-				<!-- Icon Divider-->
-				<div class="divider-custom divider-light">
-					<div class="divider-custom-line"></div>
-					<div class="divider-custom-line"></div>
-				</div>
-				<!-- Contact Section Content-->
-				<div class="row justify-content-center">
-					<div class="col-lg-8 col-xl-7">
-						<p class="lead text-center">
-							Contact me at: <a href="mailto:alfrancisgabriel@gmail.com" target="_blank">alfrancisgabriel@gmail.com</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
 	</body>
 </html>

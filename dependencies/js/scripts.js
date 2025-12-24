@@ -38,7 +38,7 @@
     // Activate scrollspy to add active class to navbar items on scroll
     $("body").scrollspy({
         target: "#mainNav",
-        offset: 100,
+        offset: 74,
     });
 
     // Collapse Navbar
@@ -53,4 +53,56 @@
     navbarCollapse();
     // Collapse the navbar when page is scrolled
     $(window).scroll(navbarCollapse);
+
+    // Fade in sections on scroll
+    $(window).on('scroll', function() {
+        $('.fade-in').each(function() {
+            var elementTop = $(this).offset().top;
+            var elementBottom = elementTop + $(this).outerHeight();
+            var viewportTop = $(window).scrollTop();
+            var viewportBottom = viewportTop + $(window).height();
+            if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                $(this).addClass('visible');
+            }
+        });
+    });
+
+    // Theme selection
+    const themeModal = document.getElementById('themeModal');
+    const lightModeBtn = document.getElementById('lightModeBtn');
+    const darkModeBtn = document.getElementById('darkModeBtn');
+    const body = document.body;
+
+    // Check if theme is already set
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        if (savedTheme === 'dark') {
+            body.classList.add('dark');
+        }
+    } else {
+        // Show modal on first visit
+        themeModal.classList.remove('hidden');
+    }
+
+    // Theme button handlers
+    lightModeBtn.addEventListener('click', () => {
+        body.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeModal.classList.add('hidden');
+    });
+
+    darkModeBtn.addEventListener('click', () => {
+        body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeModal.classList.add('hidden');
+    });
+
+    // Mobile menu toggle
+    window.toggleMenu = function() {
+        const menu = document.getElementById('mobileMenu');
+        const button = document.querySelector('button[onclick="toggleMenu()"]');
+        const isOpen = menu.style.display === 'block';
+        menu.style.display = isOpen ? 'none' : 'block';
+        button.setAttribute('aria-expanded', !isOpen);
+    };
 })(jQuery); // End of use strict

@@ -5,7 +5,6 @@
     	<script src="https://cdn.tailwindcss.com"></script>
     	<script>
     	tailwind.config = {
-    		darkMode: 'class',
     		theme: {
     			extend: {
     				fontFamily: {
@@ -13,11 +12,9 @@
     				},
     				colors: {
     					'accent': '#00d4aa',
-    					'accent-dark': '#2563eb',
     				},
     				backgroundImage: {
     					'terminal-dark': "url('./assets/img/bg-terminal-dark.png')",
-    					'terminal-light': "url('./assets/img/bg-terminal-light.png')",
     				}
     			}
     		}
@@ -84,25 +81,9 @@
 		</head>
 
 
- 	<body id="page-top" class="bg-blue-50 text-gray-900 dark:bg-gray-900 dark:text-white">
+ 	<body id="page-top" class="bg-gray-900 text-white">
  		<!-- Skip to main content -->
- 		<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-blue-500 text-white p-2 z-50">Skip to main content</a>
-
- 		<!-- Theme Selection Modal -->
- 		<div id="themeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
- 			<div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full mx-4">
- 				<h2 class="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white">Choose Your Theme</h2>
- 				<p class="mb-6 text-center text-gray-600 dark:text-gray-300">Select your preferred color mode for the best experience.</p>
- 				<div class="flex space-x-4">
- 					<button id="lightModeBtn" class="flex-1 bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300" aria-label="Select light mode">
- 						Light Mode
- 					</button>
- 					<button id="darkModeBtn" class="flex-1 bg-gray-800 hover:bg-gray-900 focus:bg-gray-900 text-white py-2 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" aria-label="Select dark mode">
- 						Dark Mode
- 					</button>
- 				</div>
- 			</div>
- 		</div>
+ 		<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-accent text-black p-2 z-50">Skip to main content</a>
 
  		<!-- Navigation-->
 		<nav class="fixed top-0 w-full bg-gray-800 dark:bg-black text-white shadow-lg z-40 transition-all duration-300" id="mainNav" role="navigation" aria-label="Main navigation">
@@ -114,25 +95,25 @@
 					</svg>
 				</button>
 					<ul class="hidden md:flex space-x-6">
-					<li>							<a class="hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#about">About</a></li>
-					<li>							<a class="hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
-					<li>							<a class="hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
-					<li>							<a class="hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
+					<li>							<a class="hover:text-accent transition duration-200 js-scroll-trigger" href="#about">About</a></li>
+					<li>							<a class="hover:text-accent transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
+					<li>							<a class="hover:text-accent transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
+					<li>							<a class="hover:text-accent transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
 				</ul>
 			</div>
 			<div class="md:hidden bg-gray-800 dark:bg-gray-900" id="mobileMenu" style="display: none;" role="menu">
 				<ul class="px-4 py-2 space-y-2">
-					<li><a class="block py-2 hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#about">About</a></li>
-					<li><a class="block py-2 hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
-					<li><a class="block py-2 hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
-					<li><a class="block py-2 hover:text-accent-dark dark:hover:text-accent transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
+					<li><a class="block py-2 hover:text-accent transition duration-200 js-scroll-trigger" href="#about">About</a></li>
+					<li><a class="block py-2 hover:text-accent transition duration-200 js-scroll-trigger" href="#skills">Skills</a></li>
+					<li><a class="block py-2 hover:text-accent transition duration-200 js-scroll-trigger" href="#projects">Projects</a></li>
+					<li><a class="block py-2 hover:text-accent transition duration-200 js-scroll-trigger" href="#contact">Contact</a></li>
 				</ul>
 			</div>
 		</nav>
 
 		<main id="main">
 		<!-- Masthead-->
- 		<header class="min-h-screen bg-cover bg-center flex items-center justify-center text-white relative bg-terminal-dark dark:bg-terminal-light" id="home">
+ 		<header class="min-h-screen bg-cover bg-center flex items-center justify-center text-white relative bg-terminal-dark" id="home">
  			<div class="absolute inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-70"></div>
 			<div class="container mx-auto px-4 text-center relative z-10">
 				<h1 class="text-5xl md:text-7xl font-bold mb-4 text-gray-900 dark:text-accent">StubbornDeveloper</h1>
@@ -143,7 +124,7 @@
  		<!-- About-->
  		<section class="py-20 bg-gray-800 dark:bg-gray-900 text-white fade-in" id="about">
  			<div class="container mx-auto px-4">
- 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-user mr-2"></i>About</h2>
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-user mr-2"></i>About</h2>
  				<div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
  					<div class="md:w-1/3 text-center">
  						<p class="text-lg mb-4">Al Francis Gabriel Bolima is a passionate developer skilled in web and software development, with expertise in backend systems, data engineering, and AI integration. Currently freelancing as an ETL contractor, delivering scalable data solutions.</p>
@@ -166,7 +147,7 @@
 		<!-- Skills Section-->
  		<section class="py-20 bg-white dark:bg-gray-800 fade-in" id="skills">
 			<div class="container mx-auto px-4">
-				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-code mr-2"></i>Skills</h2>
+				<h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-code mr-2"></i>Skills</h2>
 				<div class="grid md:grid-cols-2 gap-8">
 					<div>
 						<h4 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Core Expertise</h4>
@@ -179,30 +160,30 @@
 						</div>
 					</div>
 					<div>
-						<h4 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Professional Profile</h4>
+						<h4 class="text-2xl font-semibold mb-4 text-white">Professional Profile</h4>
 						<p class="text-gray-700 dark:text-gray-300 mb-4">Mid-level data engineer with strong Python skills and extensive AWS integrations. Specializes in building robust ETL pipelines and small software developments for data-driven solutions.</p>
-						<h5 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Key Proficiencies</h5>
+						<h5 class="text-xl font-semibold mb-4 text-white">Key Proficiencies</h5>
 						<div class="space-y-3">
 							<div>
-								<strong class="text-gray-900 dark:text-white">Data Engineering:</strong>
+								<strong class="text-white">Data Engineering:</strong>
 								<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-1">
 									<div class="bg-yellow-500 h-2 rounded-full" style="width: 90%"></div>
 								</div>
 							</div>
 							<div>
-								<strong class="text-gray-900 dark:text-white">Python:</strong>
+								<strong class="text-white">Python:</strong>
 								<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-1">
 									<div class="bg-green-500 h-2 rounded-full" style="width: 95%"></div>
 								</div>
 							</div>
 							<div>
-								<strong class="text-gray-900 dark:text-white">AWS Integrations:</strong>
+								<strong class="text-white">AWS Integrations:</strong>
 								<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-1">
 									<div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
 								</div>
 							</div>
 							<div>
-								<strong class="text-gray-900 dark:text-white">AI/ML Integration:</strong>
+								<strong class="text-white">AI/ML Integration:</strong>
 								<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-1">
 									<div class="bg-red-500 h-2 rounded-full" style="width: 80%"></div>
 								</div>
@@ -218,14 +199,14 @@
 		<!-- Projects Section-->
  		<section class="py-20 bg-gray-50 dark:bg-gray-800 fade-in" id="projects">
 			<div class="container mx-auto px-4">
-				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-project-diagram mr-2"></i>Projects</h2>
+				<h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-project-diagram mr-2"></i>Projects</h2>
 				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
 						<img class="w-full h-48 object-cover" src="./assets/img/project1.png" alt="Recipe Of Your Mom" />
 						<div class="p-6 text-center">
-							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Recipe Of Your Mom</h4>
-							<p class="text-gray-600 dark:text-gray-300 mb-4">A Flutter-based mobile app for recipe management, featuring user-friendly interfaces for storing and sharing family recipes with intuitive search and categorization.</p>
-							<a href="https://play.google.com/store/apps/details?id=com.stubborndeveloper.recipeofyourmom" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on Google Play</a>
+							<h4 class="text-xl font-semibold mb-2 text-white">Recipe Of Your Mom</h4>
+							<p class="text-gray-300 mb-4">A Flutter-based mobile app for recipe management, featuring user-friendly interfaces for storing and sharing family recipes with intuitive search and categorization.</p>
+							<a href="https://play.google.com/store/apps/details?id=com.stubborndeveloper.recipeofyourmom" target="_blank" class="inline-block bg-accent hover:bg-accent text-white px-4 py-2 rounded-lg transition duration-300">View on Google Play</a>
 						</div>
 					</div>
 					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
@@ -243,7 +224,7 @@
 		<!-- Data Engineering Projects Section-->
  		<section class="py-20 bg-gray-50 dark:bg-gray-800 fade-in" id="data-engineering-projects">
 			<div class="container mx-auto px-4">
-				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-database mr-2"></i>Data Engineering Projects</h2>
+				<h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-database mr-2"></i>Data Engineering Projects</h2>
 				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
 						<img class="w-full h-48 object-cover" src="./assets/img/project3.png" alt="Goodreads ETL Pipeline" />
@@ -299,7 +280,7 @@
  		<!-- Services Section-->
  		<section class="py-20 bg-gray-800 dark:bg-gray-900 text-white fade-in" id="services">
  			<div class="container mx-auto px-4">
- 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-cogs mr-2"></i>Services</h2>
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-cogs mr-2"></i>Services</h2>
  				<div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
  					<div class="md:w-1/3 text-center">
  						<p class="text-lg">I offer services in Cloud & Big Data technologies, including AWS, PySpark, Hadoop, HBase, and Hive.</p>
@@ -313,7 +294,7 @@
  		<!-- Contact Section-->
  		<section class="py-20 bg-gray-800 dark:bg-gray-900 text-white fade-in" id="contact">
  			<div class="container mx-auto px-4">
- 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-accent"><i class="fas fa-envelope mr-2"></i>Contact Me</h2>
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-accent"><i class="fas fa-envelope mr-2"></i>Contact Me</h2>
  				<div class="text-center">
  					<p class="text-lg mb-4">Contact me at: <a class="text-white hover:text-accent transition duration-300" href="mailto:alfrancisgabriel@gmail.com" target="_blank">alfrancisgabriel@gmail.com</a></p>
  				</div>
@@ -339,7 +320,7 @@
  						</div>
  					</div>
  					<div>
-						<h4 class="text-xl font-semibold mb-4 text-gray-900 dark:text-accent">About StubbornDeveloper</h4>
+						<h4 class="text-xl font-semibold mb-4 text-accent">About StubbornDeveloper</h4>
 						<p class="text-gray-300">StubbornDeveloper is a website that showcases the projects and skills of Al Francis Gabriel Bolima.</p>
  					</div>
  				</div>
@@ -355,7 +336,7 @@
 		<!-- Third party plugin JS-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
  		<!-- Back to Top Button -->
- 		<button id="backToTop" class="fixed bottom-5 right-5 bg-accent-dark dark:bg-accent text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 z-50" style="display: none;">
+ 		<button id="backToTop" class="fixed bottom-5 right-5 bg-accent text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 z-50" style="display: none;">
  			<i class="fas fa-arrow-up"></i>
  		</button>
 

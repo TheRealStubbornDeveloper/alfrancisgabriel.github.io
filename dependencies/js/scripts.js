@@ -67,29 +67,7 @@
         });
     });
 
-    // Theme selection
-    const themeModal = document.getElementById('themeModal');
-    const lightModeBtn = document.getElementById('lightModeBtn');
-    const darkModeBtn = document.getElementById('darkModeBtn');
-    const body = document.body;
 
-    // Always show modal on page load
-    themeModal.classList.remove('hidden');
-
-    // Theme button handlers
-    lightModeBtn.addEventListener('click', () => {
-        body.classList.remove('dark');
-        lightModeBtn.classList.add('ring-2', 'ring-blue-500');
-        darkModeBtn.classList.remove('ring-2', 'ring-green-500');
-        setTimeout(() => themeModal.classList.add('hidden'), 500);
-    });
-
-    darkModeBtn.addEventListener('click', () => {
-        body.classList.add('dark');
-        darkModeBtn.classList.add('ring-2', 'ring-green-500');
-        lightModeBtn.classList.remove('ring-2', 'ring-blue-500');
-        setTimeout(() => themeModal.classList.add('hidden'), 500);
-    });
 
     // Mobile menu toggle
     window.toggleMenu = function() {

@@ -73,27 +73,17 @@
     const darkModeBtn = document.getElementById('darkModeBtn');
     const body = document.body;
 
-    // Check if theme is already set
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        if (savedTheme === 'dark') {
-            body.classList.add('dark');
-        }
-    } else {
-        // Show modal on first visit
-        themeModal.classList.remove('hidden');
-    }
+    // Always show modal on page load
+    themeModal.classList.remove('hidden');
 
     // Theme button handlers
     lightModeBtn.addEventListener('click', () => {
         body.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
         themeModal.classList.add('hidden');
     });
 
     darkModeBtn.addEventListener('click', () => {
         body.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
         themeModal.classList.add('hidden');
     });
 
@@ -105,4 +95,19 @@
         menu.style.display = isOpen ? 'none' : 'block';
         button.setAttribute('aria-expanded', !isOpen);
     };
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.style.display = 'block';
+            backToTopBtn.style.opacity = '1';
+        } else {
+            backToTopBtn.style.opacity = '0';
+            setTimeout(() => backToTopBtn.style.display = 'none', 300);
+        }
+    });
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 })(jQuery); // End of use strict

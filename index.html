@@ -4,18 +4,21 @@
     	<!-- Tailwind CSS -->
     	<script src="https://cdn.tailwindcss.com"></script>
     	<script>
-    		tailwind.config = {
-    			darkMode: 'class',
-    			theme: {
-    				extend: {
-    					colors: {
-    						'neon-green': '#39FF14',
-    						'male-blue': '#1e40af',
-    						'male-gray': '#4b5563',
-    					}
+    	tailwind.config = {
+    		darkMode: 'class',
+    		theme: {
+    			extend: {
+    				fontFamily: {
+    					'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
+    				},
+    				colors: {
+    					'neon-green': '#39FF14',
+    					'male-blue': '#1e40af',
+    					'male-gray': '#4b5563',
     				}
     			}
     		}
+    	}
     	</script>
     </head>
 		<meta charset="utf-8" />
@@ -36,15 +39,16 @@
 			src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
 			crossorigin="anonymous"
 		></script>
-		<!-- Google fonts-->
-		<link
-			href="https://fonts.googleapis.com/css?family=Varela+Round"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-			rel="stylesheet"
-		/>
+ 		<!-- Google fonts-->
+ 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+ 		<link
+ 			href="https://fonts.googleapis.com/css?family=Varela+Round"
+ 			rel="stylesheet"
+ 		/>
+ 		<link
+ 			href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+ 			rel="stylesheet"
+ 		/>
  		<meta name="google-site-verification" content="wodAJ5khQI55gtb7ADqvr8BqOKlUm_-4HmhvJ-EIwv8" />
  		<!-- SEO Meta Tags -->
  		<meta name="description" content="Al Francis Gabriel Bolima - Full Stack Developer specializing in web applications, cloud services, and data engineering. Portfolio showcasing Python, Java, AWS, Azure, and AI projects." />
@@ -136,7 +140,7 @@
  		<!-- About-->
  		<section class="py-20 bg-gray-800 dark:bg-gray-900 text-white fade-in" id="about">
  			<div class="container mx-auto px-4">
- 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green">About</h2>
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-user mr-2"></i>About</h2>
  				<div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
  					<div class="md:w-1/3 text-center">
  						<p class="text-lg mb-4">Al Francis Gabriel Bolima is a passionate developer skilled in web and software development, with expertise in backend systems, data engineering, and AI integration. Currently freelancing as an ETL contractor, delivering scalable data solutions.</p>
@@ -159,7 +163,7 @@
 		<!-- Skills Section-->
  		<section class="py-20 bg-white dark:bg-gray-800 fade-in" id="skills">
 			<div class="container mx-auto px-4">
-				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green">Skills</h2>
+				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-code mr-2"></i>Skills</h2>
 				<div class="grid md:grid-cols-2 gap-8">
 					<div>
 						<h4 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Technical Skills</h4>
@@ -226,13 +230,13 @@
 		<!-- Projects Section-->
  		<section class="py-20 bg-gray-50 dark:bg-gray-800 fade-in" id="projects">
 			<div class="container mx-auto px-4">
-				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green">Projects</h2>
+				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-project-diagram mr-2"></i>Projects</h2>
 				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
 						<img class="w-full h-48 object-cover" src="./assets/img/project1.png" alt="Recipe Of Your Mom" />
 						<div class="p-6 text-center">
 							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Recipe Of Your Mom</h4>
-							<p class="text-gray-600 dark:text-gray-300 mb-4">RecipeOfYourMom: Because You Can't Keep Calling Her for Instructions! Tired of accidentally burning dinner to a crisp? Wish you could magically replicate your mom's legendary lasagna? Well, stop wishing and start cooking! RecipeOfYourMom is here to rescue your kitchen (and your stomach) with a hilarious collection of mom-approved recipes.</p>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">A Flutter-based mobile app for recipe management, featuring user-friendly interfaces for storing and sharing family recipes with intuitive search and categorization.</p>
 							<a href="https://play.google.com/store/apps/details?id=com.stubborndeveloper.recipeofyourmom" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on Google Play</a>
 						</div>
 					</div>
@@ -240,7 +244,7 @@
 						<img class="w-full h-48 object-cover" src="./assets/img/project2.png" alt="Face Recognizer" />
 						<div class="p-6 text-center">
 							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Face Recognizer</h4>
-							<p class="text-gray-600 dark:text-gray-300 mb-4">I make a program that scans face and detect who is it basen on the opencv model database I trained it with</p>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">A computer vision application using OpenCV and Python for facial recognition, with custom trained models for accurate identification in security and automation contexts.</p>
 							<a href="https://github.com/alfrancisgabriel/facerecognizer/tree/master" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
@@ -251,13 +255,13 @@
 		<!-- Data Engineering Projects Section-->
  		<section class="py-20 bg-gray-50 dark:bg-gray-800 fade-in" id="data-engineering-projects">
 			<div class="container mx-auto px-4">
-				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green">Data Engineering Projects</h2>
+				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-database mr-2"></i>Data Engineering Projects</h2>
 				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
 						<img class="w-full h-48 object-cover" src="./assets/img/project3.png" alt="Goodreads ETL Pipeline" />
 						<div class="p-6 text-center">
 							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Goodreads ETL Pipeline</h4>
-							<p class="text-gray-600 dark:text-gray-300 mb-4">A comprehensive ETL pipeline using AWS Glue and S3 to extract book data from Goodreads API, transform with PySpark, and load into Redshift data warehouse for analytics.</p>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">ETL pipeline leveraging AWS Glue for data extraction from Goodreads API, PySpark transformations, and Redshift loading for scalable book analytics and insights.</p>
 							<a href="https://github.com/alfrancisgabriel/goodreads-etl" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
@@ -265,7 +269,7 @@
 						<img class="w-full h-48 object-cover" src="./assets/img/project4.png" alt="OpenWeatherMap Dashboard" />
 						<div class="p-6 text-center">
 							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">OpenWeatherMap Dashboard</h4>
-							<p class="text-gray-600 dark:text-gray-300 mb-4">An interactive dashboard built with React and Azure Synapse, visualizing real-time weather data from OpenWeatherMap API using Kinesis streams and Power BI for insights.</p>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">Real-time weather dashboard using React, Azure Synapse, OpenWeatherMap API, and Power BI for dynamic data visualization and forecasting analytics.</p>
 							<a href="https://github.com/alfrancisgabriel/weather-dashboard" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
@@ -273,7 +277,7 @@
 						<img class="w-full h-48 object-cover" src="./assets/img/project5.png" alt="CoinGecko Price Tracker" />
 						<div class="p-6 text-center">
 							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">CoinGecko Price Tracker</h4>
-							<p class="text-gray-600 dark:text-gray-300 mb-4">A real-time cryptocurrency price tracker using AWS Lambda, API Gateway, and DynamoDB, integrating CoinGecko API with machine learning predictions for trend analysis.</p>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">Cryptocurrency tracker with AWS Lambda, API Gateway, DynamoDB, and ML models for real-time price monitoring and predictive trend analysis using CoinGecko data.</p>
 							<a href="https://github.com/alfrancisgabriel/crypto-tracker" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
@@ -281,7 +285,7 @@
 						<img class="w-full h-48 object-cover" src="./assets/img/project6.png" alt="NYC Taxi Data Pipeline" />
 						<div class="p-6 text-center">
 							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">NYC Taxi Data Pipeline</h4>
-							<p class="text-gray-600 dark:text-gray-300 mb-4">A robust ELT pipeline on Azure Data Factory, processing millions of NYC taxi records with Databricks for data cleansing, transformation, and loading into Synapse Analytics.</p>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">ELT pipeline on Azure Data Factory processing large-scale NYC taxi data with Databricks for ETL operations and Synapse Analytics for warehousing.</p>
 							<a href="https://github.com/alfrancisgabriel/nyc-taxi-pipeline" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
@@ -289,7 +293,7 @@
 						<img class="w-full h-48 object-cover" src="./assets/img/project7.png" alt="Consumer Complaint Analysis" />
 						<div class="p-6 text-center">
 							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Consumer Complaint Analysis</h4>
-							<p class="text-gray-600 dark:text-gray-300 mb-4">An advanced ETL pipeline using AWS Glue and SageMaker for NLP analysis of consumer complaints from Data.gov, employing sentiment analysis and trend identification with Tableau visualization.</p>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">ETL pipeline with AWS Glue and SageMaker for NLP-based consumer complaint analysis from Data.gov, featuring sentiment analysis and Tableau dashboards.</p>
 							<a href="https://github.com/alfrancisgabriel/complaint-analysis" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
@@ -297,7 +301,7 @@
 						<img class="w-full h-48 object-cover" src="./assets/img/project8.png" alt="San Francisco Public Data Dashboard"/>
 						<div class="p-6 text-center">
 							<h4 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">San Francisco Public Data Dashboard</h4>
-							<p class="text-gray-600 dark:text-gray-300 mb-4">A comprehensive dashboard on Azure Synapse with Power BI, integrating SF Open Data API via Event Hubs for real-time insights on city services, transportation, and public safety.</p>
+							<p class="text-gray-600 dark:text-gray-300 mb-4">Dashboard using Azure Synapse and Power BI for SF Open Data API integration via Event Hubs, providing real-time city services and public safety analytics.</p>
 							<a href="https://github.com/alfrancisgabriel/sf-data-dashboard" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">View on GitHub</a>
 						</div>
 					</div>
@@ -307,7 +311,7 @@
  		<!-- Services Section-->
  		<section class="py-20 bg-gray-800 dark:bg-gray-900 text-white fade-in" id="services">
  			<div class="container mx-auto px-4">
- 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green">Services</h2>
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-cogs mr-2"></i>Services</h2>
  				<div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
  					<div class="md:w-1/3 text-center">
  						<p class="text-lg">I offer services in Cloud & Big Data technologies, including AWS, PySpark, Hadoop, HBase, and Hive.</p>
@@ -321,7 +325,7 @@
  		<!-- Contact Section-->
  		<section class="py-20 bg-gray-800 dark:bg-gray-900 text-white fade-in" id="contact">
  			<div class="container mx-auto px-4">
- 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green">Contact Me</h2>
+ 				<h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-neon-green"><i class="fas fa-envelope mr-2"></i>Contact Me</h2>
  				<div class="text-center">
  					<p class="text-lg mb-4">Contact me at: <a class="text-white hover:text-neon-green transition duration-300" href="mailto:alfrancisgabriel@gmail.com" target="_blank">alfrancisgabriel@gmail.com</a></p>
  				</div>
@@ -362,7 +366,12 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 		<!-- Third party plugin JS-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-		<!-- Core theme JS-->
-		<script src="./dependencies/js/scripts.js"></script>
+ 		<!-- Back to Top Button -->
+ 		<button id="backToTop" class="fixed bottom-5 right-5 bg-neon-green text-black p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 z-50" style="display: none;">
+ 			<i class="fas fa-arrow-up"></i>
+ 		</button>
+
+ 		<!-- Core theme JS-->
+ 		<script src="./dependencies/js/scripts.js"></script>
 	</body>
 </html>

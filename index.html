@@ -122,35 +122,54 @@ code,.font-mono{font-family:'JetBrains Mono',monospace}
       <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Career trajectory</h2>
       <p class="text-zinc-500 mt-3 max-w-xl">Freelance from day one. Started building for others before I had a diploma. Each phase added a new layer of capability.</p>
     </div>
-    <div class="relative">
-      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#00ff88]/40 via-zinc-800 to-zinc-800/0"></div>
+    <!-- Mobile: clean stacked layout -->
+    <div class="space-y-8 md:hidden">
+      <div class="fade-in border-l-2 border-[#00ff88] pl-5">
+        <span class="text-[10px] font-mono tracking-[2px] uppercase text-zinc-600">2020 — 2022</span>
+        <h3 class="text-base font-bold text-white mt-1">Freelance Web Development</h3>
+        <p class="text-zinc-500 text-sm mt-2 leading-relaxed">Django, Flask, Express, React. Built payment-integrated sites, REST APIs, authentication systems, and boilerplate tooling for rapid delivery.</p>
+      </div>
+      <div class="fade-in border-l-2 border-zinc-700 pl-5">
+        <span class="text-[10px] font-mono tracking-[2px] uppercase text-zinc-600">2022 — 2024</span>
+        <h3 class="text-base font-bold text-white mt-1">Data Engineering</h3>
+        <p class="text-zinc-500 text-sm mt-2 leading-relaxed">ETL pipelines with Airflow, Spark, and Kafka. Data warehouses and lakes on AWS, GCP, and Azure. Processed data at scale for production environments.</p>
+      </div>
+      <div class="fade-in border-l-2 border-[#00ff88] pl-5">
+        <span class="text-[10px] font-mono tracking-[2px] uppercase text-zinc-600">2024 — Present</span>
+        <h3 class="text-base font-bold text-white mt-1">AI Agent Tooling</h3>
+        <p class="text-zinc-500 text-sm mt-2 leading-relaxed">Building infrastructure and tooling for AI agents — routing layers, model orchestration, deployment pipelines. Production at scale.</p>
+      </div>
+    </div>
+
+    <!-- Desktop: centered timeline -->
+    <div class="relative hidden md:block">
+      <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#00ff88]/40 via-zinc-800 to-zinc-800/0"></div>
       <div class="space-y-20">
-        <div class="fade-in relative grid md:grid-cols-2 gap-8">
-          <div class="md:text-right md:pr-12">
+        <div class="fade-in relative grid grid-cols-2 gap-8">
+          <div class="text-right pr-12">
             <span class="text-[10px] font-mono tracking-[2px] uppercase text-zinc-600">2020 — 2022</span>
             <h3 class="text-lg font-bold text-white mt-1">Freelance Web Development</h3>
-            <p class="text-zinc-500 text-sm mt-3 leading-relaxed">Django, Flask, Express, Vue.js, React. Built payment-integrated sites, REST APIs, authentication systems, and boilerplate tooling for rapid delivery. First real taste of shipping to production.</p>
+            <p class="text-zinc-500 text-sm mt-3 leading-relaxed">Django, Flask, Express, React. Built payment-integrated sites, REST APIs, authentication systems, and boilerplate tooling for rapid delivery.</p>
           </div>
-          <div class="hidden md:block"></div>
-          <div class="absolute left-[11px] md:left-1/2 top-0 w-[18px] h-[18px] rounded-full bg-[#00ff88] border-[3px] border-[#050505] -translate-x-1/2"></div>
+          <div class="absolute left-1/2 top-0 w-[18px] h-[18px] rounded-full bg-[#00ff88] border-[3px] border-[#050505] -translate-x-1/2"></div>
         </div>
-        <div class="fade-in relative grid md:grid-cols-2 gap-8">
-          <div class="hidden md:block"></div>
-          <div class="md:pl-12">
+        <div class="fade-in relative grid grid-cols-2 gap-8">
+          <div class="text-right">
+            <div class="absolute left-1/2 top-0 w-[18px] h-[18px] rounded-full bg-zinc-700 border-[3px] border-[#050505] -translate-x-1/2"></div>
+          </div>
+          <div class="pl-12">
             <span class="text-[10px] font-mono tracking-[2px] uppercase text-zinc-600">2022 — 2024</span>
             <h3 class="text-lg font-bold text-white mt-1">Data Engineering</h3>
-            <p class="text-zinc-500 text-sm mt-3 leading-relaxed">Designed and maintained ETL pipelines using Airflow, Spark, and Kafka. Built data warehouses and lakes on AWS, GCP, and Azure. Processed and analyzed data at scale for production environments.</p>
+            <p class="text-zinc-500 text-sm mt-3 leading-relaxed">ETL pipelines with Airflow, Spark, and Kafka. Data warehouses and lakes on AWS, GCP, and Azure. Processed data at scale for production environments.</p>
           </div>
-          <div class="absolute left-[11px] md:left-1/2 top-0 w-[18px] h-[18px] rounded-full bg-zinc-700 border-[3px] border-[#050505] -translate-x-1/2"></div>
         </div>
-        <div class="fade-in relative grid md:grid-cols-2 gap-8">
-          <div class="md:text-right md:pr-12">
+        <div class="fade-in relative grid grid-cols-2 gap-8">
+          <div class="text-right pr-12">
             <span class="text-[10px] font-mono tracking-[2px] uppercase text-zinc-600">2024 — Present</span>
             <h3 class="text-lg font-bold text-white mt-1">AI Agent Tooling</h3>
-            <p class="text-zinc-500 text-sm mt-3 leading-relaxed">Building infrastructure and tooling for AI agents — routing layers, model orchestration, deployment pipelines. Working with Hermes Agent, OmniRoute, and custom API routers. Production at scale.</p>
+            <p class="text-zinc-500 text-sm mt-3 leading-relaxed">Building infrastructure and tooling for AI agents — routing layers, model orchestration, deployment pipelines. Production at scale.</p>
           </div>
-          <div class="hidden md:block"></div>
-          <div class="absolute left-[11px] md:left-1/2 top-0 w-[18px] h-[18px] rounded-full bg-[#00ff88] border-[3px] border-[#050505] -translate-x-1/2 animate-pulse"></div>
+          <div class="absolute left-1/2 top-0 w-[18px] h-[18px] rounded-full bg-[#00ff88] border-[3px] border-[#050505] -translate-x-1/2 animate-pulse"></div>
         </div>
       </div>
     </div>

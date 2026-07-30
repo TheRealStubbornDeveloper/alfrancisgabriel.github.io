@@ -16,21 +16,15 @@
             overflow-x: hidden;
         }
         ::selection { background: #00ff8844; color: #fff; }
-        
         .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        
         :root {
             --neon: #00ff88;
             --neon-dim: #00ff8822;
-            --neon-glow: 0 0 20px #00ff8811, 0 0 40px #00ff8808;
             --accent: #d4d4d4;
             --muted: #555;
-            --dim: #1a1a1a;
         }
-        
         .neon { color: var(--neon); }
         
-        /* header */
         header { 
             position: fixed; top: 0; width: 100%; z-index: 100;
             background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
@@ -43,7 +37,6 @@
         .nav-links a { color: #444; text-decoration: none; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; font-weight: 500; }
         .nav-links a:hover { color: var(--accent); }
         
-        /* sections */
         section { padding: 7rem 0; }
         .section-title {
             font-size: 1.6rem; font-weight: 700; margin-bottom: 3rem;
@@ -53,7 +46,6 @@
         .section-title .hash { color: var(--neon); font-weight: 300; opacity: 0.8; }
         .section-sub { font-size: 0.85rem; color: var(--muted); max-width: 600px; margin-bottom: 3rem; line-height: 1.8; }
         
-        /* HERO */
         #hero { padding-top: 10rem; padding-bottom: 6rem; min-height: 85vh; display: flex; align-items: center; position: relative; }
         #hero::before {
             content: '';
@@ -68,13 +60,12 @@
         .hero p { font-size: 1rem; color: var(--muted); max-width: 550px; margin-bottom: 2.5rem; line-height: 1.9; }
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
         
-        .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: all .25s; cursor: pointer; border: none; }
+        .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: all .25s; border: none; cursor: pointer; }
         .btn-primary { background: var(--neon); color: #000; }
         .btn-primary:hover { box-shadow: 0 0 30px var(--neon-dim); transform: translateY(-2px); }
         .btn-outline { border: 1px solid #222; color: var(--muted); background: transparent; }
         .btn-outline:hover { border-color: var(--neon); color: var(--neon); }
         
-        /* GRID */
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
@@ -91,7 +82,6 @@
         }
         .card:hover { border-color: #151515; transform: translateY(-3px); }
         .card:hover::before { opacity: 1; }
-        
         .card-icon { font-size: 1.2rem; color: var(--neon); margin-bottom: 1rem; display: inline-block; padding: 0.5rem; border: 1px solid #0f0f0f; border-radius: 8px; width: 2.5rem; text-align: center; }
         .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
         .card p { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.7; }
@@ -100,7 +90,6 @@
         .card-link { color: var(--neon); text-decoration: none; font-size: 0.78rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.3rem; opacity: 0.6; transition: opacity .2s; }
         .card-link:hover { opacity: 1; }
         
-        /* CAPABILITIES */
         .cap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
         .cap-card { background: #050505; border: 1px solid #0f0f0f; border-radius: 12px; padding: 2rem; }
         .cap-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
@@ -108,45 +97,37 @@
         .cap-card ul li { color: var(--muted); font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid #0a0a0a; display: flex; align-items: center; gap: 0.75rem; }
         .cap-card ul li::before { content: '>'; color: var(--neon); font-family: monospace; font-weight: 700; }
         
-        /* HOBBIES */
         .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
-        .hobby-item {
-            background: #050505; border: 1px solid #0f0f0f; border-radius: 10px;
-            padding: 1.5rem; text-align: center; transition: all .3s;
-        }
+        .hobby-item { background: #050505; border: 1px solid #0f0f0f; border-radius: 10px; padding: 1.5rem; text-align: center; transition: all .3s; }
         .hobby-item:hover { border-color: var(--neon-dim); }
         .hobby-item i { font-size: 1.5rem; color: var(--neon); margin-bottom: 0.75rem; opacity: 0.8; }
         .hobby-item h4 { font-size: 0.85rem; font-weight: 500; color: var(--accent); }
         
-        /* ABOUT SECTION */
         .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
         .about-text p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.8; }
+        .timeline-item { margin-bottom: 1.5rem; padding-left: 1.5rem; border-left: 1px solid #0f0f0f; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -4px; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--neon); }
+        .timeline-item .year { font-size: 0.7rem; color: var(--neon); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .timeline-item h4 { font-size: 0.95rem; font-weight: 600; color: var(--accent); margin: 0.25rem 0 0.3rem; }
+        .timeline-item p { font-size: 0.82rem; color: var(--muted); }
         
-        /* EDUCATION / WORTH */
-        .edu-card {
-            background: #050505; border: 1px solid #0f0f0f; border-radius: 12px; padding: 2rem;
-            border-left: 2px solid var(--neon-dim);
-        }
+        .edu-card { background: #050505; border: 1px solid #0f0f0f; border-radius: 12px; padding: 2rem; border-left: 2px solid var(--neon-dim); }
         .edu-card .award { color: var(--neon); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.75rem; }
         .edu-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
         .edu-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.8; }
         .edu-card .strong { color: var(--accent); font-weight: 600; }
         .edu-card .divider { height: 1px; background: #0f0f0f; margin: 1.5rem 0; }
+        .edu-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #00ff8810; border: 1px solid var(--neon-dim); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.78rem; color: var(--neon); font-weight: 600; margin-bottom: 1rem; }
         
-        .worth-statement {
-            margin-top: 2rem; padding: 2rem; border: 1px solid var(--neon-dim); border-radius: 12px;
-            background: #050505; text-align: center;
-        }
+        .worth-statement { margin-top: 2rem; padding: 2rem; border: 1px solid var(--neon-dim); border-radius: 12px; background: #050505; text-align: center; }
         .worth-statement p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; max-width: 600px; margin: 0 auto; }
-        .worth-statement .emph { color: var(--accent); font-weight: 600; }
+        .worth-statement .emph { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
         
-        /* CONTACT */
         .contact-links { display: flex; gap: 2rem; margin-top: 1.5rem; }
         .contact-links a { color: #333; font-size: 1.2rem; transition: all .2s; text-decoration: none; }
         .contact-links a:hover { color: var(--neon); }
         #contact p { color: var(--muted); font-size: 0.85rem; }
         
-        /* FOOTER */
         footer { border-top: 1px solid #050505; padding: 3rem 0; text-align: center; font-size: 0.72rem; color: #222; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
         footer .n { color: var(--neon); opacity: 0.3; }
         
@@ -179,9 +160,9 @@
             <div class="hero-tag"><span>Al Francis Gabriel Bolima</span> &mdash; Antipolo, Philippines</div>
             <h1>I build <span class="em">good products.</span></h1>
             <p>
-                AI agent tooling, data engineering, full-stack development.<br>
-                I ship things that work. You evaluate on merit, not promises.<br>
-                If it fits — take it. If it doesn't — no hard feelings.
+                Started as a freelance web developer. Evolved into data engineering.<br>
+                Now building AI agent tooling and infrastructure.<br>
+                Value is delivered, not promised.
             </p>
             <div class="hero-actions">
                 <a href="#work" class="btn btn-primary">See my work</a>
@@ -190,39 +171,26 @@
         </div>
     </section>
 
-    <!-- WORK -->
+    <!-- JOURNEY / EXPERIENCE -->
     <section id="work" style="background: #020202;">
         <div class="container">
-            <h2 class="section-title"><span class="hash">#</span>Selected work</h2>
-            <p class="section-sub">Projects I've built and shipped. Each solves a real problem for a specific audience.</p>
-            <div class="grid-2">
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-file-shield"></i></div>
-                    <h3>Minchin &mdash; Gated File Hosting</h3>
-                    <p>Pay-per-use Google Drive file sharing with GCash payments. Admin-managed access, no subscription. Built for the Philippine market.</p>
-                    <div class="card-meta"><span>Node.js</span><span>Vercel</span><span>GCash</span><span>Production</span></div>
-                    <a href="https://github.com/TheRealStubbornDeveloper/filedrive" class="card-link" target="_blank">View project <i class="fas fa-external-link-alt"></i></a>
+            <h2 class="section-title"><span class="hash">#</span>Career trajectory</h2>
+            <p class="section-sub">Freelance from day one. Started building for others before I had a diploma. Each phase added a new layer of capability.</p>
+            <div style="max-width: 700px;">
+                <div class="timeline-item">
+                    <div class="year">Early &mdash; Web Development</div>
+                    <h4>Freelance Web Developer</h4>
+                    <p>Started building full-stack web applications for clients. Django, Flask, Express, Vue.js, React. Built payment-integrated sites, REST APIs, authentication systems, and boilerplate tooling for rapid delivery.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-lock"></i></div>
-                    <h3>pi-pii-mask</h3>
-                    <p>Lightweight regex-based PII masking extension for Pi coding agent. Keeps sensitive data out of agent context without breaking workflow.</p>
-                    <div class="card-meta"><span>TypeScript</span><span>Pi Agent</span><span>Security</span></div>
-                    <a href="https://github.com/TheRealStubbornDeveloper/pi-pii-mask" class="card-link" target="_blank">View project <i class="fas fa-external-link-alt"></i></a>
+                <div class="timeline-item">
+                    <div class="year">Growth &mdash; Data Engineering</div>
+                    <h4>Data Engineer / ETL Contractor</h4>
+                    <p>Transitioned into data infrastructure. Designed and maintained ETL pipelines using Airflow, Spark, and Kafka. Built data warehouses and lakes on AWS, GCP, and Azure. Processed and analyzed data at scale for production environments.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-terminal"></i></div>
-                    <h3>StubbornBetterOpencode</h3>
-                    <p>AI coding agent built for the terminal. Fork with enhanced tooling, quality-of-life improvements, and extended model support. Written in Go.</p>
-                    <div class="card-meta"><span>Go</span><span>AI Agent</span><span>Terminal</span></div>
-                    <a href="https://github.com/TheRealStubbornDeveloper/StubbornBetterOpencode" class="card-link" target="_blank">View project <i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-robot"></i></div>
-                    <h3>FiloAI &mdash; Filipino AI Toolbox</h3>
-                    <p>An AI toolbox tailored for the Philippines. Forms go in, finished outputs come out. Built for local workflows and local payment methods.</p>
-                    <div class="card-meta"><span>AI</span><span>Philippines</span><span>Toolbox</span></div>
-                    <a href="https://github.com/TheRealStubbornDeveloper/FiloAI" class="card-link" target="_blank">View project <i class="fas fa-external-link-alt"></i></a>
+                <div class="timeline-item">
+                    <div class="year">Present &mdash; AI & Agent Tooling</div>
+                    <h4>AI Agent & Infrastructure Engineer</h4>
+                    <p>Building tooling for the AI agent ecosystem. PII security extensions for coding agents, agent API adapters, self-hosted AI gateways, and automated infrastructure. Combining full-stack, data, and AI delivery.</p>
                 </div>
             </div>
         </div>
@@ -240,7 +208,7 @@
                         <li>Build custom coding agent extensions and tools</li>
                         <li>Design agent workflows with PII security and tool call adapters</li>
                         <li>Integrate LLMs with production systems via API gateways</li>
-                        <li>Deploy and manage inference infrastructure (OmniRoute, ComfyUI)</li>
+                        <li>Deploy and manage inference infrastructure</li>
                     </ul>
                 </div>
                 <div class="cap-card">
@@ -264,7 +232,7 @@
                 <div class="cap-card">
                     <h3>Product & Infrastructure</h3>
                     <ul>
-                        <li>Pay-per-use product architecture with GCash integration</li>
+                        <li>Pay-per-use product architecture with local payment integration</li>
                         <li>Self-hosted AI gateways and proxy infrastructure</li>
                         <li>Linux systems administration and homelab orchestration</li>
                         <li>Hardware-software integration and prototyping</li>
@@ -278,7 +246,7 @@
     <section style="background: #020202;">
         <div class="container">
             <h2 class="section-title"><span class="hash">#</span>Outside the terminal</h2>
-            <p class="section-sub">When I'm not building, this is where my energy goes.</p>
+            <p class="section-sub">Building doesn't stop at a desk. These are the other things I invest time in.</p>
             <div class="hobby-grid">
                 <div class="hobby-item"><i class="fas fa-dumbbell"></i><h4>Fitness & Gym</h4></div>
                 <div class="hobby-item"><i class="fas fa-microchip"></i><h4>Hardware Tinkering</h4></div>
@@ -296,19 +264,20 @@
             <h2 class="section-title"><span class="hash">#</span>About</h2>
             <div class="about-layout">
                 <div class="about-text">
-                    <p>I'm a self-taught engineer who started building before I had a diploma to justify it. I finished Senior High School with academic awards at <strong>Jose Rizal University</strong> — but I chose not to pursue a college degree because I was already coding, freelancing, and delivering real production work while my peers were still in introductory classes.</p>
-                    <p>Since then I've built AI agent tooling, data pipelines that move terabytes, payment-integrated products for the Philippine market, and infrastructure that bridges self-hosted hardware with cloud services. I don't work for exposure. I don't work below my rate. I don't chase certifications to prove what I can already do.</p>
-                    <p>I let the work speak.</p>
+                    <p>I started coding before most of my peers — and I was already freelancing and getting paid for it while they were still on tutorials. In my class, I was consistently one of the top programmers. In Senior High School, I was awarded <strong>Programmer of the Year</strong> at Jose Rizal University.</p>
+                    <p>I chose not to pursue a college degree because I was already in the industry — building web apps, data pipelines, and infrastructure for real clients. While others were in introductory classes, I was delivering production systems.</p>
+                    <p>Today I build across the stack: web, data, AI agents, and infrastructure. I don't chase credentials. I let the work speak. And I don't work below my value.</p>
                 </div>
                 <div class="edu-card">
+                    <div class="edu-badge"><i class="fas fa-crown"></i> Programmer of the Year</div>
                     <div class="award"><i class="fas fa-award"></i> With Honors &mdash; Jose Rizal University</div>
                     <h3>Senior High School &middot; Academic Track</h3>
-                    <p>Completed Senior High School at Jose Rizal University with academic distinctions. Deployed my first production application before graduation — a functional face recognition system using OpenCV and PyQt5.</p>
+                    <p>Graduated Senior High School at Jose Rizal University with academic honors. Named Programmer of the Year among my batch. Recognized as one of the top programmers in my class before I even entered the professional workforce.</p>
                     
                     <div class="divider"></div>
                     
-                    <p><span class="strong">Degree:</span> Not pursued. Chose direct industry experience over a four-year delay.</p>
-                    <p style="margin-top: 0.5rem;"><span class="strong">Equivalent outcome:</span> 6+ years of professional software engineering across data engineering, AI/ML, full-stack, and infrastructure. Paid clients. Shipped products. Verifiable code.</p>
+                    <p><span class="strong">College:</span> Not pursued. Chose direct industry experience over a four-year classroom track.</p>
+                    <p style="margin-top: 0.5rem;"><span class="strong">Equivalent experience:</span> 6+ years of professional software engineering across data engineering, AI/ML, full-stack, and infrastructure. Paid clients. Shipped products. Verifiable code in public repositories.</p>
                 </div>
             </div>
             <div class="worth-statement">

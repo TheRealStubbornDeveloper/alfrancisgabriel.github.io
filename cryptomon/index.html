@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Monitor — StubbornDev</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:#00ff8844;color:#fff}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#050505;color:#c0c0c0;min-height:100vh;padding:24px;overflow-x:hidden}
+code,.font-mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:900px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.04)}
+header h1{font-size:20px;font-weight:700;color:#e0e0e0;letter-spacing:-0.5px}
+header h1 .accent{color:#00ff88}
+header .subtitle{font-size:11px;color:#6a6a7a;margin-top:3px}
+header .back-link a{color:#00aa55;text-decoration:none;font-size:12px}
+header .back-link a:hover{color:#00ff88}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.coin-card{background:rgba(24,24,36,.4);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:16px}
+.coin-card h2{font-size:15px;font-weight:600;color:#e0e0e0;margin-bottom:2px}
+.coin-card .price{font-size:28px;font-weight:700;color:#fff;font-family:'JetBrains Mono',monospace;margin-bottom:12px}
+.coin-card .price.up{color:#00ff88}
+.coin-card .price.down{color:#ff4466}
+.timeframes{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tf-row{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-radius:6px;background:rgba(0,0,0,.2);font-size:12px}
+.tf-row .label{color:#6a6a7a}
+.tf-row .change{font-weight:600;font-family:'JetBrains Mono',monospace}
+.tf-row .change.positive{color:#00ff88}
+.tf-row .change.negative{color:#ff4466}
+.tf-row .change.alert{background:rgba(255,68,102,.15);padding:2px 6px;border-radius:4px}
+.tf-row .change.alert.positive{background:rgba(0,255,136,.15);color:#00ff88}
+.card{background:rgba(24,24,36,.4);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:16px;margin-bottom:14px}
+.card h3{font-size:11px;color:#6a6a7a;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+.threshold-group{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.threshold-item{text-align:center}
+.threshold-item .label{font-size:10px;color:#6a6a7a;margin-bottom:3px}
+.threshold-item input{width:100%;padding:5px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#fff;font-size:12px;text-align:center;font-family:'JetBrains Mono',monospace}
+.threshold-item input:focus{outline:none;border-color:#00ff88}
+.alert-list{max-height:300px;overflow-y:auto}
+.alert-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px}
+.alert-item:last-child{border-bottom:none}
+.alert-item .alert-coin{font-weight:600;color:#e0e0e0}
+.alert-item .alert-msg{color:#c0c0c0}
+.alert-item .alert-time{color:#6a6a7a;font-size:10px;font-family:'JetBrains Mono',monospace}
+.alert-item .alert-change{font-weight:600;font-family:'JetBrains Mono',monospace}
+.alert-empty{color:#6a6a7a;font-size:12px;text-align:center;padding:20px}
+.status-bar{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#6a6a7a;margin-bottom:12px;font-family:'JetBrains Mono',monospace}
+.status-bar .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.status-bar .dot.green{background:#00ff88}
+.status-bar .dot.yellow{background:#ffcc44}
+footer{text-align:center;font-size:11px;color:#6a6a7a;padding:18px 0;margin-top:20px;border-top:1px solid rgba(255,255,255,.04)}
+footer a{color:#00aa55;text-decoration:none}
+footer a:hover{color:#00ff88}
+@media(max-width:600px){.grid{grid-template-columns:1fr}body{padding:14px}.threshold-group{grid-template-columns:repeat(2,1fr)}.timeframes{grid-template-columns:1fr}.coin-card .price{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div>
+<h1><span class="accent">crypto</span>mon</h1>
+<div class="subtitle">Large movement monitor</div>
+</div>
+<div class="back-link"><a href="/">← portfolio</a></div>
+</header>
+
+<div class="status-bar">
+<span><span class="dot green" id="statusDot"></span><span id="statusText">Loading...</span></span>
+<span id="lastUpdate">—</span>
+</div>
+
+<div class="grid" id="coinGrid"></div>
+
+<div class="card">
+<h3>Alert Thresholds</h3>
+<div class="threshold-group">
+<div class="threshold-item"><div class="label">1h</div><input type="number" id="thresh-1h" value="3" step="0.5" min="0.5"></div>
+<div class="threshold-item"><div class="label">4h</div><input type="number" id="thresh-4h" value="5" step="0.5" min="0.5"></div>
+<div class="threshold-item"><div class="label">12h</div><input type="number" id="thresh-12h" value="8" step="0.5" min="0.5"></div>
+<div class="threshold-item"><div class="label">1d</div><input type="number" id="thresh-1d" value="10" step="0.5" min="0.5"></div>
+</div>
+</div>
+
+<div class="card">
+<h3>Recent Alerts</h3>
+<div class="alert-list" id="alertList"><div class="alert-empty">No alerts yet. Thresholds met will appear here.</div></div>
+</div>
+
+<footer><a href="https://github.com/TheRealStubbornDeveloper">@TheRealStubbornDeveloper</a> · Data from <a href="https://binance.com" target="_blank">Binance</a> public API</footer>
+</div>
+
+<script>
+const COINS = [
+  { symbol: 'BTCUSDT', name: 'BTC/USDT', short: 'BTC', decimals: 2 },
+  { symbol: 'POLUSDT', name: 'POL/USDT', short: 'POL', decimals: 4 },
+  { symbol: 'MATICUSDT', name: 'MATIC/USDT', short: 'MATIC', decimals: 4 }
+];
+const TIMEFRAMES = [
+  { key: '1h', label: '1 Hour', interval: '1h', periods: 1 },
+  { key: '4h', label: '4 Hours', interval: '4h', periods: 4 },
+  { key: '12h', label: '12 Hours', interval: '4h', periods: 12 / 4 },
+  { key: '1d', label: '1 Day', interval: '4h', periods: 24 / 4 }
+];
+const MAX_CANDLES_1H = 72; // 3 days of 1h
+const REFRESH_MS = 60000; // 1 min refresh
+const API = 'https://api.binance.com';
+
+let state = { coins: {}, alerts: [], threshold: { '1h': 3, '4h': 5, '12h': 8, '1d': 10 }, lastFetch: 0 };
+
+function loadState() {
+  try {
+    var saved = localStorage.getItem('cryptomon_state');
+    if (saved) {
+      var parsed = JSON.parse(saved);
+      state.alerts = parsed.alerts || [];
+      state.threshold = parsed.threshold || state.threshold;
+      state.lastFetch = parsed.lastFetch || 0;
+      // Restore threshold inputs
+      Object.keys(state.threshold).forEach(function(k) {
+        var el = document.getElementById('thresh-' + k);
+        if (el) el.value = state.threshold[k];
+      });
+    }
+  } catch(e) {}
+}
+
+function saveState() {
+  try {
+    localStorage.setItem('cryptomon_state', JSON.stringify({
+      alerts: state.alerts,
+      threshold: state.threshold,
+      lastFetch: state.lastFetch
+    }));
+  } catch(e) {}
+}
+
+function setStatus(text, ok) {
+  document.getElementById('statusText').textContent = text;
+  document.getElementById('statusDot').className = 'dot ' + (ok ? 'green' : 'yellow');
+}
+
+function fmtTime(d) {
+  return d.toTimeString().slice(0,5);
+}
+
+function fmtPrice(v, d) {
+  return v % 1 === 0 ? v.toLocaleString() : v.toFixed(d || 2);
+}
+
+function fmtPct(v) {
+  return (v > 0 ? '+' : '') + v.toFixed(1) + '%';
+}
+
+async function fetchKlines(symbol, interval, limit) {
+  var url = API + '/api/v3/klines?symbol=' + symbol + '&interval=' + interval + '&limit=' + limit;
+  var r = await fetch(url);
+  if (!r.ok) throw new Error(symbol + ' ' + r.status);
+  return r.json();
+}
+
+function computeChanges(candles, timeframes) {
+  if (!candles || candles.length < 24) return {};
+  var close = candles.map(function(c) { return parseFloat(c[4]); });
+  var current = close[close.length - 1];
+  var changes = {};
+  timeframes.forEach(function(tf) {
+    var idx = close.length - 1 - Math.min(tf.periods, close.length - 1);
+    if (idx >= 0) {
+      var prev = close[idx];
+      changes[tf.key] = (current - prev) / prev * 100;
+    }
+  });
+  return { price: current, changes: changes, timestamp: candles[candles.length - 1][0] };
+}
+
+async function fetchAll() {
+  var results = {};
+  var errors = [];
+  for (var i = 0; i < COINS.length; i++) {
+    var coin = COINS[i];
+    try {
+      var candles;
+      // Try POL first, fallback to MATIC
+      if (coin.symbol === 'POLUSDT') {
+        try {
+          candles = await fetchKlines('POLUSDT', '1h', MAX_CANDLES_1H);
+        } catch(e) {
+          console.log('POLUSDT failed, trying MATICUSDT');
+          candles = await fetchKlines('MATICUSDT', '1h', MAX_CANDLES_1H);
+          coin.symbol = 'MATICUSDT';
+          coin.name = 'MATIC/USDT';
+        }
+        // Try to get 4h candles
+        var c4h;
+        try {
+          c4h = await fetchKlines(coin.symbol, '4h', 18);
+        } catch(e) {
+          c4h = candles.filter(function(c, i) { return i % 4 === 0; });
+        }
+        candles = { '1h': candles, '4h': c4h };
+      } else {
+        var c1h = await fetchKlines(coin.symbol, '1h', MAX_CANDLES_1H);
+        var c4h = await fetchKlines(coin.symbol, '4h', 18);
+        candles = { '1h': c1h, '4h': c4h };
+      }
+      var c1h = candles['1h'];
+      var c4hc = candles['4h'];
+      // Build flat candle array for timeframes
+      var allCandles = {
+        '1h': c1h,
+        '4h': c4hc
+      };
+      var changes = {};
+      TIMEFRAMES.forEach(function(tf) {
+        var src = tf.key === '1h' ? c1h : c4hc;
+        if (src && src.length > tf.periods) {
+          var current = parseFloat(src[src.length - 1][4]);
+          var prev = parseFloat(src[src.length - 1 - Math.min(tf.periods, src.length - 1)][4]);
+          changes[tf.key] = (current - prev) / prev * 100;
+        }
+      });
+      results[coin.short] = {
+        name: coin.name,
+        price: parseFloat(c1h[c1h.length - 1][4]),
+        changes: changes,
+        decimals: coin.decimals,
+        symbol: coin.symbol
+      };
+    } catch(e) {
+      errors.push(coin.short + ': ' + e.message);
+    }
+  }
+  if (errors.length) {
+    setStatus('Fetch errors: ' + errors.join(' | '), false);
+  } else {
+    setStatus('Live', true);
+  }
+  return results;
+}
+
+function checkAlerts(coins) {
+  var threshold = state.threshold;
+  var now = Date.now();
+  var newAlerts = [];
+  Object.keys(coins).forEach(function(short) {
+    var coin = coins[short];
+    Object.keys(coin.changes).forEach(function(tf) {
+      var change = coin.changes[tf];
+      var thresh = parseFloat(threshold[tf]) || 99;
+      if (Math.abs(change) >= thresh) {
+        newAlerts.push({
+          coin: short,
+          timeframe: tf,
+          change: change,
+          time: now,
+          msg: short + ' moved ' + fmtPct(change) + ' in ' + tf
+        });
+      }
+    });
+  });
+  if (newAlerts.length) {
+    // Filter to new alerts only (not already logged in last hour)
+    var oneHourAgo = now - 3600000;
+    newAlerts.forEach(function(a) {
+      var exists = state.alerts.some(function(ex) {
+        return ex.coin === a.coin && ex.timeframe === a.timeframe &&
+          Math.abs(ex.change - a.change) < 0.1 && ex.time > oneHourAgo;
+      });
+      if (!exists) {
+        state.alerts.unshift(a);
+      }
+    });
+    // Keep max 50 alerts
+    if (state.alerts.length > 50) state.alerts = state.alerts.slice(0, 50);
+    saveState();
+  }
+}
+
+function render(coins) {
+  var grid = document.getElementById('coinGrid');
+  grid.innerHTML = '';
+  Object.keys(coins).forEach(function(short) {
+    var coin = coins[short];
+    var changeKeys = Object.keys(coin.changes);
+    var allUp = changeKeys.every(function(k) { return coin.changes[k] >= 0; });
+    var allDown = changeKeys.every(function(k) { return coin.changes[k] < 0; });
+    var priceClass = allUp ? 'up' : (allDown ? 'down' : '');
+    // Check if any timeframe exceeds threshold
+    var hasAlert = changeKeys.some(function(k) {
+      return Math.abs(coin.changes[k]) >= (parseFloat(state.threshold[k]) || 99);
+    });
+
+    var rows = changeKeys.map(function(k) {
+      var ch = coin.changes[k];
+      var cls = ch >= 0 ? 'positive' : 'negative';
+      var isAlert = Math.abs(ch) >= (parseFloat(state.threshold[k]) || 99);
+      var alertClass = isAlert ? ' alert' : '';
+      return '<div class="tf-row"><span class="label">' + k + '</span><span class="change ' + cls + alertClass + '">' + fmtPct(ch) + '</span></div>';
+    }).join('');
+
+    grid.innerHTML += '<div class="coin-card">' +
+      '<div style="display:flex;justify-content:space-between;align-items:baseline">' +
+      '<h2>' + coin.name + '</h2>' +
+      (hasAlert ? '<span style="font-size:9px;background:#ff446622;color:#ff4466;padding:2px 6px;border-radius:4px;font-family:JetBrains Mono,monospace">ALERT</span>' : '') +
+      '</div>' +
+      '<div class="price ' + priceClass + '">$' + fmtPrice(coin.price, coin.decimals) + '</div>' +
+      '<div class="timeframes">' + rows + '</div></div>';
+  });
+
+  // Render alerts
+  var alertList = document.getElementById('alertList');
+  if (state.alerts.length === 0) {
+    alertList.innerHTML = '<div class="alert-empty">No alerts yet. Thresholds met will appear here.</div>';
+  } else {
+    alertList.innerHTML = state.alerts.slice(0, 20).map(function(a) {
+      var cls = a.change >= 0 ? 'positive' : 'negative';
+      var t = new Date(a.time);
+      return '<div class="alert-item">' +
+        '<div><span class="alert-coin">' + a.coin + '</span> <span class="alert-msg">' + a.msg + '</span></div>' +
+        '<div style="display:flex;align-items:center;gap:8px">' +
+        '<span class="alert-change ' + cls + '">' + fmtPct(a.change) + '</span>' +
+        '<span class="alert-time">' + t.toLocaleDateString() + ' ' + fmtTime(t) + '</span>' +
+        '</div></div>';
+    }).join('');
+  }
+}
+
+async function refresh() {
+  try {
+    var coins = await fetchAll();
+    state.coins = coins;
+    checkAlerts(coins);
+    render(coins);
+    var now = new Date();
+    document.getElementById('lastUpdate').textContent = 'Updated ' + now.toLocaleTimeString();
+    state.lastFetch = Date.now();
+    saveState();
+  } catch(e) {
+    setStatus('Error: ' + e.message, false);
+    // Re-render cached data if available
+    if (Object.keys(state.coins).length) render(state.coins);
+  }
+}
+
+// Save thresholds on change
+function bindThresholds() {
+  ['1h','4h','12h','1d'].forEach(function(k) {
+    var el = document.getElementById('thresh-' + k);
+    if (el) {
+      el.addEventListener('change', function() {
+        state.threshold[k] = parseFloat(el.value) || 99;
+        saveState();
+        // Re-render to update alert indicators
+        if (Object.keys(state.coins).length) render(state.coins);
+      });
+    }
+  });
+}
+
+// Init
+loadState();
+bindThresholds();
+refresh();
+setInterval(refresh, REFRESH_MS);
+</script>
+</body>
+</html>

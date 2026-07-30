@@ -29,7 +29,7 @@
 <footer><a href="https://github.com/TheRealStubbornDeveloper" target="_blank">@TheRealStubbornDeveloper</a></footer>
 </div>
 <script>
-const LANG_COLORS={Python:'#3572A5',JavaScript:'#f1e05a',TypeScript:'#3178C6',HTML:'#e34c26',CSS:'#563d7c',SCSS:'#c6538c',Kotlin:'#A97BFF',Go:'#00ADD8',Java:'#b07219',C:'#555',C++:'#f34b7d',PHP:'#4F5D95',Shell:'#89e051',Dockerfile:'#384d54','Jupyter Notebook':'#DA5B0F',Rust:'#dea584'};
+const LANG_COLORS={Python:'#3572A5',JavaScript:'#f1e05a',TypeScript:'#3178C6',HTML:'#e34c26',CSS:'#563d7c',SCSS:'#c6538c',Kotlin:'#A97BFF',Go:'#00ADD8',Java:'#b07219',C:'#555','C++':'#f34b7d',PHP:'#4F5D95',Shell:'#89e051',Dockerfile:'#384d54','Jupyter Notebook':'#DA5B0F',Rust:'#dea584'};
 const fmt=n=>n>=1000?(n/1000).toFixed(1)+'k':String(n);
 async function loadJSON(url){const r=await fetch(url);if(!r.ok)throw new Error(url+' → '+r.status);return r.json()}
 function renderSummary(s){document.getElementById('update-time').textContent=(s.updated_at||'').slice(0,10)||'—';document.getElementById('summaryGrid').innerHTML=`

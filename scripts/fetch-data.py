@@ -12,7 +12,7 @@ USERNAME = "TheRealStubbornDeveloper"
 GITHUB_API = "https://api.github.com"
 OUTPUT_DIR = os.environ.get(
     "ANALYTICS_OUTPUT_DIR",
-    os.path.join(os.path.dirname(__file__), "..", "analytics", "data")
+    os.path.join(os.path.dirname(__file__), "..", "stubborn-stats", "data")
 )
 
 def gh_headers():
@@ -62,6 +62,15 @@ def main():
     print(f"Fetching repos for {USERNAME}...")
     repos = gh_get_all(f"/users/{USERNAME}/repos", {"sort": "updated"})
     repos = [r for r in repos if not r["fork"]]
+
+    # Filter out trivial/boilerplate repos
+    TRIVIAL = {
+        'Bluehacks','CovidDataGrabber','Genopets-Claim-Solana-Wallet-Scanner',
+        'OOPACT7','TheRealStubbornDeveloper','alfrancisgabriel','almanac',
+        'django3aws','learning_go','nodejs-express-boilerplate','react_fetch',
+        'remote-desktop','spark-code','vuejshelpexample','webhooktest'
+    }
+    repos = [r for r in repos if r["name"] not in TRIVIAL]
 
     # Build repos list
     repo_list = []

@@ -28,17 +28,13 @@ header .back-link a:hover{color:var(--accent)}
 .chart-wrap{position:relative;height:260px}
 .repos-section h2{font-size:16px;font-weight:600;margin-bottom:12px;color:var(--accent)}
 .repo-table{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.repo-row{display:grid;grid-template-columns:2fr 80px 80px 100px 50px;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background .15s}
+.repo-row{display:block;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
 .repo-row:last-child{border-bottom:none}
 .repo-row:hover{background:rgba(0,255,136,.03)}
-.repo-row.header{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;cursor:default}
-.repo-row.header:hover{background:transparent}
 .repo-name{font-weight:600;font-size:13px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .repo-desc{font-size:11px;color:var(--text-dim);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.repo-stat{font-size:12px;text-align:center}
-.repo-stat .num{color:#fff;font-weight:600}
-.repo-star{color:var(--yellow)}
-.repo-lang{font-size:11px;text-align:center;color:var(--text-dim)}
+.repo-meta{display:flex;align-items:center;gap:12px;margin-top:6px;font-size:11px;color:var(--text-dim)}
+.repo-meta .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:3px;vertical-align:middle}
 .detail-panel{display:none;background:rgba(0,0,0,.25);border-bottom:1px solid var(--border);padding:16px 20px;grid-template-columns:1fr 1fr;gap:16px}
 .detail-panel.active{display:grid}
 .detail-panel h4{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
@@ -51,7 +47,7 @@ header .back-link a:hover{color:var(--accent)}
 @keyframes spin{to{transform:rotate(360deg)}}
 footer{text-align:center;font-size:11px;color:var(--text-dim);padding:20px 0;margin-top:28px;border-top:1px solid var(--border)}
 footer a{color:var(--accent-dim);text-decoration:none}
-@media(max-width:700px){.chart-grid{grid-template-columns:1fr}.repo-row{grid-template-columns:1.5fr 60px 60px 70px}.repo-row .repo-stat.repo-link-col{display:none}.detail-panel.active{grid-template-columns:1fr}body{padding:16px}.summary-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.chart-grid{grid-template-columns:1fr}.detail-panel.active{grid-template-columns:1fr}body{padding:16px}.summary-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -207,30 +203,31 @@ function renderStarsChart(repos) {
 }
 
 function renderRepoTable(repos) {
+  var TRIVIAL=new Set([
+    'Bluehacks','CovidDataGrabber','Genopets-Claim-Solana-Wallet-Scanner',
+    'OOPACT7','TheRealStubbornDeveloper','alfrancisgabriel','almanac',
+    'django3aws','learning_go','nodejs-express-boilerplate','react_fetch',
+    'remote-desktop','spark-code','vuejshelpexample','webhooktest'
+  ]);
+  repos = repos.filter(function(r) { return !TRIVIAL.has(r.name); });
+
   document.getElementById('repoCount').textContent = 'Repositories (' + repos.length + ')';
 
   var table = document.getElementById('repoTable');
   table.innerHTML = '';
 
-  // Header
-  var header = document.createElement('div');
-  header.className = 'repo-row header';
-  header.innerHTML = '<div>Repository</div><div style="text-align:center">Stars</div><div style="text-align:center">Forks</div><div style="text-align:center">Language</div><div></div>';
-  table.appendChild(header);
-
-  // Rows
   for (var i = 0; i < repos.length; i++) {
     var r = repos[i];
     var row = document.createElement('div');
     row.className = 'repo-row';
-    row.setAttribute('data-repo', encodeURIComponent(JSON.stringify(r)));
     row.innerHTML = [
-      '<div><div class="repo-name">' + esc(r.name) + '</div>',
-      '<div class="repo-desc">' + (r.description ? esc(r.description) : '\u2014') + '</div></div>',
-      '<div class="repo-stat repo-star"><span class="num">' + r.stars + '</span></div>',
-      '<div class="repo-stat"><span class="num">' + r.forks + '</span></div>',
-      '<div class="repo-lang">' + (r.language || '\u2014') + '</div>',
-      '<div class="repo-stat" style="font-size:11px;color:var(--accent-dim)">\u2197</div>'
+      '<div class="repo-name">' + esc(r.name) + '</div>',
+      r.description ? '<div class="repo-desc">' + esc(r.description) + '</div>' : '',
+      '<div class="repo-meta">',
+      '<span>\u2B50 <span style="color:#fff;font-weight:600">' + r.stars + '</span></span>',
+      '<span>\uD83D\uDD00 <span style="color:#fff;font-weight:600">' + r.forks + '</span></span>',
+      r.language ? '<span><span class="dot" style="background:' + (LANG_COLORS[r.language] || '#666') + '"></span>' + esc(r.language) + '</span>' : '',
+      '</div>'
     ].join('');
 
     row.addEventListener('click', createClickHandler(r, row));

@@ -1,399 +1,431 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StubbornDeveloper — I Build Good Products</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #000;
-            color: #c0c0c0;
-            line-height: 1.7;
-        }
-        ::selection { background: #00ff8844; color: #fff; }
-        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        :root { --neon: #00ff88; --neon-dim: #00ff8822; --accent: #d4d4d4; --muted: #555; }
-        .neon { color: var(--neon); }
-        
-        /* fade-in */
-        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        
-        header { 
-            position: fixed; top: 0; width: 100%; z-index: 100;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
-            border-bottom: 1px solid #0a0a0a;
-        }
-        .nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
-        .logo { font-weight: 800; font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); }
-        .logo span { color: var(--neon); }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a { color: #444; text-decoration: none; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; font-weight: 500; }
-        .nav-links a:hover { color: var(--accent); }
-        
-        section { padding: 7rem 0; }
-        .section-title {
-            font-size: 1.6rem; font-weight: 700; margin-bottom: 3rem;
-            letter-spacing: -0.3px; display: flex; align-items: center; gap: 0.75rem;
-            color: var(--accent);
-        }
-        .section-title .hash { color: var(--neon); font-weight: 300; opacity: 0.8; }
-        .section-sub { font-size: 0.85rem; color: var(--muted); max-width: 600px; margin-bottom: 3rem; line-height: 1.8; }
-        
-        /* HERO */
-        #hero { padding-top: 10rem; padding-bottom: 6rem; min-height: 85vh; display: flex; align-items: center; position: relative; overflow: hidden; }
-        #hero::before {
-            content: '';
-            position: absolute; top: -40%; right: -15%; width: 700px; height: 700px;
-            background: radial-gradient(circle, #00ff8808 0%, #00ff8804 30%, transparent 70%);
-            pointer-events: none;
-        }
-        #hero::after {
-            content: '';
-            position: absolute; bottom: -20%; left: -10%; width: 400px; height: 400px;
-            background: radial-gradient(circle, #00ff8804 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .hero-inner { display: flex; align-items: center; gap: 4rem; position: relative; z-index: 1; }
-        .hero-text { flex: 1; }
-        .hero-visual { flex-shrink: 0; }
-        .hero-tag { font-size: 0.75rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; font-weight: 500; }
-        .hero-tag span { color: var(--neon); }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -2px; color: var(--accent); }
-        .hero h1 .em { color: var(--neon); }
-        .hero p { font-size: 1rem; color: var(--muted); max-width: 500px; margin-bottom: 2.5rem; line-height: 1.9; }
-        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-        
-        .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: all .3s; border: none; cursor: pointer; }
-        .btn-primary { background: var(--neon); color: #000; }
-        .btn-primary:hover { box-shadow: 0 0 30px var(--neon-dim); transform: translateY(-2px); }
-        .btn-outline { border: 1px solid #222; color: var(--muted); background: transparent; }
-        .btn-outline:hover { border-color: var(--neon); color: var(--neon); box-shadow: 0 0 15px var(--neon-dim); }
-        
-        /* ROBOT SVG */
-        .robot-svg { width: 200px; height: 200px; }
-        .robot-svg .glow { animation: pulse-glow 3s ease-in-out infinite; }
-        .robot-svg .blink { animation: blink 4s ease-in-out infinite; }
-        .robot-svg .orbit { animation: spin 8s linear infinite; transform-origin: 100px 100px; }
-        @keyframes pulse-glow { 0%, 100% { opacity: .4; } 50% { opacity: .8; } }
-        @keyframes blink { 0%, 45%, 55%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-        
-        .card { 
-            background: #050505; border: 1px solid #0f0f0f; border-radius: 12px; padding: 2rem; 
-            transition: all .3s; position: relative; overflow: hidden;
-        }
-        .card::before {
-            content: '';
-            position: absolute; top: 0; left: 0; width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neon-dim), transparent);
-            opacity: 0; transition: opacity .4s;
-        }
-        .card:hover { border-color: #1a1a1a; transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,255,136,0.04); }
-        .card:hover::before { opacity: 1; }
-        .card-icon { margin-bottom: 1rem; display: inline-block; padding: 0.5rem; border: 1px solid #0f0f0f; border-radius: 8px; }
-        .card-icon svg { display: block; width: 20px; height: 20px; }
-        .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
-        .card p { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.7; }
-        .card-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-        .card-meta span { font-size: 0.65rem; background: #080808; color: #444; border: 1px solid #111; padding: 0.2rem 0.6rem; border-radius: 4px; font-family: monospace; }
-        
-        .cap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .cap-card { background: #050505; border: 1px solid #0f0f0f; border-radius: 12px; padding: 2rem; transition: border-color .3s; }
-        .cap-card:hover { border-color: #151515; }
-        .cap-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
-        .cap-card ul { list-style: none; }
-        .cap-card ul li { color: var(--muted); font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid #0a0a0a; display: flex; align-items: center; gap: 0.75rem; }
-        .cap-card ul li::before { content: '>'; color: var(--neon); font-family: monospace; font-weight: 700; }
-        
-        .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
-        .hobby-item { background: #050505; border: 1px solid #0f0f0f; border-radius: 10px; padding: 1.5rem; text-align: center; transition: all .3s; }
-        .hobby-item:hover { border-color: var(--neon-dim); transform: translateY(-2px); }
-        .hobby-item .emoji { font-size: 1.8rem; display: block; margin-bottom: 0.5rem; }
-        .hobby-item h4 { font-size: 0.85rem; font-weight: 500; color: var(--accent); }
-        
-        .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-        .about-text p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.8; }
-        .timeline-item { margin-bottom: 1.5rem; padding-left: 1.5rem; border-left: 1px solid #0f0f0f; position: relative; }
-        .timeline-item::before { content: ''; position: absolute; left: -4px; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 8px var(--neon-dim); }
-        .timeline-item .year { font-size: 0.7rem; color: var(--neon); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-        .timeline-item h4 { font-size: 0.95rem; font-weight: 600; color: var(--accent); margin: 0.25rem 0 0.3rem; }
-        .timeline-item p { font-size: 0.82rem; color: var(--muted); }
-        
-        .edu-card { background: #050505; border: 1px solid #0f0f0f; border-radius: 12px; padding: 2rem; border-left: 2px solid var(--neon-dim); }
-        .edu-card .award { color: var(--neon); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.75rem; }
-        .edu-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
-        .edu-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.8; }
-        .edu-card .strong { color: var(--accent); font-weight: 600; }
-        .edu-card .divider { height: 1px; background: #0f0f0f; margin: 1.5rem 0; }
-        .edu-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #00ff8810; border: 1px solid var(--neon-dim); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.78rem; color: var(--neon); font-weight: 600; margin-bottom: 1rem; }
-        .edu-badge svg { width: 16px; height: 16px; }
-        
-        .worth-statement { margin-top: 2rem; padding: 2rem; border: 1px solid var(--neon-dim); border-radius: 12px; background: #050505; text-align: center; }
-        .worth-statement p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; max-width: 600px; margin: 0 auto; }
-        .worth-statement .emph { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
-        
-        .contact-links { display: flex; gap: 2rem; margin-top: 1.5rem; justify-content: center; }
-        .contact-links a { color: #333; transition: all .2s; display: inline-block; }
-        .contact-links a:hover { color: var(--neon); filter: drop-shadow(0 0 8px var(--neon-dim)); }
-        .contact-links svg { display: block; width: 22px; height: 22px; }
-        #contact p { color: var(--muted); font-size: 0.85rem; max-width: 400px; margin: 0 auto; }
-        
-        footer { border-top: 1px solid #050505; padding: 3rem 0; text-align: center; font-size: 0.72rem; color: #222; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
-        footer .n { color: var(--neon); opacity: 0.3; }
-        
-        @media (max-width: 768px) {
-            .hero-inner { flex-direction: column; gap: 2rem; text-align: center; }
-            .hero p { max-width: none; }
-            .hero-actions { justify-content: center; }
-            .robot-svg { width: 120px; height: 120px; }
-            .nav-links { display: none; }
-            .about-layout { grid-template-columns: 1fr; }
-            .grid-2 { grid-template-columns: 1fr; }
-            section { padding: 5rem 0; }
-            #hero { padding-top: 7rem; min-height: auto; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StubbornDeveloper — I Build Good Products</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:#00ff8844;color:#fff}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#050505;color:#c0c0c0;}
+code,.font-mono{font-family:'JetBrains Mono',monospace}
+.neon-glow{box-shadow:0 0 20px rgba(0,255,136,.15),0 0 40px rgba(0,255,136,.05)}
+.neon-border{border-color:rgba(0,255,136,.2)}
+.neon-border:hover{border-color:rgba(0,255,136,.5)}
+.blur-bg{background:rgba(5,5,5,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.typing-cursor::after{content:'|';animation:blink 1s step-end infinite;color:#00ff88}
+@keyframes blink{50%{opacity:0}}
+.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.code-line{position:relative;padding-left:1.5rem}
+.code-line::before{content:'>';position:absolute;left:0;color:#00ff88;font-family:'JetBrains Mono',monospace;font-weight:600}
+.gradient-text{background:linear-gradient(135deg,#00ff88,#00ddff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card-hover{transition:all .25s cubic-bezier(.22,1,.36,1)}
+.card-hover:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,255,136,.08)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.animate-float{animation:float 4s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:.3}50%{opacity:1}}
+.pulse-dot{animation:pulse-dot 2s ease-in-out infinite}
+@keyframes spin-slow{to{transform:rotate(360deg)}}
+.spin-slow{animation:spin-slow 8s linear infinite}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container nav">
-            <div class="logo">Stubborn<span>Dev</span></div>
-            <ul class="nav-links">
-                <li><a href="#work">Work</a></li>
-                <li><a href="#capabilities">Capabilities</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 blur-bg border-b border-white/[0.04]">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-[#00ff88] pulse-dot"></span>
+      <span class="font-mono font-bold text-sm tracking-widest text-white">Stubborn<span class="text-[#00ff88]">Dev</span></span>
+    </div>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#work" class="text-xs tracking-[2px] uppercase text-zinc-500 hover:text-white transition-colors font-medium">Work</a>
+      <a href="#projects" class="text-xs tracking-[2px] uppercase text-zinc-500 hover:text-white transition-colors font-medium">Projects</a>
+      <a href="#skills" class="text-xs tracking-[2px] uppercase text-zinc-500 hover:text-white transition-colors font-medium">Skills</a>
+      <a href="#stats" class="text-xs tracking-[2px] uppercase text-zinc-500 hover:text-white transition-colors font-medium">Stats</a>
+      <a href="#about" class="text-xs tracking-[2px] uppercase text-zinc-500 hover:text-white transition-colors font-medium">About</a>
+    </div>
+    <a href="#contact" class="text-xs font-mono px-4 py-2 rounded-full border border-[#00ff88]/30 text-[#00ff88] hover:bg-[#00ff88]/10 transition-all">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="min-h-screen flex items-center relative overflow-hidden pt-16">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00ff88]/[.03] rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[#00ddff]/[.03] rounded-full blur-[100px]"></div>
+  </div>
+  <div class="max-w-6xl mx-auto px-6 py-24 w-full">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="fade-in">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#00ff88]"></span>
+          <span class="text-xs font-mono text-zinc-500 tracking-wider">Al Francis Gabriel Bolima — Antipolo, PH</span>
         </div>
-    </header>
-
-    <!-- HERO -->
-    <section id="hero">
-        <div class="container hero-inner">
-            <div class="hero-text">
-                <div class="hero-tag"><span>Al Francis Gabriel Bolima</span> &mdash; Antipolo, Philippines</div>
-                <h1>I build <span class="em">good products.</span></h1>
-                <p>
-                    Started as a freelance web developer. Evolved into data engineering.<br>
-                    Now building AI agent tooling and infrastructure.<br>
-                    Value is delivered, not promised.
-                </p>
-                <div class="hero-actions">
-                    <a href="#work" class="btn btn-primary">See my work</a>
-                    <a href="https://github.com/TheRealStubbornDeveloper" class="btn btn-outline" target="_blank">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                        GitHub
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <svg class="robot-svg" viewBox="0 0 200 200" fill="none">
-                    <!-- outer ring orbit -->
-                    <circle class="orbit" cx="100" cy="100" r="85" stroke="#00ff88" stroke-width="0.5" opacity="0.2"/>
-                    <circle class="orbit" cx="100" cy="100" r="75" stroke="#00ff88" stroke-width="0.3" opacity="0.15"/>
-                    
-                    <!-- robot head -->
-                    <rect x="62" y="52" width="76" height="72" rx="14" stroke="#00ff88" stroke-width="2" opacity="0.7"/>
-                    <!-- face screen -->
-                    <rect x="72" y="66" width="56" height="34" rx="6" fill="#00ff88" fill-opacity="0.08" stroke="#00ff88" stroke-width="0.8" opacity="0.6"/>
-                    <!-- eyes -->
-                    <circle class="blink" cx="90" cy="83" r="4" fill="#00ff88" opacity="0.9"/>
-                    <circle class="blink" cx="110" cy="83" r="4" fill="#00ff88" opacity="0.9"/>
-                    <!-- mouth -->
-                    <line x1="88" y1="100" x2="112" y2="100" stroke="#00ff88" stroke-width="1.2" opacity="0.6"/>
-                    <!-- antenna -->
-                    <line x1="100" y1="52" x2="100" y2="32" stroke="#00ff88" stroke-width="1.5" opacity="0.5"/>
-                    <circle cx="100" cy="28" r="4" stroke="#00ff88" stroke-width="1" opacity="0.6"/>
-                    <!-- ears -->
-                    <rect x="50" y="68" width="12" height="18" rx="4" stroke="#00ff88" stroke-width="1.2" opacity="0.4"/>
-                    <rect x="138" y="68" width="12" height="18" rx="4" stroke="#00ff88" stroke-width="1.2" opacity="0.4"/>
-                    <!-- shoulder plates -->
-                    <rect x="52" y="124" width="32" height="14" rx="4" stroke="#00ff88" stroke-width="1" opacity="0.35"/>
-                    <rect x="116" y="124" width="32" height="14" rx="4" stroke="#00ff88" stroke-width="1" opacity="0.35"/>
-                    <!-- neck -->
-                    <rect x="88" y="124" width="24" height="10" rx="2" stroke="#00ff88" stroke-width="0.8" opacity="0.3"/>
-                    <!-- glow dots -->
-                    <circle cx="62" cy="142" r="2" fill="#00ff88" opacity="0.3" class="glow"/>
-                    <circle cx="138" cy="142" r="2" fill="#00ff88" opacity="0.3" class="glow"/>
-                    
-                    <!-- data particles -->
-                    <circle cx="38" cy="60" r="1.5" fill="#00ff88" opacity="0.25" class="glow"/>
-                    <circle cx="162" cy="90" r="1.5" fill="#00ff88" opacity="0.25" class="glow"/>
-                    <circle cx="40" cy="120" r="1" fill="#00ff88" opacity="0.2" class="glow"/>
-                    <circle cx="160" cy="130" r="1" fill="#00ff88" opacity="0.2" class="glow"/>
-                    
-                    <!-- circuit traces -->
-                    <path d="M30 145 L52 142" stroke="#00ff88" stroke-width="0.5" opacity="0.2"/>
-                    <path d="M148 142 L170 145" stroke="#00ff88" stroke-width="0.5" opacity="0.2"/>
-                </svg>
-            </div>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-white mb-6">
+          I build<br>
+          <span class="gradient-text">good products.</span>
+        </h1>
+        <p class="text-base text-zinc-400 leading-relaxed max-w-lg mb-8">
+          Freelance web developer who evolved into data engineering.<br>
+          Now building AI agent tooling and infrastructure.<br>
+          <span class="text-[#00ff88]">Value is delivered, not promised.</span>
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#work" class="px-6 py-3 bg-[#00ff88] text-black font-semibold rounded-xl text-sm hover:shadow-[0_0_30px_rgba(0,255,136,.3)] transition-all">See my work →</a>
+          <a href="https://github.com/TheRealStubbornDeveloper" target="_blank" class="px-6 py-3 border border-zinc-700 rounded-xl text-sm text-zinc-300 hover:border-[#00ff88]/50 hover:text-white transition-all flex items-center gap-2">
+            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
         </div>
-    </section>
-
-    <!-- JOURNEY -->
-    <section id="work" style="background: #020202;">
-        <div class="container fade-in">
-            <h2 class="section-title"><span class="hash">#</span>Career trajectory</h2>
-            <p class="section-sub">Freelance from day one. Started building for others before I had a diploma. Each phase added a new layer of capability.</p>
-            <div style="max-width: 700px;">
-                <div class="timeline-item">
-                    <div class="year">Early &mdash; Web Development</div>
-                    <h4>Freelance Web Developer</h4>
-                    <p>Started building full-stack web applications for clients. Django, Flask, Express, Vue.js, React. Built payment-integrated sites, REST APIs, authentication systems, and boilerplate tooling for rapid delivery.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="year">Growth &mdash; Data Engineering</div>
-                    <h4>Data Engineer / ETL Contractor</h4>
-                    <p>Transitioned into data infrastructure. Designed and maintained ETL pipelines using Airflow, Spark, and Kafka. Built data warehouses and lakes on AWS, GCP, and Azure. Processed and analyzed data at scale for production environments.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="year">Present &mdash; AI & Agent Tooling</div>
-                    <h4>AI Agent & Infrastructure Engineer</h4>
-                    <p>Building tooling for the AI agent ecosystem. PII security extensions for coding agents, agent API adapters, self-hosted AI gateways, and automated infrastructure. Combining full-stack, data, and AI delivery.</p>
-                </div>
-            </div>
+        <div class="flex gap-6 mt-10 text-zinc-600 font-mono text-xs">
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#00ff88]/60"></span>Available for work</span>
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#00ddff]/60"></span>Building</span>
         </div>
-    </section>
-
-    <!-- CAPABILITIES -->
-    <section id="capabilities">
-        <div class="container fade-in">
-            <h2 class="section-title"><span class="hash">#</span>What I can do</h2>
-            <p class="section-sub">I don't just know these things — I deliver with them. Every item below represents shipped work, not textbook knowledge.</p>
-            <div class="cap-grid">
-                <div class="cap-card">
-                    <h3>AI & Agent Engineering</h3>
-                    <ul>
-                        <li>Build custom coding agent extensions and tools</li>
-                        <li>Design agent workflows with PII security and tool call adapters</li>
-                        <li>Integrate LLMs with production systems via API gateways</li>
-                        <li>Deploy and manage inference infrastructure</li>
-                    </ul>
-                </div>
-                <div class="cap-card">
-                    <h3>Data Engineering</h3>
-                    <ul>
-                        <li>ETL pipeline design and maintenance (Airflow, Spark)</li>
-                        <li>Real-time data processing with Kafka</li>
-                        <li>Data warehousing and lake architecture</li>
-                        <li>Cloud data infrastructure on AWS, GCP, Azure</li>
-                    </ul>
-                </div>
-                <div class="cap-card">
-                    <h3>Full-Stack Development</h3>
-                    <ul>
-                        <li>Backend systems in Python, Go, Node.js, and Django</li>
-                        <li>Frontend with React, Vue.js, Vite, and static sites</li>
-                        <li>Mobile apps with Flutter and Kotlin</li>
-                        <li>Deployment and DevOps (Docker, K8s, CI/CD, Vercel)</li>
-                    </ul>
-                </div>
-                <div class="cap-card">
-                    <h3>Product & Infrastructure</h3>
-                    <ul>
-                        <li>Pay-per-use product architecture with local payment integration</li>
-                        <li>Self-hosted AI gateways and proxy infrastructure</li>
-                        <li>Linux systems administration and homelab orchestration</li>
-                        <li>Hardware-software integration and prototyping</li>
-                    </ul>
-                </div>
+      </div>
+      <div class="fade-in hidden md:block" style="transition-delay:.15s">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#00ff88]/10 to-[#00ddff]/5 rounded-3xl blur-2xl"></div>
+          <div class="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 font-mono text-sm leading-relaxed neon-glow">
+            <div class="flex gap-2 mb-4">
+              <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-[#00ff88]/80"></span>
             </div>
+            <div class="space-y-2">
+              <p class="text-zinc-400"><span class="text-[#00ff88]">stubborn@dev</span>:<span class="text-blue-400">~</span>$ whoami</p>
+              <p class="text-white pl-4">Al Francis — builder since 2020</p>
+              <p class="text-zinc-400"><span class="text-[#00ff88]">stubborn@dev</span>:<span class="text-blue-400">~</span>$ stack</p>
+              <p class="text-white pl-4">Python / TypeScript / Go / React / Rust</p>
+              <p class="text-zinc-400"><span class="text-[#00ff88]">stubborn@dev</span>:<span class="text-blue-400">~</span>$ ./build --production</p>
+              <p class="text-[#00ff88] pl-4">Building good products...</p>
+              <p class="text-zinc-600 pl-4 text-xs pulse-dot">_</p>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- HOBBIES -->
-    <section style="background: #020202;">
-        <div class="container fade-in">
-            <h2 class="section-title"><span class="hash">#</span>Outside the terminal</h2>
-            <p class="section-sub">Building doesn't stop at a desk. These are the other things I invest time in.</p>
-            <div class="hobby-grid">
-                <div class="hobby-item"><span class="emoji">🏋️</span><h4>Fitness & Gym</h4></div>
-                <div class="hobby-item"><span class="emoji">🔧</span><h4>Hardware Tinkering</h4></div>
-                <div class="hobby-item"><span class="emoji">🎮</span><h4>Gaming</h4></div>
-                <div class="hobby-item"><span class="emoji">🎵</span><h4>Music</h4></div>
-                <div class="hobby-item"><span class="emoji">🤖</span><h4>AI Experimentation</h4></div>
-                <div class="hobby-item"><span class="emoji">🏍️</span><h4>Rides & Roads</h4></div>
-            </div>
+<!-- CAREER -->
+<section id="work" class="py-24 md:py-32 border-t border-white/[.04]">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-in mb-16">
+      <span class="text-[#00ff88] font-mono text-sm">#01</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Career trajectory</h2>
+      <p class="text-zinc-500 mt-3 max-w-xl">Freelance from day one. Started building for others before I had a diploma. Each phase added a new layer of capability.</p>
+    </div>
+    <div class="relative">
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#00ff88]/40 via-zinc-800 to-zinc-800/0"></div>
+      <div class="space-y-20">
+        <div class="fade-in relative grid md:grid-cols-2 gap-8">
+          <div class="md:text-right md:pr-12">
+            <span class="text-[10px] font-mono tracking-[2px] uppercase text-zinc-600">2020 — 2022</span>
+            <h3 class="text-lg font-bold text-white mt-1">Freelance Web Development</h3>
+            <p class="text-zinc-500 text-sm mt-3 leading-relaxed">Django, Flask, Express, Vue.js, React. Built payment-integrated sites, REST APIs, authentication systems, and boilerplate tooling for rapid delivery. First real taste of shipping to production.</p>
+          </div>
+          <div class="hidden md:block"></div>
+          <div class="absolute left-[11px] md:left-1/2 top-0 w-[18px] h-[18px] rounded-full bg-[#00ff88] border-[3px] border-[#050505] -translate-x-1/2"></div>
         </div>
-    </section>
-
-    <!-- ABOUT + EDUCATION -->
-    <section id="about">
-        <div class="container fade-in">
-            <h2 class="section-title"><span class="hash">#</span>About</h2>
-            <div class="about-layout">
-                <div class="about-text">
-                    <p>I started coding before most of my peers — and I was already freelancing and getting paid for it while they were still on tutorials. In my class, I was consistently one of the top programmers. In Senior High School at ACLC Antipolo, I was awarded <strong>Programmer of the Year</strong>.</p>
-                    <p>Pursued Computer Engineering at the Technological Institute of the Philippines (Quezon City) starting 2021. Finished first year — then COVID hit. University went online, labs shut down. What I couldn't get from a disrupted classroom, I went and built myself.</p>
-                    <p>Today I build across the stack: web, data, AI agents, and infrastructure. I don't chase credentials. I let the work speak. And I don't work below my value.</p>
-                </div>
-                <div class="edu-card">
-                    <div class="edu-badge">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        Programmer of the Year
-                    </div>
-                    <div class="award">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="8" r="6"/><path d="M15.6 14.7L12 22l-3.6-7.3"/></svg>
-                        High Honors &mdash; ACLC Antipolo
-                    </div>
-                    <h3>Senior High School &middot; Academic Track</h3>
-                    <p>Graduated ACLC Antipolo with High Honors. Named Programmer of the Year. Recognized as one of the top programmers in my class before I even entered the professional workforce.</p>
-                    
-                    <div class="divider"></div>
-                    
-                    <p><span class="strong">College:</span> TIP QC &mdash; 1st year Computer Engineering, 2021. COVID disrupted campus — went remote, labs went dark. Pivoted to full-time building instead.</p>
-                    <p style="margin-top: 0.5rem;"><span class="strong">Equivalent experience:</span> 6+ years professional software engineering across data engineering, AI/ML, full-stack, and infrastructure. Paid clients. Shipped products. Verifiable code.</p>
-                </div>
-            </div>
-            <div class="worth-statement">
-                <p class="emph">I know my worth. I don't lowball and I don't get lowballed.</p>
-                <p style="margin-top: 0.75rem;">My rate reflects the value I deliver — not the credentials on a wall. If you need someone whose value is measured by their output rather than their paperwork, we'll talk. If you're looking for a bargain, there are other developers for that.</p>
-            </div>
+        <div class="fade-in relative grid md:grid-cols-2 gap-8">
+          <div class="hidden md:block"></div>
+          <div class="md:pl-12">
+            <span class="text-[10px] font-mono tracking-[2px] uppercase text-zinc-600">2022 — 2024</span>
+            <h3 class="text-lg font-bold text-white mt-1">Data Engineering</h3>
+            <p class="text-zinc-500 text-sm mt-3 leading-relaxed">Designed and maintained ETL pipelines using Airflow, Spark, and Kafka. Built data warehouses and lakes on AWS, GCP, and Azure. Processed and analyzed data at scale for production environments.</p>
+          </div>
+          <div class="absolute left-[11px] md:left-1/2 top-0 w-[18px] h-[18px] rounded-full bg-zinc-700 border-[3px] border-[#050505] -translate-x-1/2"></div>
         </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" style="background: #020202;">
-        <div class="container fade-in" style="text-align: center;">
-            <h2 class="section-title" style="justify-content: center;"><span class="hash">#</span>Contact</h2>
-            <p>If you have a use for something I've built, or you think we can build something together — reach out. If it's in scope, I'll quote. If not, I'll tell you.</p>
-            <div class="contact-links">
-                <a href="mailto:alfrancisgabriel@gmail.com" title="Email">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-                </a>
-                <a href="https://github.com/TheRealStubbornDeveloper" target="_blank" title="GitHub">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.2 11.4.6.1.82-.26.82-.58v-2.2c-3.34.72-4.04-1.42-4.04-1.42-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.3.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.02-.32 3.33 1.24C9.9 6.52 10.96 6.4 12 6.4c1.04 0 2.1.12 3.08.36 2.3-1.56 3.32-1.24 3.32-1.24.66 1.66.24 2.88.12 3.18.77.84 1.24 1.92 1.24 3.22 0 4.6-2.8 5.63-5.48 5.92.44.38.82 1.1.82 2.22v3.3c0 .32.22.7.82.58A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/" target="_blank" title="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.27zM5.34 7.43a2.06 2.06 0 01-2.06-2.06 2.06 2.06 0 012.06-2.06 2.06 2.06 0 012.06 2.06 2.06 2.06 0 01-2.06 2.06zM7.1 20.45H3.56V9h3.54v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
-                </a>
-            </div>
+        <div class="fade-in relative grid md:grid-cols-2 gap-8">
+          <div class="md:text-right md:pr-12">
+            <span class="text-[10px] font-mono tracking-[2px] uppercase text-zinc-600">2024 — Present</span>
+            <h3 class="text-lg font-bold text-white mt-1">AI Agent Tooling</h3>
+            <p class="text-zinc-500 text-sm mt-3 leading-relaxed">Building infrastructure and tooling for AI agents — routing layers, model orchestration, deployment pipelines. Working with Hermes Agent, OmniRoute, and custom API routers. Production at scale.</p>
+          </div>
+          <div class="hidden md:block"></div>
+          <div class="absolute left-[11px] md:left-1/2 top-0 w-[18px] h-[18px] rounded-full bg-[#00ff88] border-[3px] border-[#050505] -translate-x-1/2 animate-pulse"></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <span class="n">#</span> STUBBORNDEVELOPER <span class="n">#</span> ANTIPOLO, PH <span class="n">#</span> 2026
-    </footer>
+<!-- LIVE PROJECTS -->
+<section id="projects" class="py-24 md:py-32 bg-zinc-900/20 border-t border-white/[.04]">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-in mb-16">
+      <span class="text-[#00ff88] font-mono text-sm">#02</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Live projects</h2>
+      <p class="text-zinc-500 mt-3 max-w-xl">Deployed, running, generating value right now.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="fade-in bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6 card-hover hover:neon-border group">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="px-2.5 py-1 bg-[#00ff88]/10 rounded-md text-[10px] font-mono text-[#00ff88] tracking-wider">LIVE</span>
+          <span class="text-[10px] font-mono text-zinc-600">Dashboard</span>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2">Stubborn Stats</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed mb-4">GitHub analytics dashboard — real-time stats for all 32 repositories. Language breakdown, stars, activity.</p>
+        <div class="flex items-center justify-between">
+          <a href="/stubborn-stats/" class="text-xs font-mono text-[#00ff88] group-hover:underline">Open dashboard →</a>
+          <span class="w-2 h-2 rounded-full bg-[#00ff88] pulse-dot"></span>
+        </div>
+      </div>
+      <div class="fade-in bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6 card-hover hover:neon-border group" style="transition-delay:.1s">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="px-2.5 py-1 bg-[#00ff88]/10 rounded-md text-[10px] font-mono text-[#00ff88] tracking-wider">LIVE</span>
+          <span class="text-[10px] font-mono text-zinc-600">Web App</span>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2">PH Weather</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed mb-4">Real-time weather for 13 PH cities. 3-day forecast, no API key needed. Open-Meteo powered, zero backend.</p>
+        <div class="flex items-center justify-between">
+          <a href="/weather/" class="text-xs font-mono text-[#00ff88] group-hover:underline">View forecast →</a>
+          <span class="w-2 h-2 rounded-full bg-[#00ff88] pulse-dot"></span>
+        </div>
+      </div>
+      <div class="fade-in bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6 card-hover hover:neon-border group" style="transition-delay:.2s">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="px-2.5 py-1 bg-amber-500/10 rounded-md text-[10px] font-mono text-amber-400 tracking-wider">IN DEV</span>
+          <span class="text-[10px] font-mono text-zinc-600">SaaS</span>
+        </div>
+        <h3 class="font-bold text-white text-lg mb-2">Minchin</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed mb-4">Pay-per-use Google Drive sharing platform. Vercel serverless, Vite SPA, EJS admin dashboard.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-mono text-zinc-600">Filedrive</span>
+          <span class="w-2 h-2 rounded-full bg-amber-500 pulse-dot"></span>
+        </div>
+      </div>
+    </div>
+    <div class="fade-in mt-8 grid md:grid-cols-2 gap-5">
+      <div class="bg-zinc-900/20 border border-zinc-800/50 rounded-2xl p-6 card-hover hover:neon-border group">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-[10px] font-mono text-zinc-600">Infrastructure</span>
+        </div>
+        <h3 class="font-bold text-white mb-2">OmniRoute API Gateway</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed">AI model routing layer — multi-provider fallback, vision format conversion, rate limiting. Routes to Anthropic/OpenAI/xAI/Railway via agentrouter.</p>
+      </div>
+      <div class="bg-zinc-900/20 border border-zinc-800/50 rounded-2xl p-6 card-hover hover:neon-border group">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-[10px] font-mono text-zinc-600">Workflow</span>
+        </div>
+        <h3 class="font-bold text-white mb-2">Qwen-Wan API</h3>
+        <p class="text-zinc-500 text-sm leading-relaxed">Video generation API — text-to-video, image-to-video, editing. Running on Railway with task polling pipeline.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Intersection Observer for fade-in
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('visible');
-                    observer.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.1 });
+<!-- SKILLS -->
+<section id="skills" class="py-24 md:py-32 border-t border-white/[.04]">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-in mb-16">
+      <span class="text-[#00ff88] font-mono text-sm">#03</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Capabilities</h2>
+      <p class="text-zinc-500 mt-3 max-w-xl">Tools and technologies I've shipped to production.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="fade-in bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5 card-hover">
+        <span class="text-2xl mb-3 block">🐍</span>
+        <h4 class="text-white font-semibold text-sm">Python</h4>
+        <p class="text-zinc-600 text-xs mt-1">Django, FastAPI, Airflow, Spark</p>
+      </div>
+      <div class="fade-in bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5 card-hover" style="transition-delay:.05s">
+        <span class="text-2xl mb-3 block">🟦</span>
+        <h4 class="text-white font-semibold text-sm">TypeScript</h4>
+        <p class="text-zinc-600 text-xs mt-1">React, Vue, Node, Express</p>
+      </div>
+      <div class="fade-in bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5 card-hover" style="transition-delay:.1s">
+        <span class="text-2xl mb-3 block">🔷</span>
+        <h4 class="text-white font-semibold text-sm">Go</h4>
+        <p class="text-zinc-600 text-xs mt-1">API routers, CLIs, infrastructure</p>
+      </div>
+      <div class="fade-in bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5 card-hover" style="transition-delay:.15s">
+        <span class="text-2xl mb-3 block">🦀</span>
+        <h4 class="text-white font-semibold text-sm">Rust</h4>
+        <p class="text-zinc-600 text-xs mt-1">Systems tooling, CLI utilities</p>
+      </div>
+      <div class="fade-in bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5 card-hover" style="transition-delay:.05s">
+        <span class="text-2xl mb-3 block">🗄️</span>
+        <h4 class="text-white font-semibold text-sm">Data Stack</h4>
+        <p class="text-zinc-600 text-xs mt-1">Spark, Kafka, Airflow, dbt</p>
+      </div>
+      <div class="fade-in bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5 card-hover" style="transition-delay:.1s">
+        <span class="text-2xl mb-3 block">☁️</span>
+        <h4 class="text-white font-semibold text-sm">Cloud</h4>
+        <p class="text-zinc-600 text-xs mt-1">AWS, GCP, Azure, Vercel</p>
+      </div>
+      <div class="fade-in bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5 card-hover" style="transition-delay:.15s">
+        <span class="text-2xl mb-3 block">🤖</span>
+        <h4 class="text-white font-semibold text-sm">AI/Agents</h4>
+        <p class="text-zinc-600 text-xs mt-1">Hermes, OmniRoute, LLM ops</p>
+      </div>
+      <div class="fade-in bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5 card-hover" style="transition-delay:.2s">
+        <span class="text-2xl mb-3 block">🔧</span>
+        <h4 class="text-white font-semibold text-sm">DevOps</h4>
+        <p class="text-zinc-600 text-xs mt-1">Docker, K8s, CI/CD, Terraform</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    </script>
+<!-- LIVE STATS -->
+<section id="stats" class="py-24 md:py-32 bg-zinc-900/20 border-t border-white/[.04]">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-in mb-16">
+      <span class="text-[#00ff88] font-mono text-sm">#04</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">GitHub <span class="gradient-text">analytics</span></h2>
+      <p class="text-zinc-500 mt-3 max-w-xl">Live data from <a href="https://github.com/TheRealStubbornDeveloper" target="_blank" class="text-[#00ff88] hover:underline">@TheRealStubbornDeveloper</a></p>
+    </div>
+    <div class="fade-in">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" id="statsGrid">
+        <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-5 text-center"><div class="text-zinc-600 text-xs font-mono mb-1">Repos</div><div class="text-2xl font-bold text-white" id="statRepos">—</div></div>
+        <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-5 text-center"><div class="text-zinc-600 text-xs font-mono mb-1">Stars</div><div class="text-2xl font-bold text-[#ffcc44]" id="statStars">—</div></div>
+        <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-5 text-center"><div class="text-zinc-600 text-xs font-mono mb-1">Languages</div><div class="text-2xl font-bold text-white" id="statLangs">—</div></div>
+        <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-5 text-center"><div class="text-zinc-600 text-xs font-mono mb-1">Top Language</div><div class="text-2xl font-bold text-[#00ff88]" id="statTopLang">—</div></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5">
+          <h4 class="text-xs font-mono text-zinc-600 tracking-wider uppercase mb-4">Language Breakdown</h4>
+          <div class="h-64 relative"><canvas id="langChart"></canvas></div>
+        </div>
+        <div class="bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5">
+          <h4 class="text-xs font-mono text-zinc-600 tracking-wider uppercase mb-4">Top Repos by Stars</h4>
+          <div class="h-64 relative"><canvas id="starsChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 md:py-32 border-t border-white/[.04]">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-in mb-16">
+      <span class="text-[#00ff88] font-mono text-sm">#05</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">About</h2>
+    </div>
+    <div class="grid md:grid-cols-5 gap-12">
+      <div class="md:col-span-3 fade-in">
+        <p class="text-zinc-300 leading-relaxed mb-4">
+          I'm Al Francis Gabriel Bolima — a Filipino builder from Antipolo, Rizal. I started freelancing in 2020 while still in senior high school. By the time I graduated as <span class="text-[#00ff88]">Programmer of the Year</span> with High Honors from ACLC Antipolo, I already had paying clients and production deployments.
+        </p>
+        <p class="text-zinc-400 leading-relaxed mb-4">
+          Spent a year studying Computer Engineering at TIP Quezon City before the pandemic reshaped my path. Instead of waiting, I went all-in on building — web apps, data pipelines, cloud infrastructure, and eventually AI agent systems.
+        </p>
+        <p class="text-zinc-400 leading-relaxed">
+          Today I design and deploy infrastructure that powers AI agents at scale. I don't do gig work — I build products that generate ongoing value. Fixed scope, premium delivery.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="https://github.com/TheRealStubbornDeveloper" target="_blank" class="px-4 py-2 border border-zinc-700 rounded-lg text-xs text-zinc-400 hover:border-[#00ff88]/50 hover:text-white transition-all">GitHub →</a>
+          <a href="mailto:alfrancisgabriel@gmail.com" class="px-4 py-2 border border-zinc-700 rounded-lg text-xs text-zinc-400 hover:border-[#00ff88]/50 hover:text-white transition-all">Email →</a>
+          <a href="#contact" class="px-4 py-2 border border-zinc-700 rounded-lg text-xs text-zinc-400 hover:border-[#00ff88]/50 hover:text-white transition-all">Get in touch →</a>
+        </div>
+      </div>
+      <div class="md:col-span-2 fade-in">
+        <div class="bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6">
+          <h4 class="text-xs font-mono text-zinc-600 tracking-wider uppercase mb-4">Quick Facts</h4>
+          <div class="space-y-4 text-sm">
+            <div class="flex justify-between"><span class="text-zinc-500">From</span><span class="text-white">Antipolo, Philippines</span></div>
+            <div class="flex justify-between border-t border-zinc-800/50 pt-4"><span class="text-zinc-500">Role</span><span class="text-white">Builder / Engineer</span></div>
+            <div class="flex justify-between border-t border-zinc-800/50 pt-4"><span class="text-zinc-500">Started</span><span class="text-white">2020 (freelance)</span></div>
+            <div class="flex justify-between border-t border-zinc-800/50 pt-4"><span class="text-zinc-500">Education</span><span class="text-white text-right max-w-[180px]">ACLC Antipolo SHS<br><span class="text-zinc-600 text-xs">Programmer of the Year, High Honors</span></span></div>
+            <div class="flex justify-between border-t border-zinc-800/50 pt-4"><span class="text-zinc-500">Method</span><span class="text-[#00ff88]">Productized, not gigs</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 md:py-32 bg-zinc-900/10 border-t border-white/[.04]">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <div class="fade-in max-w-2xl mx-auto">
+      <span class="text-[#00ff88] font-mono text-sm">#06</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Let's build something.</h2>
+      <p class="text-zinc-500 leading-relaxed mb-8">I don't bid on gigs. If you have a project that needs real engineering, let's talk.</p>
+      <a href="mailto:alfrancisgabriel@gmail.com" class="inline-flex items-center gap-3 px-8 py-4 bg-[#00ff88] text-black font-bold rounded-xl hover:shadow-[0_0_40px_rgba(0,255,136,.3)] transition-all text-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        alfrancisgabriel@gmail.com
+      </a>
+      <div class="flex justify-center gap-6 mt-8">
+        <a href="https://github.com/TheRealStubbornDeveloper" target="_blank" class="text-zinc-600 hover:text-white transition-colors"><svg class="w-5 h-5" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+        <a href="mailto:alfrancisgabriel@gmail.com" class="text-zinc-600 hover:text-white transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-8 border-t border-white/[.04] text-center text-zinc-700 text-xs font-mono">
+  <div class="max-w-6xl mx-auto px-6">
+    <p>© 2026 StubbornDev — built with intent.</p>
+    <p class="mt-1"><a href="/stubborn-stats/" class="hover:text-[#00ff88] transition-colors">stats</a> · <a href="/weather/" class="hover:text-[#00ff88] transition-colors">weather</a> · <a href="https://github.com/TheRealStubbornDeveloper/alfrancisgabriel.github.io" target="_blank" class="hover:text-[#00ff88] transition-colors">source</a></p>
+  </div>
+</footer>
+
+<script>
+// Fade-in observer
+const observer=new IntersectionObserver(e=>{
+  e.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+// Fetch stats from stubborn-stats
+async function loadStats(){
+  try{
+    const [summary,langs]=await Promise.all([
+      fetch('/stubborn-stats/data/summary.json').then(r=>r.json()),
+      fetch('/stubborn-stats/data/languages.json').then(r=>r.json())
+    ]);
+    document.getElementById('statRepos').textContent=summary.total_repos;
+    document.getElementById('statStars').textContent=summary.total_stars;
+    document.getElementById('statLangs').textContent=summary.languages_used;
+    document.getElementById('statTopLang').textContent=summary.top_language;
+
+    if(typeof Chart!=='undefined'&&langs.length){
+      const ctx=document.getElementById('langChart');
+      if(ctx){
+        new Chart(ctx,{
+          type:'doughnut',
+          data:{
+            labels:langs.map(l=>l.name),
+            datasets:[{
+              data:langs.map(l=>l.bytes),
+              backgroundColor:langs.map(l=>{
+                const colors={Python:'#3572A5',JavaScript:'#f1e05a',TypeScript:'#3178C6',HTML:'#e34c26',CSS:'#563d7c',SCSS:'#c6538c','C++':'#f34b7d','C':'#555',Go:'#00ADD8',Java:'#b07219',Kotlin:'#A97BFF',PHP:'#4F5D95',Shell:'#89e051',Rust:'#dea584','Jupyter Notebook':'#DA5B0F',Dockerfile:'#384d54'};
+                return colors[l.name]||'#666';
+              }),
+              borderColor:'#12121a',
+              borderWidth:2
+            }]
+          },
+          options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#c8c8d4',font:{size:10},padding:8,usePointStyle:true}}}}
+        });
+      }
+    }
+  }catch(e){console.error('Stats load error:',e)}
+}
+
+// Load stats after page and Chart.js
+if(document.readyState==='complete'){
+  loadStats();
+}else{
+  window.addEventListener('load',loadStats);
+}
+</script>
 </body>
 </html>

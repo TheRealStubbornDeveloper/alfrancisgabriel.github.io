@@ -1,28 +1,28 @@
 [
   {
     "name": "Python",
-    "bytes": 329860,
-    "pct": 34.4
+    "bytes": 334496,
+    "pct": 34.3
   },
   {
     "name": "JavaScript",
     "bytes": 221303,
-    "pct": 23.1
+    "pct": 22.7
   },
   {
     "name": "SCSS",
     "bytes": 212610,
-    "pct": 22.2
+    "pct": 21.8
   },
   {
     "name": "HTML",
-    "bytes": 87113,
-    "pct": 9.1
+    "bytes": 98482,
+    "pct": 10.1
   },
   {
     "name": "TypeScript",
     "bytes": 41009,
-    "pct": 4.3
+    "pct": 4.2
   },
   {
     "name": "Kotlin",

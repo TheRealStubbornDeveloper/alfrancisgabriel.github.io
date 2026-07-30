@@ -6,6 +6,7 @@
     <title>StubbornDeveloper — I Build Good Products</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: #000;
@@ -16,6 +17,10 @@
         .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         :root { --neon: #00ff88; --neon-dim: #00ff8822; --accent: #d4d4d4; --muted: #555; }
         .neon { color: var(--neon); }
+        
+        /* fade-in */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
         
         header { 
             position: fixed; top: 0; width: 100%; z-index: 100;
@@ -38,55 +43,85 @@
         .section-title .hash { color: var(--neon); font-weight: 300; opacity: 0.8; }
         .section-sub { font-size: 0.85rem; color: var(--muted); max-width: 600px; margin-bottom: 3rem; line-height: 1.8; }
         
-        #hero { padding-top: 10rem; padding-bottom: 6rem; min-height: 85vh; display: flex; align-items: center; }
+        /* HERO */
+        #hero { padding-top: 10rem; padding-bottom: 6rem; min-height: 85vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+        #hero::before {
+            content: '';
+            position: absolute; top: -40%; right: -15%; width: 700px; height: 700px;
+            background: radial-gradient(circle, #00ff8808 0%, #00ff8804 30%, transparent 70%);
+            pointer-events: none;
+        }
+        #hero::after {
+            content: '';
+            position: absolute; bottom: -20%; left: -10%; width: 400px; height: 400px;
+            background: radial-gradient(circle, #00ff8804 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-inner { display: flex; align-items: center; gap: 4rem; position: relative; z-index: 1; }
+        .hero-text { flex: 1; }
+        .hero-visual { flex-shrink: 0; }
         .hero-tag { font-size: 0.75rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; font-weight: 500; }
         .hero-tag span { color: var(--neon); }
         .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -2px; color: var(--accent); }
         .hero h1 .em { color: var(--neon); }
-        .hero p { font-size: 1rem; color: var(--muted); max-width: 550px; margin-bottom: 2.5rem; line-height: 1.9; }
+        .hero p { font-size: 1rem; color: var(--muted); max-width: 500px; margin-bottom: 2.5rem; line-height: 1.9; }
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
         
-        .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: all .25s; border: none; cursor: pointer; }
+        .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 2rem; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; transition: all .3s; border: none; cursor: pointer; }
         .btn-primary { background: var(--neon); color: #000; }
         .btn-primary:hover { box-shadow: 0 0 30px var(--neon-dim); transform: translateY(-2px); }
         .btn-outline { border: 1px solid #222; color: var(--muted); background: transparent; }
-        .btn-outline:hover { border-color: var(--neon); color: var(--neon); }
+        .btn-outline:hover { border-color: var(--neon); color: var(--neon); box-shadow: 0 0 15px var(--neon-dim); }
+        
+        /* ROBOT SVG */
+        .robot-svg { width: 200px; height: 200px; }
+        .robot-svg .glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .robot-svg .blink { animation: blink 4s ease-in-out infinite; }
+        .robot-svg .orbit { animation: spin 8s linear infinite; transform-origin: 100px 100px; }
+        @keyframes pulse-glow { 0%, 100% { opacity: .4; } 50% { opacity: .8; } }
+        @keyframes blink { 0%, 45%, 55%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
         
         .card { 
             background: #050505; border: 1px solid #0f0f0f; border-radius: 12px; padding: 2rem; 
             transition: all .3s; position: relative; overflow: hidden;
         }
-        .card:hover { border-color: #151515; transform: translateY(-3px); }
+        .card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-dim), transparent);
+            opacity: 0; transition: opacity .4s;
+        }
+        .card:hover { border-color: #1a1a1a; transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,255,136,0.04); }
+        .card:hover::before { opacity: 1; }
         .card-icon { margin-bottom: 1rem; display: inline-block; padding: 0.5rem; border: 1px solid #0f0f0f; border-radius: 8px; }
         .card-icon svg { display: block; width: 20px; height: 20px; }
         .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
         .card p { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.7; }
         .card-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
         .card-meta span { font-size: 0.65rem; background: #080808; color: #444; border: 1px solid #111; padding: 0.2rem 0.6rem; border-radius: 4px; font-family: monospace; }
-        .card-link { color: var(--neon); text-decoration: none; font-size: 0.78rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.3rem; opacity: 0.6; transition: opacity .2s; }
-        .card-link:hover { opacity: 1; }
         
         .cap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .cap-card { background: #050505; border: 1px solid #0f0f0f; border-radius: 12px; padding: 2rem; }
+        .cap-card { background: #050505; border: 1px solid #0f0f0f; border-radius: 12px; padding: 2rem; transition: border-color .3s; }
+        .cap-card:hover { border-color: #151515; }
         .cap-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
         .cap-card ul { list-style: none; }
         .cap-card ul li { color: var(--muted); font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid #0a0a0a; display: flex; align-items: center; gap: 0.75rem; }
         .cap-card ul li::before { content: '>'; color: var(--neon); font-family: monospace; font-weight: 700; }
         
-        .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+        .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
         .hobby-item { background: #050505; border: 1px solid #0f0f0f; border-radius: 10px; padding: 1.5rem; text-align: center; transition: all .3s; }
-        .hobby-item:hover { border-color: var(--neon-dim); }
-        .hobby-item svg { display: block; margin: 0 auto 0.75rem; width: 24px; height: 24px; opacity: 0.8; }
+        .hobby-item:hover { border-color: var(--neon-dim); transform: translateY(-2px); }
+        .hobby-item .emoji { font-size: 1.8rem; display: block; margin-bottom: 0.5rem; }
         .hobby-item h4 { font-size: 0.85rem; font-weight: 500; color: var(--accent); }
         
         .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
         .about-text p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.8; }
         .timeline-item { margin-bottom: 1.5rem; padding-left: 1.5rem; border-left: 1px solid #0f0f0f; position: relative; }
-        .timeline-item::before { content: ''; position: absolute; left: -4px; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--neon); }
+        .timeline-item::before { content: ''; position: absolute; left: -4px; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 8px var(--neon-dim); }
         .timeline-item .year { font-size: 0.7rem; color: var(--neon); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
         .timeline-item h4 { font-size: 0.95rem; font-weight: 600; color: var(--accent); margin: 0.25rem 0 0.3rem; }
         .timeline-item p { font-size: 0.82rem; color: var(--muted); }
@@ -98,6 +133,7 @@
         .edu-card .strong { color: var(--accent); font-weight: 600; }
         .edu-card .divider { height: 1px; background: #0f0f0f; margin: 1.5rem 0; }
         .edu-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #00ff8810; border: 1px solid var(--neon-dim); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.78rem; color: var(--neon); font-weight: 600; margin-bottom: 1rem; }
+        .edu-badge svg { width: 16px; height: 16px; }
         
         .worth-statement { margin-top: 2rem; padding: 2rem; border: 1px solid var(--neon-dim); border-radius: 12px; background: #050505; text-align: center; }
         .worth-statement p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; max-width: 600px; margin: 0 auto; }
@@ -105,7 +141,7 @@
         
         .contact-links { display: flex; gap: 2rem; margin-top: 1.5rem; justify-content: center; }
         .contact-links a { color: #333; transition: all .2s; display: inline-block; }
-        .contact-links a:hover { color: var(--neon); }
+        .contact-links a:hover { color: var(--neon); filter: drop-shadow(0 0 8px var(--neon-dim)); }
         .contact-links svg { display: block; width: 22px; height: 22px; }
         #contact p { color: var(--muted); font-size: 0.85rem; max-width: 400px; margin: 0 auto; }
         
@@ -113,6 +149,10 @@
         footer .n { color: var(--neon); opacity: 0.3; }
         
         @media (max-width: 768px) {
+            .hero-inner { flex-direction: column; gap: 2rem; text-align: center; }
+            .hero p { max-width: none; }
+            .hero-actions { justify-content: center; }
+            .robot-svg { width: 120px; height: 120px; }
             .nav-links { display: none; }
             .about-layout { grid-template-columns: 1fr; }
             .grid-2 { grid-template-columns: 1fr; }
@@ -136,27 +176,70 @@
 
     <!-- HERO -->
     <section id="hero">
-        <div class="container hero">
-            <div class="hero-tag"><span>Al Francis Gabriel Bolima</span> &mdash; Antipolo, Philippines</div>
-            <h1>I build <span class="em">good products.</span></h1>
-            <p>
-                Started as a freelance web developer. Evolved into data engineering.<br>
-                Now building AI agent tooling and infrastructure.<br>
-                Value is delivered, not promised.
-            </p>
-            <div class="hero-actions">
-                <a href="#work" class="btn btn-primary">See my work</a>
-                <a href="https://github.com/TheRealStubbornDeveloper" class="btn btn-outline" target="_blank">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                    GitHub
-                </a>
+        <div class="container hero-inner">
+            <div class="hero-text">
+                <div class="hero-tag"><span>Al Francis Gabriel Bolima</span> &mdash; Antipolo, Philippines</div>
+                <h1>I build <span class="em">good products.</span></h1>
+                <p>
+                    Started as a freelance web developer. Evolved into data engineering.<br>
+                    Now building AI agent tooling and infrastructure.<br>
+                    Value is delivered, not promised.
+                </p>
+                <div class="hero-actions">
+                    <a href="#work" class="btn btn-primary">See my work</a>
+                    <a href="https://github.com/TheRealStubbornDeveloper" class="btn btn-outline" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <svg class="robot-svg" viewBox="0 0 200 200" fill="none">
+                    <!-- outer ring orbit -->
+                    <circle class="orbit" cx="100" cy="100" r="85" stroke="#00ff88" stroke-width="0.5" opacity="0.2"/>
+                    <circle class="orbit" cx="100" cy="100" r="75" stroke="#00ff88" stroke-width="0.3" opacity="0.15"/>
+                    
+                    <!-- robot head -->
+                    <rect x="62" y="52" width="76" height="72" rx="14" stroke="#00ff88" stroke-width="2" opacity="0.7"/>
+                    <!-- face screen -->
+                    <rect x="72" y="66" width="56" height="34" rx="6" fill="#00ff88" fill-opacity="0.08" stroke="#00ff88" stroke-width="0.8" opacity="0.6"/>
+                    <!-- eyes -->
+                    <circle class="blink" cx="90" cy="83" r="4" fill="#00ff88" opacity="0.9"/>
+                    <circle class="blink" cx="110" cy="83" r="4" fill="#00ff88" opacity="0.9"/>
+                    <!-- mouth -->
+                    <line x1="88" y1="100" x2="112" y2="100" stroke="#00ff88" stroke-width="1.2" opacity="0.6"/>
+                    <!-- antenna -->
+                    <line x1="100" y1="52" x2="100" y2="32" stroke="#00ff88" stroke-width="1.5" opacity="0.5"/>
+                    <circle cx="100" cy="28" r="4" stroke="#00ff88" stroke-width="1" opacity="0.6"/>
+                    <!-- ears -->
+                    <rect x="50" y="68" width="12" height="18" rx="4" stroke="#00ff88" stroke-width="1.2" opacity="0.4"/>
+                    <rect x="138" y="68" width="12" height="18" rx="4" stroke="#00ff88" stroke-width="1.2" opacity="0.4"/>
+                    <!-- shoulder plates -->
+                    <rect x="52" y="124" width="32" height="14" rx="4" stroke="#00ff88" stroke-width="1" opacity="0.35"/>
+                    <rect x="116" y="124" width="32" height="14" rx="4" stroke="#00ff88" stroke-width="1" opacity="0.35"/>
+                    <!-- neck -->
+                    <rect x="88" y="124" width="24" height="10" rx="2" stroke="#00ff88" stroke-width="0.8" opacity="0.3"/>
+                    <!-- glow dots -->
+                    <circle cx="62" cy="142" r="2" fill="#00ff88" opacity="0.3" class="glow"/>
+                    <circle cx="138" cy="142" r="2" fill="#00ff88" opacity="0.3" class="glow"/>
+                    
+                    <!-- data particles -->
+                    <circle cx="38" cy="60" r="1.5" fill="#00ff88" opacity="0.25" class="glow"/>
+                    <circle cx="162" cy="90" r="1.5" fill="#00ff88" opacity="0.25" class="glow"/>
+                    <circle cx="40" cy="120" r="1" fill="#00ff88" opacity="0.2" class="glow"/>
+                    <circle cx="160" cy="130" r="1" fill="#00ff88" opacity="0.2" class="glow"/>
+                    
+                    <!-- circuit traces -->
+                    <path d="M30 145 L52 142" stroke="#00ff88" stroke-width="0.5" opacity="0.2"/>
+                    <path d="M148 142 L170 145" stroke="#00ff88" stroke-width="0.5" opacity="0.2"/>
+                </svg>
             </div>
         </div>
     </section>
 
     <!-- JOURNEY -->
     <section id="work" style="background: #020202;">
-        <div class="container">
+        <div class="container fade-in">
             <h2 class="section-title"><span class="hash">#</span>Career trajectory</h2>
             <p class="section-sub">Freelance from day one. Started building for others before I had a diploma. Each phase added a new layer of capability.</p>
             <div style="max-width: 700px;">
@@ -181,7 +264,7 @@
 
     <!-- CAPABILITIES -->
     <section id="capabilities">
-        <div class="container">
+        <div class="container fade-in">
             <h2 class="section-title"><span class="hash">#</span>What I can do</h2>
             <p class="section-sub">I don't just know these things — I deliver with them. Every item below represents shipped work, not textbook knowledge.</p>
             <div class="cap-grid">
@@ -227,51 +310,33 @@
 
     <!-- HOBBIES -->
     <section style="background: #020202;">
-        <div class="container">
+        <div class="container fade-in">
             <h2 class="section-title"><span class="hash">#</span>Outside the terminal</h2>
             <p class="section-sub">Building doesn't stop at a desk. These are the other things I invest time in.</p>
             <div class="hobby-grid">
-                <div class="hobby-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.5 6.5L17.5 17.5M6.5 17.5L17.5 6.5"/><circle cx="12" cy="12" r="10"/></svg>
-                    <h4>Fitness & Gym</h4>
-                </div>
-                <div class="hobby-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
-                    <h4>Hardware Tinkering</h4>
-                </div>
-                <div class="hobby-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 12h0M12 12h0M18 12h0"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
-                    <h4>Gaming</h4>
-                </div>
-                <div class="hobby-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                    <h4>Music</h4>
-                </div>
-                <div class="hobby-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-3.16 19.5c.5.09.68-.22.68-.48v-1.7C6.73 19.8 6.18 17.1 6.18 15.5c0-1.2-.5-2.1-1.3-2.8-.8-.7-1.3-1.7-1.3-2.8 0-2.5 2-4.5 4.5-4.5.8 0 1.5.2 2.1.5A8.5 8.5 0 0 1 12 5c.5 0 1 .04 1.5.12A4.5 4.5 0 0 1 15.6 4.5c2.5 0 4.5 2 4.5 4.5 0 1.1-.5 2-1.3 2.8-.8.7-1.3 1.6-1.3 2.8 0 1.6-.55 4.3-2.84 5.32.04.15.08.35.08.55v1.47c0 .26.18.57.68.48A10 10 0 0 0 12 2z"/></svg>
-                    <h4>AI Experimentation</h4>
-                </div>
-                <div class="hobby-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M5 17a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2M5 17l-2 4M19 17l2 4"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/></svg>
-                    <h4>Rides & Roads</h4>
-                </div>
+                <div class="hobby-item"><span class="emoji">🏋️</span><h4>Fitness & Gym</h4></div>
+                <div class="hobby-item"><span class="emoji">🔧</span><h4>Hardware Tinkering</h4></div>
+                <div class="hobby-item"><span class="emoji">🎮</span><h4>Gaming</h4></div>
+                <div class="hobby-item"><span class="emoji">🎵</span><h4>Music</h4></div>
+                <div class="hobby-item"><span class="emoji">🤖</span><h4>AI Experimentation</h4></div>
+                <div class="hobby-item"><span class="emoji">🏍️</span><h4>Rides & Roads</h4></div>
             </div>
         </div>
     </section>
 
     <!-- ABOUT + EDUCATION -->
     <section id="about">
-        <div class="container">
+        <div class="container fade-in">
             <h2 class="section-title"><span class="hash">#</span>About</h2>
             <div class="about-layout">
                 <div class="about-text">
                     <p>I started coding before most of my peers — and I was already freelancing and getting paid for it while they were still on tutorials. In my class, I was consistently one of the top programmers. In Senior High School at ACLC Antipolo, I was awarded <strong>Programmer of the Year</strong>.</p>
-                    <p>Pursued Computer Engineering at the Technological Institute of the Philippines (Quezon City) starting 2021. Finished first year — then the pandemic hit. University went online, labs shut down, and the whole dynamic changed. What I couldn't get from a disrupted classroom, I went and built myself.</p>
+                    <p>Pursued Computer Engineering at the Technological Institute of the Philippines (Quezon City) starting 2021. Finished first year — then COVID hit. University went online, labs shut down. What I couldn't get from a disrupted classroom, I went and built myself.</p>
                     <p>Today I build across the stack: web, data, AI agents, and infrastructure. I don't chase credentials. I let the work speak. And I don't work below my value.</p>
                 </div>
                 <div class="edu-card">
                     <div class="edu-badge">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         Programmer of the Year
                     </div>
                     <div class="award">
@@ -279,10 +344,10 @@
                         High Honors &mdash; ACLC Antipolo
                     </div>
                     <h3>Senior High School &middot; Academic Track</h3>
-                    <p>Graduated ACLC Antipolo with academic honors. Named Programmer of the Year. Recognized as one of the top programmers in my class before I even entered the professional workforce.</p>
+                    <p>Graduated ACLC Antipolo with High Honors. Named Programmer of the Year. Recognized as one of the top programmers in my class before I even entered the professional workforce.</p>
                     
                     <div class="divider"></div>
-
+                    
                     <p><span class="strong">College:</span> TIP QC &mdash; 1st year Computer Engineering, 2021. COVID disrupted campus — went remote, labs went dark. Pivoted to full-time building instead.</p>
                     <p style="margin-top: 0.5rem;"><span class="strong">Equivalent experience:</span> 6+ years professional software engineering across data engineering, AI/ML, full-stack, and infrastructure. Paid clients. Shipped products. Verifiable code.</p>
                 </div>
@@ -296,7 +361,7 @@
 
     <!-- CONTACT -->
     <section id="contact" style="background: #020202;">
-        <div class="container" style="text-align: center;">
+        <div class="container fade-in" style="text-align: center;">
             <h2 class="section-title" style="justify-content: center;"><span class="hash">#</span>Contact</h2>
             <p>If you have a use for something I've built, or you think we can build something together — reach out. If it's in scope, I'll quote. If not, I'll tell you.</p>
             <div class="contact-links">
@@ -316,5 +381,19 @@
     <footer>
         <span class="n">#</span> STUBBORNDEVELOPER <span class="n">#</span> ANTIPOLO, PH <span class="n">#</span> 2026
     </footer>
+
+    <script>
+        // Intersection Observer for fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>

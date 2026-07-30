@@ -304,7 +304,7 @@ code,.font-mono{font-family:'JetBrains Mono',monospace}
       <div class="mt-8" id="repoList">
         <div class="bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5">
           <h4 class="text-xs font-mono text-zinc-600 tracking-wider uppercase mb-4">All Repositories</h4>
-          <div id="repoListItems" class="space-y-1">
+          <div id="repoListItems">
             <div class="text-center text-zinc-600 py-8 text-sm font-mono">Loading...</div>
           </div>
         </div>
@@ -427,22 +427,27 @@ async function loadStats(){
       }
     }
 
-    // Render repo list
+    // Render repo list — clean rows, no cards
     const listEl=document.getElementById('repoListItems');
     if(listEl&&repos.length){
-      listEl.innerHTML=repos.sort((a,b)=>b.stars-a.stars).map(r=>{
-        const lang=r.language||'—';
-        const colors={Python:'#3572A5',JavaScript:'#f1e05a',TypeScript:'#3178C6',HTML:'#e34c26',CSS:'#563d7c',Shell:'#89e051','C++':'#f34b7d',Go:'#00ADD8','C':'#555',Rust:'#dea584',Kotlin:'#A97BFF',PHP:'#4F5D95',Dockerfile:'#384d54','Jupyter Notebook':'#DA5B0F'};
-        const c=colors[lang]||'#666';
+      const TRIVIAL=new Set([
+        'Bluehacks','CovidDataGrabber','Genopets-Claim-Solana-Wallet-Scanner',
+        'OOPACT7','TheRealStubbornDeveloper','alfrancisgabriel','almanac',
+        'django3aws','learning_go','nodejs-express-boilerplate','react_fetch',
+        'remote-desktop','spark-code','vuejshelpexample','webhooktest'
+      ]);
+      const colors={Python:'#3572A5',JavaScript:'#f1e05a',TypeScript:'#3178C6',HTML:'#e34c26',CSS:'#563d7c',Shell:'#89e051','C++':'#f34b7d',Go:'#00ADD8','C':'#555',Rust:'#dea584',Kotlin:'#A97BFF',PHP:'#4F5D95',Dockerfile:'#384d54','Jupyter Notebook':'#DA5B0F'};
+      listEl.innerHTML=repos.filter(r=>!TRIVIAL.has(r.name)).sort((a,b)=>b.stars-a.stars).map(r=>{
+        const lang=r.language||'';
+        const c=lang?colors[lang]||'#666':'';
         const desc=r.description||'';
-        return '<a href="'+r.url+'" target="_blank" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-zinc-800/40 transition-colors group border-b border-zinc-800/30 last:border-0">'+
-          '<div class="min-w-0 flex-1"><div class="text-sm font-medium text-zinc-200 group-hover:text-white truncate">'+r.name+'</div>'+
-          (desc?'<div class="text-xs text-zinc-600 truncate mt-0.5">'+desc+'</div>':'')+
-          '</div>'+
-          '<div class="flex items-center gap-3 ml-4 shrink-0">'+
-          '<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full" style="background:'+c+'"></span><span class="text-xs text-zinc-500 hidden md:inline">'+lang+'</span></span>'+
-          '<span class="text-xs text-zinc-500 flex items-center gap-1">\u2605 '+r.stars+'</span>'+
-          '<span class="text-xs text-zinc-600 group-hover:text-zinc-400 hidden md:block">\u2197</span>'+
+        return '<a href="'+r.url+'" target="_blank" class="block border-b border-zinc-800/20 last:border-0 hover:bg-zinc-800/20 -mx-5 px-5 py-3 transition-colors group">'+
+          '<div class="text-sm font-semibold text-white group-hover:text-[#00ff88] truncate">'+r.name+'</div>'+
+          (desc?'<div class="text-xs text-zinc-500 truncate mt-0.5">'+desc+'</div>':'')+
+          '<div class="flex items-center gap-3 text-xs text-zinc-600 mt-1.5">'+
+          '<span>⭐ '+r.stars+'</span>'+
+          '<span>🔀 '+r.forks+'</span>'+
+          (lang?'<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full" style="background:'+c+'"></span>'+lang+'</span>':'')+
           '</div></a>';
       }).join('');
     }

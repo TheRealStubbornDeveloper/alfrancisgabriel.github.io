@@ -4,25 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StubbornDeveloper — I Build Good Products</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: #000;
             color: #c0c0c0;
             line-height: 1.7;
-            overflow-x: hidden;
         }
         ::selection { background: #00ff8844; color: #fff; }
         .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        :root {
-            --neon: #00ff88;
-            --neon-dim: #00ff8822;
-            --accent: #d4d4d4;
-            --muted: #555;
-        }
+        :root { --neon: #00ff88; --neon-dim: #00ff8822; --accent: #d4d4d4; --muted: #555; }
         .neon { color: var(--neon); }
         
         header { 
@@ -46,16 +38,10 @@
         .section-title .hash { color: var(--neon); font-weight: 300; opacity: 0.8; }
         .section-sub { font-size: 0.85rem; color: var(--muted); max-width: 600px; margin-bottom: 3rem; line-height: 1.8; }
         
-        #hero { padding-top: 10rem; padding-bottom: 6rem; min-height: 85vh; display: flex; align-items: center; position: relative; }
-        #hero::before {
-            content: '';
-            position: absolute; top: -30%; right: -10%; width: 500px; height: 500px;
-            background: radial-gradient(circle, #00ff8806 0%, transparent 70%);
-            pointer-events: none;
-        }
+        #hero { padding-top: 10rem; padding-bottom: 6rem; min-height: 85vh; display: flex; align-items: center; }
         .hero-tag { font-size: 0.75rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; font-weight: 500; }
         .hero-tag span { color: var(--neon); }
-        .hero h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -2px; color: var(--accent); }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -2px; color: var(--accent); }
         .hero h1 .em { color: var(--neon); }
         .hero p { font-size: 1rem; color: var(--muted); max-width: 550px; margin-bottom: 2.5rem; line-height: 1.9; }
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -74,15 +60,9 @@
             background: #050505; border: 1px solid #0f0f0f; border-radius: 12px; padding: 2rem; 
             transition: all .3s; position: relative; overflow: hidden;
         }
-        .card::before {
-            content: '';
-            position: absolute; top: 0; left: 0; width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neon-dim), transparent);
-            opacity: 0; transition: opacity .3s;
-        }
         .card:hover { border-color: #151515; transform: translateY(-3px); }
-        .card:hover::before { opacity: 1; }
-        .card-icon { font-size: 1.2rem; color: var(--neon); margin-bottom: 1rem; display: inline-block; padding: 0.5rem; border: 1px solid #0f0f0f; border-radius: 8px; width: 2.5rem; text-align: center; }
+        .card-icon { margin-bottom: 1rem; display: inline-block; padding: 0.5rem; border: 1px solid #0f0f0f; border-radius: 8px; }
+        .card-icon svg { display: block; width: 20px; height: 20px; }
         .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
         .card p { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.7; }
         .card-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
@@ -100,7 +80,7 @@
         .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
         .hobby-item { background: #050505; border: 1px solid #0f0f0f; border-radius: 10px; padding: 1.5rem; text-align: center; transition: all .3s; }
         .hobby-item:hover { border-color: var(--neon-dim); }
-        .hobby-item i { font-size: 1.5rem; color: var(--neon); margin-bottom: 0.75rem; opacity: 0.8; }
+        .hobby-item svg { display: block; margin: 0 auto 0.75rem; width: 24px; height: 24px; opacity: 0.8; }
         .hobby-item h4 { font-size: 0.85rem; font-weight: 500; color: var(--accent); }
         
         .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
@@ -123,16 +103,16 @@
         .worth-statement p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; max-width: 600px; margin: 0 auto; }
         .worth-statement .emph { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
         
-        .contact-links { display: flex; gap: 2rem; margin-top: 1.5rem; }
-        .contact-links a { color: #333; font-size: 1.2rem; transition: all .2s; text-decoration: none; }
+        .contact-links { display: flex; gap: 2rem; margin-top: 1.5rem; justify-content: center; }
+        .contact-links a { color: #333; transition: all .2s; display: inline-block; }
         .contact-links a:hover { color: var(--neon); }
-        #contact p { color: var(--muted); font-size: 0.85rem; }
+        .contact-links svg { display: block; width: 22px; height: 22px; }
+        #contact p { color: var(--muted); font-size: 0.85rem; max-width: 400px; margin: 0 auto; }
         
         footer { border-top: 1px solid #050505; padding: 3rem 0; text-align: center; font-size: 0.72rem; color: #222; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
         footer .n { color: var(--neon); opacity: 0.3; }
         
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
             .about-layout { grid-template-columns: 1fr; }
             .grid-2 { grid-template-columns: 1fr; }
@@ -166,12 +146,15 @@
             </p>
             <div class="hero-actions">
                 <a href="#work" class="btn btn-primary">See my work</a>
-                <a href="https://github.com/TheRealStubbornDeveloper" class="btn btn-outline" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://github.com/TheRealStubbornDeveloper" class="btn btn-outline" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                    GitHub
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- JOURNEY / EXPERIENCE -->
+    <!-- JOURNEY -->
     <section id="work" style="background: #020202;">
         <div class="container">
             <h2 class="section-title"><span class="hash">#</span>Career trajectory</h2>
@@ -248,12 +231,30 @@
             <h2 class="section-title"><span class="hash">#</span>Outside the terminal</h2>
             <p class="section-sub">Building doesn't stop at a desk. These are the other things I invest time in.</p>
             <div class="hobby-grid">
-                <div class="hobby-item"><i class="fas fa-dumbbell"></i><h4>Fitness & Gym</h4></div>
-                <div class="hobby-item"><i class="fas fa-microchip"></i><h4>Hardware Tinkering</h4></div>
-                <div class="hobby-item"><i class="fas fa-gamepad"></i><h4>Gaming</h4></div>
-                <div class="hobby-item"><i class="fas fa-music"></i><h4>Music</h4></div>
-                <div class="hobby-item"><i class="fas fa-robot"></i><h4>AI Experimentation</h4></div>
-                <div class="hobby-item"><i class="fas fa-motorcycle"></i><h4>Rides & Roads</h4></div>
+                <div class="hobby-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.5 6.5L17.5 17.5M6.5 17.5L17.5 6.5"/><circle cx="12" cy="12" r="10"/></svg>
+                    <h4>Fitness & Gym</h4>
+                </div>
+                <div class="hobby-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
+                    <h4>Hardware Tinkering</h4>
+                </div>
+                <div class="hobby-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 12h0M12 12h0M18 12h0"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
+                    <h4>Gaming</h4>
+                </div>
+                <div class="hobby-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    <h4>Music</h4>
+                </div>
+                <div class="hobby-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-3.16 19.5c.5.09.68-.22.68-.48v-1.7C6.73 19.8 6.18 17.1 6.18 15.5c0-1.2-.5-2.1-1.3-2.8-.8-.7-1.3-1.7-1.3-2.8 0-2.5 2-4.5 4.5-4.5.8 0 1.5.2 2.1.5A8.5 8.5 0 0 1 12 5c.5 0 1 .04 1.5.12A4.5 4.5 0 0 1 15.6 4.5c2.5 0 4.5 2 4.5 4.5 0 1.1-.5 2-1.3 2.8-.8.7-1.3 1.6-1.3 2.8 0 1.6-.55 4.3-2.84 5.32.04.15.08.35.08.55v1.47c0 .26.18.57.68.48A10 10 0 0 0 12 2z"/></svg>
+                    <h4>AI Experimentation</h4>
+                </div>
+                <div class="hobby-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M5 17a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2M5 17l-2 4M19 17l2 4"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/></svg>
+                    <h4>Rides & Roads</h4>
+                </div>
             </div>
         </div>
     </section>
@@ -269,8 +270,14 @@
                     <p>Today I build across the stack: web, data, AI agents, and infrastructure. I don't chase credentials. I let the work speak. And I don't work below my value.</p>
                 </div>
                 <div class="edu-card">
-                    <div class="edu-badge"><i class="fas fa-crown"></i> Programmer of the Year</div>
-                    <div class="award"><i class="fas fa-award"></i> With Honors &mdash; Jose Rizal University</div>
+                    <div class="edu-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        Programmer of the Year
+                    </div>
+                    <div class="award">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="8" r="6"/><path d="M15.6 14.7L12 22l-3.6-7.3"/></svg>
+                        With Honors &mdash; Jose Rizal University
+                    </div>
                     <h3>Senior High School &middot; Academic Track</h3>
                     <p>Graduated Senior High School at Jose Rizal University with academic honors. Named Programmer of the Year among my batch. Recognized as one of the top programmers in my class before I even entered the professional workforce.</p>
                     
@@ -291,13 +298,17 @@
     <section id="contact" style="background: #020202;">
         <div class="container" style="text-align: center;">
             <h2 class="section-title" style="justify-content: center;"><span class="hash">#</span>Contact</h2>
-            <p style="max-width: 400px; margin: 0 auto;">
-                If you have a use for something I've built, or you think we can build something together — reach out. If it's in scope, I'll quote. If not, I'll tell you.
-            </p>
-            <div class="contact-links" style="justify-content: center;">
-                <a href="mailto:alfrancisgabriel@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/TheRealStubbornDeveloper" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <p>If you have a use for something I've built, or you think we can build something together — reach out. If it's in scope, I'll quote. If not, I'll tell you.</p>
+            <div class="contact-links">
+                <a href="mailto:alfrancisgabriel@gmail.com" title="Email">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+                </a>
+                <a href="https://github.com/TheRealStubbornDeveloper" target="_blank" title="GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.2 11.4.6.1.82-.26.82-.58v-2.2c-3.34.72-4.04-1.42-4.04-1.42-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.3.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.02-.32 3.33 1.24C9.9 6.52 10.96 6.4 12 6.4c1.04 0 2.1.12 3.08.36 2.3-1.56 3.32-1.24 3.32-1.24.66 1.66.24 2.88.12 3.18.77.84 1.24 1.92 1.24 3.22 0 4.6-2.8 5.63-5.48 5.92.44.38.82 1.1.82 2.22v3.3c0 .32.22.7.82.58A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/al-francis-gabriel-b-8b45bb110/" target="_blank" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.27zM5.34 7.43a2.06 2.06 0 01-2.06-2.06 2.06 2.06 0 012.06-2.06 2.06 2.06 0 012.06 2.06 2.06 2.06 0 01-2.06 2.06zM7.1 20.45H3.56V9h3.54v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+                </a>
             </div>
         </div>
     </section>

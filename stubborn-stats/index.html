@@ -6,55 +6,57 @@
 <title>StubbornDeveloper · Stubborn Stats</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
-:root{--bg:#0a0a0f;--card:#12121a;--border:#1a1a2e;--accent:#00ff88;--accent-dim:#00aa55;--text:#c8c8d4;--text-dim:#6a6a7a;--red:#ff4466;--blue:#4488ff;--yellow:#ffcc44}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:24px}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#050505;color:#c0c0c0;min-height:100vh;padding:24px;overflow-x:hidden}
+::selection{background:#00ff8844;color:#fff}
+code,.font-mono{font-family:'JetBrains Mono',monospace}
 .container{max-width:1280px;margin:0 auto}
-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--border)}
-header h1{font-size:24px;font-weight:700;color:var(--accent);letter-spacing:-0.5px}
-header h1 span{color:var(--text)}
-header .subtitle{font-size:13px;color:var(--text-dim);margin-top:4px}
-header .back-link{font-size:13px}
-header .back-link a{color:var(--accent-dim);text-decoration:none}
-header .back-link a:hover{color:var(--accent)}
-.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:24px}
-.summary-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
-.summary-card .label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.summary-card .value{font-size:24px;font-weight:700;color:#fff}
-.summary-card .accent{color:var(--accent)}
-.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
-.card h3{font-size:13px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
-.chart-wrap{position:relative;height:260px}
-.repos-section h2{font-size:16px;font-weight:600;margin-bottom:12px;color:var(--accent)}
-.repo-table{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.repo-row{display:block;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.04)}
+header h1{font-size:22px;font-weight:700;letter-spacing:-0.5px;color:#e0e0e0}
+header h1 .accent{color:#00ff88}
+header h1 .dim{color:#6a6a7a}
+header .subtitle{font-size:12px;color:#6a6a7a;margin-top:4px}
+header .back-link a{color:#00aa55;text-decoration:none;font-size:13px;white-space:nowrap}
+header .back-link a:hover{color:#00ff88}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:24px}
+.summary-card{background:rgba(24,24,36,.4);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:16px}
+.summary-card .label{font-size:10px;color:#6a6a7a;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.summary-card .value{font-size:22px;font-weight:700;color:#fff}
+.summary-card .accent{color:#00ff88}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.card{background:rgba(24,24,36,.4);border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:18px}
+.card h3{font-size:11px;color:#6a6a7a;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;font-family:'JetBrains Mono',monospace}
+.chart-wrap{position:relative;height:220px}
+.repos-section h2{font-size:15px;font-weight:600;margin-bottom:10px;color:#00ff88;font-family:'JetBrains Mono',monospace}
+.repo-table{background:rgba(24,24,36,.4);border:1px solid rgba(255,255,255,.04);border-radius:12px;overflow:hidden}
+.repo-row{display:block;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:background .15s}
 .repo-row:last-child{border-bottom:none}
-.repo-row:hover{background:rgba(0,255,136,.03)}
-.repo-name{font-weight:600;font-size:13px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.repo-desc{font-size:11px;color:var(--text-dim);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.repo-meta{display:flex;align-items:center;gap:12px;margin-top:6px;font-size:11px;color:var(--text-dim)}
+.repo-row:hover{background:rgba(0,255,136,.04)}
+.repo-name{font-weight:600;font-size:13px;color:#e0e0e0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.repo-desc{font-size:11px;color:#6a6a7a;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.repo-meta{display:flex;align-items:center;gap:10px;margin-top:5px;font-size:11px;color:#6a6a7a}
 .repo-meta .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:3px;vertical-align:middle}
-.detail-panel{display:none;background:rgba(0,0,0,.25);border-bottom:1px solid var(--border);padding:16px 20px;grid-template-columns:1fr 1fr;gap:16px}
+.detail-panel{display:none;background:rgba(0,0,0,.25);border-bottom:1px solid rgba(255,255,255,.04);padding:14px 16px;grid-template-columns:1fr 1fr;gap:14px}
 .detail-panel.active{display:grid}
-.detail-panel h4{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
-.detail-chart{position:relative;height:140px}
-.lang-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.lang-tags span{font-size:10px;color:var(--text-dim)}
-.lang-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
-.loading{text-align:center;padding:60px 20px;color:var(--text-dim)}
-.loading .spin{display:inline-block;width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px}
+.detail-panel h4{font-size:10px;color:#6a6a7a;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-family:'JetBrains Mono',monospace}
+.detail-chart{position:relative;height:120px}
+.lang-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.lang-tags span{font-size:10px;color:#6a6a7a}
+.lang-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:3px;vertical-align:middle}
+.loading{text-align:center;padding:40px 20px;color:#6a6a7a}
+.loading .spin{display:inline-block;width:24px;height:24px;border:2px solid rgba(255,255,255,.06);border-top-color:#00ff88;border-radius:50%;animation:spin .7s linear infinite;margin-bottom:10px}
 @keyframes spin{to{transform:rotate(360deg)}}
-footer{text-align:center;font-size:11px;color:var(--text-dim);padding:20px 0;margin-top:28px;border-top:1px solid var(--border)}
-footer a{color:var(--accent-dim);text-decoration:none}
-@media(max-width:700px){.chart-grid{grid-template-columns:1fr}.detail-panel.active{grid-template-columns:1fr}body{padding:16px}.summary-grid{grid-template-columns:repeat(2,1fr)}}
+footer{text-align:center;font-size:11px;color:#6a6a7a;padding:18px 0;margin-top:24px;border-top:1px solid rgba(255,255,255,.04)}
+footer a{color:#00aa55;text-decoration:none}
+footer a:hover{color:#00ff88}
+@media(max-width:700px){body{padding:14px}.chart-grid{grid-template-columns:1fr}.chart-wrap{height:180px}.summary-grid{grid-template-columns:repeat(2,1fr)}.summary-card{padding:12px}.summary-card .value{font-size:18px}.detail-panel.active{grid-template-columns:1fr}.card{padding:14px}}
 </style>
 </head>
 <body>
 <div class="container">
 <header>
 <div>
-<h1><span style="color:var(--accent)">stubborn</span><span style="color:var(--text-dim)">.</span><span style="color:var(--accent-dim)">stats</span></h1>
+<h1><span class="accent">stubborn</span><span class="dim">.</span><span style="color:#00aa55">stats</span></h1>
 <div class="subtitle">Updated <span id="update-time">&#8212;</span></div>
 </div>
 <div class="back-link"><a href="/">&larr; portfolio</a></div>
